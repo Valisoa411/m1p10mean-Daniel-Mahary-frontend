@@ -5,6 +5,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { RouterModule, Routes } from '@angular/router';
 import { TesthtmlComponent } from './testhtml/testhtml.component';
+import { SignUpComponent } from './client/sign-up/sign-up.component';
 
 const routes: Routes = [
   { path: 'test', component: TesthtmlComponent } // Redirection pour les URL non définies
@@ -13,7 +14,8 @@ const routes: Routes = [
 @NgModule({
   declarations: [
     AppComponent,
-    TesthtmlComponent
+    TesthtmlComponent,
+    SignUpComponent
   ],
   imports: [
     BrowserModule,

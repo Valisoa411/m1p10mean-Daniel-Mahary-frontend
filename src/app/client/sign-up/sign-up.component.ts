@@ -20,10 +20,20 @@ export class SignUpComponent {
     'confirmMdp',
   ];
   signUpErrors: any = {};
+  succes: boolean = false;
+  message: string = "";
 
   constructor(
     private clientApi: ClientApi,
   ) { }
+
+  onDateNaissanceChange() {
+    if(this.client.dateNaissance && new Date(this.client.dateNaissance).getTime() > new Date().getTime()){
+      this.signUpErrors.dateNaissance = "Date de naissance doit être antérieure à la date actuelle"
+    } else {
+      this.signUpErrors.dateNaissance = null
+    }
+  }
 
   onPasswordChange() {
     const mdp = this.client.mdp;
@@ -53,7 +63,7 @@ export class SignUpComponent {
     }
   }
 
-  isErrorExisting(): boolean{
+  isErrorExisting(): boolean {
     return Object.keys(this.signUpErrors).some(key => {
       return !!this.signUpErrors[key];
     })
@@ -62,10 +72,17 @@ export class SignUpComponent {
   signUpClient(form: NgForm): void {
     this.isClientValid(form);
 
-    if(!this.isErrorExisting()){
-      this.clientApi.signUpClient(this.client).subscribe((data) => {
-        console.log("signUpClient data: ", data);
-      })
+    if (!this.isErrorExisting()) {
+      this.clientApi.signUpClient(this.client).subscribe({
+        next: (data) => {
+          this.succes = true;
+          this.message = data.message;
+        },
+        error: (error) => {
+          this.succes = false;
+          this.message = error.error.message;
+        }
+      });
     }
   }
 }

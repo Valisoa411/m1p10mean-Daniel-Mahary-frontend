@@ -12,8 +12,6 @@ export class ClientApi {
   constructor(private http: HttpClient) {}
 
   signUpClient(clientData: any): Observable<any> {
-    const res = this.http.post(env.hostClient + '/signup', clientData)
-    console.log("signUpClient res: ", res);
-    return res;
+    return this.http.post(env.hostClient + '/signup', clientData)
   }
 }

@@ -1,4 +1,6 @@
 export class Client {
+  // [key: string]: string;
+
   constructor(
     public _id?: string,
     public nom?: string,

@@ -2,35 +2,42 @@
   <h2>Inscription</h2>
   <form #form="ngForm" (submit)="signUpClient(form)">
     <label for="nom">Nom :</label>
-    <input type="text" id="nom" [(ngModel)]="client.nom" name="nom" required />
+    <input type="text" id="nom" [(ngModel)]="client.nom" name="nom" />
+    <div class="textError" *ngIf="signUpErrors.nom">{{ signUpErrors.nom }}</div>
     <br />
 
     <label for="prenom">Prénom :</label>
-    <input type="text" id="prenom" [(ngModel)]="client.prenom" name="prenom" required />
+    <input type="text" id="prenom" [(ngModel)]="client.prenom" name="prenom" />
+    <div class="textError" *ngIf="signUpErrors.prenom">{{ signUpErrors.prenom }}</div>
     <br />
 
     <label for="genre">Genre :</label>
-    <select id="genre" [(ngModel)]="client.genre" name="genre" required >
+    <select id="genre" [(ngModel)]="client.genre" name="genre" >
       <option></option>
       <option value="homme">Homme</option>
       <option value="femme">Femme</option>
     </select>
+    <div class="textError" *ngIf="signUpErrors.genre">{{ signUpErrors.genre }}</div>
     <br />
 
     <label for="dateNaissance">Date de naissance :</label>
-    <input type="date" id="dateNaissance" [(ngModel)]="client.dateNaissance" name="dateNaissance" required />
+    <input type="date" id="dateNaissance" [(ngModel)]="client.dateNaissance" name="dateNaissance" />
+    <div class="textError" *ngIf="signUpErrors.dateNaissance">{{ signUpErrors.dateNaissance }}</div>
     <br />
 
     <label for="email">Email :</label>
-    <input type="email" id="email" [(ngModel)]="client.email" name="email" required />
+    <input type="email" id="email" [(ngModel)]="client.email" name="email" />
+    <div class="textError" *ngIf="signUpErrors.email">{{ signUpErrors.email }}</div>
     <br />
 
     <label for="mdp">Mot de passe :</label>
-    <input type="password" id="mdp" [(ngModel)]="client.mdp" name="mdp" required />
+    <input type="password" id="mdp" [(ngModel)]="client.mdp" name="mdp" (ngModelChange)="onPasswordChange()" />
+    <div class="textError" *ngIf="signUpErrors.mdp">{{ signUpErrors.mdp }}</div>
     <br />
 
     <label for="confirmMdp">Confirmation de mot de passe :</label>
-    <input type="password" id="confirmMdp" name="confirmMdp" ngModel #confirmMdp="ngModel" required />
+    <input type="password" id="confirmMdp" name="confirmMdp" ngModel #confirmMdp="ngModel" (ngModelChange)="onConfirmPasswordChange(confirmMdp.value)" />
+    <div class="textError" *ngIf="signUpErrors.confirmMdp">{{ signUpErrors.confirmMdp }}</div>
     <br />
 
     <button type="submit">Inscription</button>

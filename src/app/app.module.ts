@@ -4,18 +4,23 @@ import { AppComponent } from './app.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { RouterModule, Routes } from '@angular/router';
-import { TesthtmlComponent } from './testhtml/testhtml.component';
+
+import { clientRoutes } from './routes/clientRoutes';
+
 import { SignUpComponent } from './client/sign-up/sign-up.component';
+import { LinksListComponent } from './util/links-list/links-list.component';
 
 const routes: Routes = [
-  { path: 'test', component: TesthtmlComponent } // Redirection pour les URL non définies
+  { path: '', component: LinksListComponent },
+
+  ...clientRoutes
 ];
 
 @NgModule({
   declarations: [
     AppComponent,
-    TesthtmlComponent,
-    SignUpComponent
+    SignUpComponent,
+    LinksListComponent
   ],
   imports: [
     BrowserModule,
@@ -27,4 +32,4 @@ const routes: Routes = [
   providers: [],
   bootstrap: [AppComponent],
 })
-export class AppModule {}
+export class AppModule { }

@@ -9,18 +9,27 @@ import { clientRoutes } from './routes/clientRoutes';
 
 import { SignUpComponent } from './client/sign-up/sign-up.component';
 import { LinksListComponent } from './util/links-list/links-list.component';
+import { ManagerLoginComponent } from './manager/manager-login/manager-login.component';
+import { managerRoutes } from './routes/managerRoutes';
+import { ServiceComponent } from './service/service.component';
+import { ServiceFormComponent } from './service/service-form/service-form.component';
 
 const routes: Routes = [
   { path: '', component: LinksListComponent },
 
-  ...clientRoutes
+  ...clientRoutes,
+  ...managerRoutes,
+
 ];
 
 @NgModule({
   declarations: [
     AppComponent,
     SignUpComponent,
-    LinksListComponent
+    LinksListComponent,
+    ManagerLoginComponent,
+    ServiceComponent,
+    ServiceFormComponent
   ],
   imports: [
     BrowserModule,

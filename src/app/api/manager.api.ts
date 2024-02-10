@@ -7,10 +7,10 @@ import env from '../config/env';
     providedIn: 'root', // Cela enregistre le service au niveau du module racine (AppModule)
 })
 
-export class ClientApi {
+export class ManagerApi {
   constructor(private http: HttpClient) {}
 
-  signUpClient(clientData: any): Observable<any> {
-    return this.http.post(env.hostClient + '/signup', clientData)
+  loginManager(managerCredentials: any): Observable<any> {
+    return this.http.post(env.hostManager + '/login', managerCredentials)
   }
 }

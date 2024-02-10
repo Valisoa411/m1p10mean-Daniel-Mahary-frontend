@@ -10,7 +10,7 @@ import { ClientApi } from '../../api/client.api';
 })
 export class SignUpComponent {
   client: Client = new Client();
-  requiredField: string[] = [
+  requiredInput: string[] = [
     'nom',
     'prenom',
     'genre',
@@ -19,7 +19,7 @@ export class SignUpComponent {
     'mdp',
     'confirmMdp',
   ];
-  signUpErrors: any = {};
+  inputErrors: any = {};
   succes: boolean = false;
   message: string = "";
 
@@ -29,43 +29,43 @@ export class SignUpComponent {
 
   onDateNaissanceChange() {
     if(this.client.dateNaissance && new Date(this.client.dateNaissance).getTime() > new Date().getTime()){
-      this.signUpErrors.dateNaissance = "Date de naissance doit être antérieure à la date actuelle"
+      this.inputErrors.dateNaissance = "Date de naissance doit être antérieure à la date actuelle"
     } else {
-      this.signUpErrors.dateNaissance = null
+      this.inputErrors.dateNaissance = null
     }
   }
 
   onPasswordChange() {
     const mdp = this.client.mdp;
-    this.signUpErrors.mdp = (mdp && mdp.length < 8)
+    this.inputErrors.mdp = (mdp && mdp.length < 8)
       ? "Le mot de passe doit contenir 8 charactères"
       : null
   }
 
   onConfirmPasswordChange(newConfirmMdp: string) {
-    this.signUpErrors.confirmMdp = (newConfirmMdp !== this.client.mdp)
+    this.inputErrors.confirmMdp = (newConfirmMdp !== this.client.mdp)
       ? "Le mot de passe est différent"
       : null
   }
 
   isClientValid(form: NgForm) {
-    this.signUpErrors['email'] = null;
-    this.requiredField.forEach(key => {
+    this.inputErrors['email'] = null;
+    this.requiredInput.forEach(key => {
       if (!form.value[key] || (typeof form.value[key] === "string" && form.value[key] === "")) {
-        this.signUpErrors[key] = `Le champ ${key} est requis`;
+        this.inputErrors[key] = `Le champ ${key} est requis`;
       } else {
-        this.signUpErrors[key] = null;
+        this.inputErrors[key] = null;
       }
     });
     const email = form.value['email'];
     if (email && !/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)) {
-      this.signUpErrors['email'] = "Email invalid";
+      this.inputErrors['email'] = "Email invalid";
     }
   }
 
   isErrorExisting(): boolean {
-    return Object.keys(this.signUpErrors).some(key => {
-      return !!this.signUpErrors[key];
+    return Object.keys(this.inputErrors).some(key => {
+      return !!this.inputErrors[key];
     })
   }
 

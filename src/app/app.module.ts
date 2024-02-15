@@ -9,6 +9,11 @@ import { clientRoutes } from './routes/clientRoutes';
 
 import { SignUpComponent } from './client/sign-up/sign-up.component';
 import { LinksListComponent } from './util/links-list/links-list.component';
+import { InscriptionloadComponent } from './client/inscriptionload/inscriptionload.component';
+import { AccueilComponent } from './client/accueil/accueil.component';
+import { LoginComponent } from './client/login/login.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 const routes: Routes = [
   { path: '', component: LinksListComponent },
@@ -20,7 +25,10 @@ const routes: Routes = [
   declarations: [
     AppComponent,
     SignUpComponent,
-    LinksListComponent
+    LinksListComponent,
+    InscriptionloadComponent,
+    AccueilComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
@@ -28,6 +36,8 @@ const routes: Routes = [
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
+    BrowserAnimationsModule,
+    MatProgressSpinnerModule
   ],
   providers: [],
   bootstrap: [AppComponent],

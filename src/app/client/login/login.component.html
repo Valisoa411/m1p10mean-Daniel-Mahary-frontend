@@ -1,0 +1,19 @@
+<div class="container">
+    <h2>Login</h2>
+    <form #form="ngForm" (submit)="signInClient(form)">
+      <label for="email">Email :</label>
+      <input type="email" id="email" [(ngModel)]="client.email" name="email" />
+      <div class="textError" *ngIf="signInErrors.email">{{ signInErrors.email }}</div>
+      <br />
+  
+      <label for="mdp">Mot de passe :</label>
+      <input type="password" id="mdp" [(ngModel)]="client.mdp" name="mdp" (ngModelChange)="onPasswordChange()" />
+      <div class="textError" *ngIf="signInErrors.mdp">{{ signInErrors.mdp }}</div>
+      <br />
+  
+      <button type="submit">connecter</button>
+  
+      <div [class.textSucces]="succes" [class.textError]="!succes">{{ message }}</div>
+    </form>
+  </div>
+  

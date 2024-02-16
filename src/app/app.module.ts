@@ -4,6 +4,7 @@ import { AppComponent } from './app.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { RouterModule, Routes } from '@angular/router';
+import { DragDropModule } from 'primeng/dragdrop';
 
 import { clientRoutes } from './routes/clientRoutes';
 import { managerRoutes } from './routes/managerRoutes';
@@ -14,6 +15,7 @@ import { ManagerLoginComponent } from './manager/manager-login/manager-login.com
 import { ServiceComponent } from './manager/service/service.component';
 import { ServiceFormComponent } from './manager/service/service-form/service-form.component';
 import { ServiceListComponent } from './manager/service/service-list/service-list.component';
+import { RendezVousComponent } from './client/rendez-vous/rendez-vous.component';
 
 const routes: Routes = [
   { path: '', component: LinksListComponent },
@@ -32,6 +34,7 @@ const routes: Routes = [
     ServiceComponent,
     ServiceFormComponent,
     ServiceListComponent,
+    RendezVousComponent,
   ],
   imports: [
     BrowserModule,
@@ -39,6 +42,7 @@ const routes: Routes = [
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
+    DragDropModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

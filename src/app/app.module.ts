@@ -6,13 +6,14 @@ import { HttpClientModule } from '@angular/common/http';
 import { RouterModule, Routes } from '@angular/router';
 
 import { clientRoutes } from './routes/clientRoutes';
+import { managerRoutes } from './routes/managerRoutes';
 
 import { SignUpComponent } from './client/sign-up/sign-up.component';
 import { LinksListComponent } from './util/links-list/links-list.component';
 import { ManagerLoginComponent } from './manager/manager-login/manager-login.component';
-import { managerRoutes } from './routes/managerRoutes';
-import { ServiceComponent } from './service/service.component';
-import { ServiceFormComponent } from './service/service-form/service-form.component';
+import { ServiceComponent } from './manager/service/service.component';
+import { ServiceFormComponent } from './manager/service/service-form/service-form.component';
+import { ServiceListComponent } from './manager/service/service-list/service-list.component';
 
 const routes: Routes = [
   { path: '', component: LinksListComponent },
@@ -29,7 +30,8 @@ const routes: Routes = [
     LinksListComponent,
     ManagerLoginComponent,
     ServiceComponent,
-    ServiceFormComponent
+    ServiceFormComponent,
+    ServiceListComponent,
   ],
   imports: [
     BrowserModule,

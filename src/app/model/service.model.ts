@@ -9,5 +9,8 @@ export class Service {
     public commission?: number,
     public description?: string,
     public photo?: string,
-  ) {}
+    public nbEmploye?: number,
+  ) {
+    this.nbEmploye = 1;
+  }
 }

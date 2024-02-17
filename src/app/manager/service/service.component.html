@@ -1,3 +1,34 @@
-<app-service-form></app-service-form>
+<!-- <app-service-form></app-service-form>
 <br/>
-<app-service-list></app-service-list>
+<app-service-list></app-service-list> -->
+
+<div class="container">
+  <div [class.textSucces]="succes" [class.textError]="!succes">{{ message }}</div>
+  <div *ngIf="create">
+    <app-service-form (onClose)="clearScreen()"></app-service-form>
+  </div>
+  <div *ngIf="selectedService && update">
+    <app-service-form [selectedService]="selectedService" (onClose)="clearScreen()"></app-service-form>
+  </div>
+  <div *ngIf="selectedService && delete">
+    <h2>Delete</h2>
+    <p>Supprimer {{ selectedService.nom }}</p>
+    <button (click)="deleteService()">Confirmer</button>
+    <button (click)="clearScreen()">Annuler</button>
+  </div>
+  <h2>Les Services</h2>
+  <button (click)="openCreateForm()">Ajouter</button>
+  <div *ngFor="let service of services">
+    <img src="{{service.photo}}" alt="{{service.nom}}">
+    <p>Nom: {{service.nom}}</p>
+    <p>Prix: {{service.prix}}</p>
+    <p>Duree: {{service.duree}}</p>
+    <p>Commission: {{service.commission}}</p>
+    <p>Description: {{service.description}}</p>
+    <p>Nombre d'employe: {{service.nbEmploye}}</p>
+    <button (click)="openUpdateForm(service)">Mettre a jour</button>
+    <button (click)="openDeleteConfirmation(service)">Supprimer</button>
+    <br/>
+    <br/>
+  </div>
+</div>

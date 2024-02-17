@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges } from '@angular/core';
 import { ServiceApi } from 'src/app/api/service.api';
 import { Service } from 'src/app/model/service.model';
 
@@ -9,6 +9,8 @@ import { Service } from 'src/app/model/service.model';
 })
 export class ServiceFormComponent implements OnInit {
   @Input() selectedService?: Service;
+  // @Input() handleClose?: () => void;
+  @Output() onClose = new EventEmitter<void>();
 
   service: Service = new Service();
   requiredInput: string[] = [
@@ -27,22 +29,17 @@ export class ServiceFormComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    // console.log("handleClose: ", this.handleClose);
+
     this.isUpdate = !!this.selectedService;
     if(this.selectedService){
       this.service = {...this.selectedService};
     }
   }
 
-  // onNbEmployeChange() {
-  //   if (this.service.nbEmploye!==undefined && this.service.nbEmploye === 0) {
-  //     console.log("error0");
-  //     this.service.nbEmploye = 1;
-  //   }
-  //   if (this.service.nbEmploye && this.service.nbEmploye < 1) {
-  //     console.log("error1");
-  //     this.service.nbEmploye = 1;
-  //   }
-  // }
+  emitClose() {
+    this.onClose.emit();
+  }
 
   onNbEmployeChange() {
     const sanitizedValue = Math.max(1, this.service.nbEmploye ? this.service.nbEmploye : 1);

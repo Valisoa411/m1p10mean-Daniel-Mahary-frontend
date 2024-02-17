@@ -38,9 +38,10 @@
     <br />
 
     <button type="submit">Enregistrer</button>
+    <button type="button" (click)="emitClose()">Annuler</button>
 
     <div [class.textSucces]="succes" [class.textError]="!succes">{{ message }}</div>
   </form>
 
-  <button (click)="test()">test</button>
+  <!-- <button (click)="test()">test</button> -->
 </div>

@@ -14,11 +14,16 @@ import { AccueilComponent } from './client/accueil/accueil.component';
 import { LoginComponent } from './client/login/login.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { AccueilManagerComponent } from './manager/accueil-manager/accueil-manager.component';
+import { ListEmployeComponent } from './manager/list-employe/list-employe.component';
+import { managerRoutes } from './routes/managerRoutes';
+import { CreateEmployeComponent } from './manager/create-employe/create-employe.component';
 
 const routes: Routes = [
   { path: '', component: LinksListComponent },
 
-  ...clientRoutes
+  ...clientRoutes,
+  ...managerRoutes
 ];
 
 @NgModule({
@@ -28,7 +33,10 @@ const routes: Routes = [
     LinksListComponent,
     InscriptionloadComponent,
     AccueilComponent,
-    LoginComponent
+    LoginComponent,
+    AccueilManagerComponent,
+    ListEmployeComponent,
+    CreateEmployeComponent
   ],
   imports: [
     BrowserModule,

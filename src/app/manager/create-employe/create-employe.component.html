@@ -1,0 +1,39 @@
+<div class="container">
+    <h2>Créer un nouveau véhicule</h2>
+    <form (submit)="createEmploye()" enctype="multipart/form-data">
+
+      <label for="nom">nom :</label>
+      <input type="text" id="nom" [(ngModel)]="employe.nom" name="nom" required />
+      <br />
+  
+      <label for="prenom">prenom :</label>
+      <input type="text" id="prenom" [(ngModel)]="employe.prenom" name="prenom" required />
+      <br />
+  
+      <label for="cin"> cin :</label>
+      <input type="number" id="cin" [(ngModel)]="employe.cin" name="cin" required />
+      <br />
+
+      <label for="login"> login :</label>
+      <input type="text" id="login" [(ngModel)]="employe.login" name="login" required />
+      <br />
+
+      <label for="genre">Genre :</label>
+    <select id="genre" [(ngModel)]="employe.genre" name="genre" >
+      <option></option>
+      <option value="homme">Homme</option>
+      <option value="femme">Femme</option>
+    </select>
+
+      <label for="mdp"> mdp :</label>
+      <input type="text" id="mdp" [(ngModel)]="employe.mdp" name="mdp" required />
+      <br />
+  
+      <label for="photo">Photo :</label>
+      <input type="file" id="photo" (change)="onPhotoChange($event)" name="photo" accept="image/*">
+
+      <button type="submit">Ajouter Employé</button>
+
+    </form>
+
+</div>

@@ -25,7 +25,7 @@ export class ManagerApi {
     formData.append('mdp', employeeData.mdp);
     formData.append('photo', photo);
 
-    
+
 
     return this.http.post(env.hostManager + "/createEmploye", formData);
   }
@@ -39,4 +39,7 @@ export class ManagerApi {
     return this.http.delete(env.hostManager + "/deleteEmploye/"+employeeId);
   }
 
+  loginManager(managerCredentials: any): Observable<any> {
+    return this.http.post(env.hostManager + '/login', managerCredentials)
+  }
 }

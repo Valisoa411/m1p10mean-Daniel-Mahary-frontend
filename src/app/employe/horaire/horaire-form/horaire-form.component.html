@@ -1,0 +1,30 @@
+<div class="container">
+  <form #form="ngForm" (submit)="isUpdate ? updateHoraire(form) : addHoraire(form)">
+    <table border="0">
+      <tr>
+        <th>Jour</th>
+        <th>Debut</th>
+        <th>Fin</th>
+      </tr>
+      <tr>
+        <td>
+          <select id="jour" [(ngModel)]="horaire.jour" name="jour">
+            <option></option>
+            <option *ngFor="let jour of jourSemaine" value="{{jour}}">{{jour}}</option>
+          </select>
+        </td>
+        <td>
+          <input type="time" id="debut" [(ngModel)]="horaire.debut" name="debut" />
+        </td>
+        <td>
+          <input type="time" id="fin" [(ngModel)]="horaire.fin" name="fin" />
+        </td>
+      </tr>
+    </table>
+    <div *ngFor="let key of errorKeys()" class="textError">
+      {{ inputErrors[key] }}
+    </div>
+    <button type="submit">Enregistrer</button>
+  </form>
+
+</div>

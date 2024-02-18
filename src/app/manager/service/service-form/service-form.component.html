@@ -1,0 +1,47 @@
+<div class="container">
+  <h2>{{ isUpdate ? 'Modification Service' : 'Ajout Service' }}</h2>
+  <form #form="ngForm" (submit)="isUpdate ? updateService(form) : addService(form)">
+    <label for="nom">Nom :</label>
+    <input type="text" id="nom" [(ngModel)]="service.nom" name="nom" />
+    <div class="textError" *ngIf="inputErrors.nom">{{ inputErrors.nom }}</div>
+    <br />
+
+    <label for="prix">Prix :</label>
+    <input type="number" id="prix" [(ngModel)]="service.prix" name="prix" />
+    <div class="textError" *ngIf="inputErrors.prix">{{ inputErrors.prix }}</div>
+    <br />
+
+    <label for="duree">Durée :</label>
+    <input type="number" id="duree" [(ngModel)]="service.duree" name="duree" />
+    <div class="textError" *ngIf="inputErrors.duree">{{ inputErrors.duree }}</div>
+    <br />
+
+    <label for="commission">Commission :</label>
+    <input type="number" id="commission" [(ngModel)]="service.commission" name="commission" />
+    <div class="textError" *ngIf="inputErrors.commission">{{ inputErrors.commission }}</div>
+    <br />
+
+    <label for="description">Description :</label>
+    <textarea type="text" id="description" [(ngModel)]="service.description" name="description"></textarea>
+    <div class="textError" *ngIf="inputErrors.description">{{ inputErrors.description }}</div>
+    <br />
+
+    <label for="photo">Photo :</label>
+    <input type="file" (change)="onFileSelected($event)"/>
+    <div class="textError" *ngIf="inputErrors.photo">{{ inputErrors.photo }}</div>
+    <br />
+
+    <label for="nbEmploye">Nombre d'employe :</label>
+    <!-- <input type="number" id="nbEmploye" [(ngModel)]="service.nbEmploye" name="nbEmploye" (ngModelChange)="onNbEmployeChange()" /> -->
+    <input type="number" id="nbEmploye" [(ngModel)]="service.nbEmploye" name="nbEmploye" (ngModelChange)="onNbEmployeChange()" min="1" />
+    <div class="textError" *ngIf="inputErrors.nbEmploye">{{ inputErrors.nbEmploye }}</div>
+    <br />
+
+    <button type="submit">Enregistrer</button>
+    <button type="button" (click)="emitClose()">Annuler</button>
+
+    <div [class.textSucces]="succes" [class.textError]="!succes">{{ message }}</div>
+  </form>
+
+  <!-- <button (click)="test()">test</button> -->
+</div>

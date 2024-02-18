@@ -4,8 +4,11 @@ import { AppComponent } from './app.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { RouterModule, Routes } from '@angular/router';
+import { DragDropModule } from 'primeng/dragdrop';
 
 import { clientRoutes } from './routes/clientRoutes';
+import { employeRoutes } from './routes/employeRoutes';
+import { managerRoutes } from './routes/managerRoutes';
 
 import { SignUpComponent } from './client/sign-up/sign-up.component';
 import { LinksListComponent } from './util/links-list/links-list.component';
@@ -16,14 +19,22 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { AccueilManagerComponent } from './manager/accueil-manager/accueil-manager.component';
 import { ListEmployeComponent } from './manager/list-employe/list-employe.component';
-import { managerRoutes } from './routes/managerRoutes';
 import { CreateEmployeComponent } from './manager/create-employe/create-employe.component';
+import { ManagerLoginComponent } from './manager/manager-login/manager-login.component';
+import { ServiceComponent } from './manager/service/service.component';
+import { ServiceFormComponent } from './manager/service/service-form/service-form.component';
+import { ServiceListComponent } from './manager/service/service-list/service-list.component';
+import { RendezVousComponent } from './client/rendez-vous/rendez-vous.component';
+import { HoraireComponent } from './employe/horaire/horaire.component';
+import { HoraireFormComponent } from './employe/horaire/horaire-form/horaire-form.component';
 
 const routes: Routes = [
   { path: '', component: LinksListComponent },
 
   ...clientRoutes,
-  ...managerRoutes
+  ...managerRoutes,
+  ...employeRoutes,
+
 ];
 
 @NgModule({
@@ -36,7 +47,14 @@ const routes: Routes = [
     LoginComponent,
     AccueilManagerComponent,
     ListEmployeComponent,
-    CreateEmployeComponent
+    CreateEmployeComponent,
+    ManagerLoginComponent,
+    ServiceComponent,
+    ServiceFormComponent,
+    ServiceListComponent,
+    RendezVousComponent,
+    HoraireComponent,
+    HoraireFormComponent,
   ],
   imports: [
     BrowserModule,
@@ -45,7 +63,8 @@ const routes: Routes = [
     ReactiveFormsModule,
     HttpClientModule,
     BrowserAnimationsModule,
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
+    DragDropModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

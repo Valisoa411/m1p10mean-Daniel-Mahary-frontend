@@ -1,6 +1,5 @@
 import { HttpClient,HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { Client } from '../model/client.model';
 import { Injectable } from '@angular/core';
 import env from '../config/env';
 import { TokenService } from '../client/service/token.service';

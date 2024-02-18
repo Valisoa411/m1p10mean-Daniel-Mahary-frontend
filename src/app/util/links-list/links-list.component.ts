@@ -6,5 +6,11 @@ import { Component } from '@angular/core';
   styleUrls: ['./links-list.component.css']
 })
 export class LinksListComponent {
+  constructor(){
+    // const testDate = new Date();
+    // testDate.setDate(testDate.getDate() + 1)
+    // console.log("LinksListComponent: ", testDate.getDay());
+    // console.log("LinksListComponent: ", testDate.getDate());
 
+  }
 }

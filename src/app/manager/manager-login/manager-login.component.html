@@ -1,0 +1,16 @@
+<div class="container">
+  <h2>Connexion Manager</h2>
+  <form #form="ngForm" (submit)="loginManager()">
+    <label for="login">Login :</label>
+    <input type="text" id="login" [(ngModel)]="manager.login" name="login" />
+    <br />
+
+    <label for="mdp">Mot de passe :</label>
+    <input type="text" id="mdp" [(ngModel)]="manager.mdp" name="mdp" />
+    <br />
+
+    <button type="submit">Connexion</button>
+
+    <div [class.textSucces]="succes" [class.textError]="!succes">{{ message }}</div>
+  </form>
+</div>

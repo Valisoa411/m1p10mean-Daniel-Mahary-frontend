@@ -1,0 +1,13 @@
+<div *ngIf="erreurRecuperationClients">
+    <div class="alert alert-danger">
+      {{ erreurRecuperationClients }}
+    </div>
+  </div>
+  
+  <div *ngIf="!erreurRecuperationClients">
+    <!-- Affichez la liste des utilisateurs ici -->
+    <ul>
+      <li *ngFor="let client of listeClient">{{ client.nom }} {{ client.prenom }} {{ client.email }}</li>
+    </ul>
+  </div>
+  

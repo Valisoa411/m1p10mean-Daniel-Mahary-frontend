@@ -9,18 +9,34 @@ import { clientRoutes } from './routes/clientRoutes';
 
 import { SignUpComponent } from './client/sign-up/sign-up.component';
 import { LinksListComponent } from './util/links-list/links-list.component';
+import { InscriptionloadComponent } from './client/inscriptionload/inscriptionload.component';
+import { AccueilComponent } from './client/accueil/accueil.component';
+import { LoginComponent } from './client/login/login.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { AccueilManagerComponent } from './manager/accueil-manager/accueil-manager.component';
+import { ListEmployeComponent } from './manager/list-employe/list-employe.component';
+import { managerRoutes } from './routes/managerRoutes';
+import { CreateEmployeComponent } from './manager/create-employe/create-employe.component';
 
 const routes: Routes = [
   { path: '', component: LinksListComponent },
 
-  ...clientRoutes
+  ...clientRoutes,
+  ...managerRoutes
 ];
 
 @NgModule({
   declarations: [
     AppComponent,
     SignUpComponent,
-    LinksListComponent
+    LinksListComponent,
+    InscriptionloadComponent,
+    AccueilComponent,
+    LoginComponent,
+    AccueilManagerComponent,
+    ListEmployeComponent,
+    CreateEmployeComponent
   ],
   imports: [
     BrowserModule,
@@ -28,6 +44,8 @@ const routes: Routes = [
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
+    BrowserAnimationsModule,
+    MatProgressSpinnerModule
   ],
   providers: [],
   bootstrap: [AppComponent],

@@ -21,7 +21,6 @@ export class ServiceComponent {
   }
 
   clearScreen() {
-    console.log("clearScreen");
     this.selectedService = undefined;
     this.create = false;
     this.update = false;

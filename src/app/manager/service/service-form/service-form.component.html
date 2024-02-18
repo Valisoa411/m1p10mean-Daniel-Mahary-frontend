@@ -1,6 +1,6 @@
 <div class="container">
   <h2>{{ isUpdate ? 'Modification Service' : 'Ajout Service' }}</h2>
-  <form #form="ngForm" (submit)="isUpdate ? updateService() : addService()">
+  <form #form="ngForm" (submit)="isUpdate ? updateService(form) : addService(form)">
     <label for="nom">Nom :</label>
     <input type="text" id="nom" [(ngModel)]="service.nom" name="nom" />
     <div class="textError" *ngIf="inputErrors.nom">{{ inputErrors.nom }}</div>
@@ -33,7 +33,7 @@
 
     <label for="nbEmploye">Nombre d'employe :</label>
     <!-- <input type="number" id="nbEmploye" [(ngModel)]="service.nbEmploye" name="nbEmploye" (ngModelChange)="onNbEmployeChange()" /> -->
-    <input type="number" id="nbEmploye" [(ngModel)]="service.nbEmploye" name="nbEmploye" (ngModelChange)="onNbEmployeChange()" />
+    <input type="number" id="nbEmploye" [(ngModel)]="service.nbEmploye" name="nbEmploye" (ngModelChange)="onNbEmployeChange()" min="1" />
     <div class="textError" *ngIf="inputErrors.nbEmploye">{{ inputErrors.nbEmploye }}</div>
     <br />
 

@@ -3,7 +3,7 @@
 <app-service-list></app-service-list> -->
 
 <div class="container">
-  <div [class.textSucces]="succes" [class.textError]="!succes">{{ message }}</div>
+  <div [class.textSuccess]="succes" [class.textError]="!succes">{{ message }}</div>
   <div *ngIf="create">
     <app-service-form (onClose)="clearScreen()"></app-service-form>
   </div>

@@ -10,7 +10,7 @@
         <td>
           <select id="jour" [(ngModel)]="horaire.jour" name="jour">
             <option></option>
-            <option *ngFor="let jour of jourSemaine" value="{{jour}}">{{jour}}</option>
+            <option *ngFor="let jour of jourSemaine; let i = index" [value]="i">{{ jour }}</option>
           </select>
         </td>
         <td>
@@ -21,10 +21,12 @@
         </td>
       </tr>
     </table>
+    <div [class.textSuccess]="succes" [class.textError]="!succes">{{ message }}</div>
     <div *ngFor="let key of errorKeys()" class="textError">
       {{ inputErrors[key] }}
     </div>
     <button type="submit">Enregistrer</button>
+    <button type="button" (click)="test()">Test</button>
   </form>
 
 </div>

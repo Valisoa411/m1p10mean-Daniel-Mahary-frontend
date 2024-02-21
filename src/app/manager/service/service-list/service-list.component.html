@@ -1,5 +1,5 @@
 <div class="container">
-  <div [class.textSucces]="succes" [class.textError]="!succes">{{ message }}</div>
+  <div [class.textSuccess]="succes" [class.textError]="!succes">{{ message }}</div>
   <div *ngIf="selectedService && update">
     <app-service-form [selectedService]="selectedService"></app-service-form>
   </div>

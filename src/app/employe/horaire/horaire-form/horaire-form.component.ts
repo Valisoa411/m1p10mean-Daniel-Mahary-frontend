@@ -2,6 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { HoraireApi } from 'src/app/api/horaire.api';
 import { Horaire } from 'src/app/model/horaire.model';
+import { jourSemaine } from 'src/app/util/data';
 
 @Component({
   selector: 'app-horaire-form',
@@ -9,24 +10,16 @@ import { Horaire } from 'src/app/model/horaire.model';
   styleUrls: ['./horaire-form.component.css']
 })
 export class HoraireFormComponent implements OnInit {
+  @Input() idEmploye?: string;
   @Input() selectedHoraire?: Horaire;
 
-  idEmploye: string = '65d0b02fdb98230f00ba0925';
   requiredInput: string[] = [
     'jour',
     'debut',
     'fin',
   ]
-  jourSemaine: string[] = [
-    'Lundi',
-    'Mardi',
-    'Mercredi',
-    'Jeudi',
-    'Vendredi',
-    'Samedi',
-    'Dimanche',
-  ]
-  horaire: Horaire = new Horaire(this.idEmploye);
+  jourSemaine: string[] = jourSemaine;
+  horaire: Horaire = new Horaire();
   inputErrors: any = {};
   succes: boolean = false;
   message: string = "";
@@ -43,7 +36,15 @@ export class HoraireFormComponent implements OnInit {
         ...this.selectedHoraire,
         idEmploye: this.idEmploye,
       };
+    } else {
+      this.horaire = new Horaire(undefined, this.idEmploye);
     }
+  }
+
+  test(){
+    console.log("test: ", this.horaire);
+    console.log("test: ", this.idEmploye);
+
   }
 
   isHoraireValid(form: NgForm) {

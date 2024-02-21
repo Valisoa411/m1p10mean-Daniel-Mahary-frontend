@@ -10,7 +10,7 @@ import env from '../config/env';
 export class EmployeApi {
   constructor(private http: HttpClient) {}
 
-  getEmploye(idEmploye: string): Observable<any> {
-    return this.http.get(env.hostManager + '/' + idEmploye);
+  getEmployeHoraires(idEmploye: string): Observable<any> {
+    return this.http.get(env.hostEmploye + '/horaire/' + idEmploye);
   }
 }

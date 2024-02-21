@@ -1,4 +1,21 @@
 <div class="container">
   <h2>Vos horaires</h2>
-  <app-horaire-form [selectedHoraire]="selectedHoraire"></app-horaire-form>
+  <app-horaire-form [selectedHoraire]="selectedHoraire" [idEmploye]="idEmploye"></app-horaire-form>
+  <table border="0">
+    <tr>
+      <th>Jour</th>
+      <th>Debut</th>
+      <th>Fin</th>
+      <th>Action</th>
+    </tr>
+    <tr *ngFor="let horaire of horaires">
+      <td>{{jourSemaine[horaire.jour ? horaire.jour : 0]}}</td>
+      <td>{{horaire.debut}}</td>
+      <td>{{horaire.fin}}</td>
+      <td>
+        <button>modifier</button>
+      </td>
+    </tr>
+  </table>
+  <button type="button" (click)="test()">Test</button>
 </div>

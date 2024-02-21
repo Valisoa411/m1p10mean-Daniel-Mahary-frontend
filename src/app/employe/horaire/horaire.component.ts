@@ -13,6 +13,7 @@ export class HoraireComponent {
   idEmploye: string = '65d0b02fdb98230f00ba0925';
   horaires: Horaire[] = [];
   selectedHoraire: Horaire | undefined;
+  update: boolean = false;
   delete: boolean = false;
   message: string = '';
   succes: boolean = false;
@@ -33,7 +34,20 @@ export class HoraireComponent {
 
   clearScreen() {
     this.selectedHoraire = undefined;
+    this.update = false;
     this.delete = false;
+  }
+
+  fillUpdateForm(horaire: Horaire) {
+    this.selectedHoraire = horaire;
+    this.update = true;
+    console.log("fillUpdateForm: ", this.selectedHoraire);
+
+  }
+
+  openDeleteConfirmation(horaire: Horaire) {
+    this.selectedHoraire = horaire;
+    this.delete = true;
   }
 
   loadHoraires(): void {
@@ -42,14 +56,21 @@ export class HoraireComponent {
     })
   }
 
-  openDeleteConfirmation(horaire: Horaire) {
-    this.selectedHoraire = horaire;
-    this.delete = true;
-  }
-
   deleteService(): void {
     if (this.selectedHoraire && this.selectedHoraire._id) {
-
+      this.horaireApi.deleteHoraire(this.selectedHoraire?._id).subscribe({
+        next: (data) => {
+          this.succes = true;
+          this.message = data.message;
+        },
+        error: (error) => {
+          this.succes = false;
+          this.message = error.error.message;
+        },
+        complete: () => {
+          this.clearScreen();
+        }
+      })
     }
   }
 }

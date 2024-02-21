@@ -1,6 +1,11 @@
 <div class="container">
   <h2>Vos horaires</h2>
-  <app-horaire-form [selectedHoraire]="selectedHoraire" [idEmploye]="idEmploye"></app-horaire-form>
+  <app-horaire-form [selectedHoraire]="selectedHoraire" [isUpdate]="update" [idEmploye]="idEmploye" (onCancel)="clearScreen()"></app-horaire-form>
+  <div *ngIf="selectedHoraire && delete">
+    <p>Supprimer l'horaire {{jourSemaine[selectedHoraire.jour ? selectedHoraire.jour : 0]}} de {{selectedHoraire.debut}} à {{selectedHoraire.fin}}</p>
+    <button (click)="deleteService()">Confirmer</button>
+    <button (click)="clearScreen()">Annuler</button>
+  </div>
   <table border="0">
     <tr>
       <th>Jour</th>
@@ -13,7 +18,8 @@
       <td>{{horaire.debut}}</td>
       <td>{{horaire.fin}}</td>
       <td>
-        <button>modifier</button>
+        <button (click)="fillUpdateForm(horaire)">modifier</button>
+        <button (click)="openDeleteConfirmation(horaire)">supprimer</button>
       </td>
     </tr>
   </table>

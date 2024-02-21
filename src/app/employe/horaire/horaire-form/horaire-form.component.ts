@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { HoraireApi } from 'src/app/api/horaire.api';
 import { Horaire } from 'src/app/model/horaire.model';
@@ -9,9 +9,11 @@ import { jourSemaine } from 'src/app/util/data';
   templateUrl: './horaire-form.component.html',
   styleUrls: ['./horaire-form.component.css']
 })
-export class HoraireFormComponent implements OnInit {
+export class HoraireFormComponent implements OnInit, OnChanges {
   @Input() idEmploye?: string;
   @Input() selectedHoraire?: Horaire;
+  @Input() isUpdate?: boolean;
+  @Output() onCancel = new EventEmitter<void>();
 
   requiredInput: string[] = [
     'jour',
@@ -23,15 +25,14 @@ export class HoraireFormComponent implements OnInit {
   inputErrors: any = {};
   succes: boolean = false;
   message: string = "";
-  isUpdate: boolean = false;
 
   constructor(
     private horaireApi: HoraireApi
   ) {}
 
-  ngOnInit(): void {
-    this.isUpdate = !!this.selectedHoraire;
-    if (this.selectedHoraire) {
+  ngOnChanges(changes: SimpleChanges): void {
+    console.log("init: ", this.selectedHoraire, this.isUpdate, this.selectedHoraire && this.isUpdate);
+    if (this.selectedHoraire && this.isUpdate) {
       this.horaire = {
         ...this.selectedHoraire,
         idEmploye: this.idEmploye,
@@ -41,9 +42,26 @@ export class HoraireFormComponent implements OnInit {
     }
   }
 
+  ngOnInit(): void {
+    console.log("init: ", this.selectedHoraire, this.isUpdate, this.selectedHoraire && this.isUpdate);
+
+    if (this.selectedHoraire && this.isUpdate) {
+      this.horaire = {
+        ...this.selectedHoraire,
+        idEmploye: this.idEmploye,
+      };
+    } else {
+      this.horaire = new Horaire(undefined, this.idEmploye);
+    }
+  }
+
+  emitCancel() {
+    this.onCancel.emit();
+  }
+
   test(){
+    console.log("test: ", this.selectedHoraire);
     console.log("test: ", this.horaire);
-    console.log("test: ", this.idEmploye);
 
   }
 

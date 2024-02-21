@@ -26,7 +26,8 @@
       {{ inputErrors[key] }}
     </div>
     <button type="submit">Enregistrer</button>
-    <button type="button" (click)="test()">Test</button>
+    <button type="button" *ngIf="isUpdate" (click)="emitCancel()">Annuler</button>
+    <!-- <button type="button" (click)="test()">Test</button> -->
   </form>
 
 </div>

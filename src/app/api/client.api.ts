@@ -36,5 +36,5 @@ export class ClientApi {
     // Utilisez les en-têtes dans la requête HTTP
     return this.http.get<any[]>(url, { headers });
   }
-  
+
 }

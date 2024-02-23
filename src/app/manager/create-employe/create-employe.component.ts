@@ -23,8 +23,8 @@ export class CreateEmployeComponent {
     console.log(this.photoFile);
     this.managerAPi.createEmploye(this.employe,this.photoFile).subscribe((data) => {
       console.log('employé créé avec succès :', data);
+      this.router.navigate(['/listEmploye']);
     });
-
-    this.router.navigate(['/listEmploye']);
+    
   }
 }

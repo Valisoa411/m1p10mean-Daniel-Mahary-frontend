@@ -1,18 +1,23 @@
-<div *ngIf="erreurRecuperationEmploye">
-    <div class="alert alert-danger">
-      {{ erreurRecuperationEmploye }}
-    </div>
+<div *ngIf="erreurRecuperationEmploye" class="alert alert-danger">
+  {{ erreurRecuperationEmploye }}
 </div>
-  <div *ngIf="!erreurRecuperationEmploye">
-    <div *ngFor="let employee of listeEmploye">
-        <h2>{{ employee.nom }} {{ employee.prenom }}</h2>
-        <p>CIN: {{ employee.cin }}</p>
-        <p>Genre: {{ employee.genre }}</p>
-        <p>Login: {{ employee.login }}</p>
-        <img [src]="employee.photo" alt="{{ employee.nom }} {{ employee.prenom }}" width="100" height="100">
-        <button (click)="deleteEmploye(employee._id)">Supprimer</button>
-      </div>
+
+<div *ngIf="!erreurRecuperationEmploye">
+  <label for="searchTerm">Rechercher employé :</label>
+  <input type="text" id="searchTerm" [(ngModel)]="termeRecherche" />
+  <button (click)="searchEmploye()">Rechercher</button>
+
+  <div *ngFor="let employee of listeEmploye">
+    <h2>{{ employee.nom }} {{ employee.prenom }}</h2>
+    <p>CIN: {{ employee.cin }}</p>
+    <p>Genre: {{ employee.genre }}</p>
+    <p>Login: {{ employee.login }}</p>
+    <p>Matricule: {{ employee.matricule }}</p>
+    <img [src]="employee.photo" alt="{{ employee.nom }} {{ employee.prenom }}" width="100" height="100">
+    <button (click)="deleteEmploye(employee._id)">Supprimer</button>
+  </div>
 </div>
+
 <ul>
-    <li><a href="/createEmploye">ajouter employé</a></li>
+  <li><a routerLink="/createEmploye">Ajouter employé</a></li>
 </ul>

@@ -10,6 +10,5 @@ export const clientRoutes: Routes = [
   { path: 'validation/:id', component: InscriptionloadComponent },
   { path: 'accueil', component: AccueilComponent },
   { path: 'signin', component: LoginComponent },
-  { path: 'signup', component: SignUpComponent },
   { path: 'rendezvous', component: RendezVousComponent },
 ]

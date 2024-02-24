@@ -31,7 +31,7 @@ import { ProfilComponent } from './employe/profil/profil.component';
 import { RendezVousComponent } from './client/rendez-vous/rendez-vous.component';
 
 const routes: Routes = [
-  { path: '', component: LinksListComponent },
+  // { path: '/list', component: LinksListComponent },
 
   ...clientRoutes,
   ...managerRoutes,

@@ -37,7 +37,7 @@ export class ManagerApi {
   }
 
   deleteEmploye(employeeId: string): Observable<any> {
-    return this.http.delete(env.hostManager + "/deleteEmploye/"+employeeId);
+    return this.http.delete(env.hostManager + "/deleteEmploye/"+employeeId,{headers: getHeaders()});
   }
 
   loginManager(managerCredentials: any): Observable<any> {

@@ -4,6 +4,7 @@ import { Injectable } from '@angular/core';
 import env from '../config/env';
 import { TokenService } from '../client/service/token.service';
 import { Employe } from '../model/employe.model';
+import { getHeaders } from '../util/util';
 
 @Injectable({
   providedIn: 'root', // Cela enregistre le service au niveau du module racine (AppModule)
@@ -20,7 +21,7 @@ export class EmployeApi {
   // }
 
   signInEmploye(employeData: any): Observable<any> {
-    return this.http.post(env.hostEmploye + '/signin', employeData);
+    return this.http.post(env.hostEmploye + '/signin', employeData, {headers: getHeaders()});
   }
 
   getEmploye(): Observable<any> {

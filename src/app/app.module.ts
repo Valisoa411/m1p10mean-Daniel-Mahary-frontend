@@ -23,12 +23,12 @@ import { CreateEmployeComponent } from './manager/create-employe/create-employe.
 import { ManagerLoginComponent } from './manager/manager-login/manager-login.component';
 import { ServiceComponent } from './manager/service/service.component';
 import { ServiceFormComponent } from './manager/service/service-form/service-form.component';
-import { RendezVousComponent } from './client/rendez-vous/rendez-vous.component';
 import { HoraireComponent } from './employe/horaire/horaire.component';
 import { HoraireFormComponent } from './employe/horaire/horaire-form/horaire-form.component';
 import { SigninComponent } from './employe/signin/signin.component';
 import { AccueilEmployeComponent } from './employe/accueil-employe/accueil-employe.component';
 import { ProfilComponent } from './employe/profil/profil.component';
+import { RendezVousComponent } from './client/rendez-vous/rendez-vous.component';
 
 const routes: Routes = [
   { path: '', component: LinksListComponent },

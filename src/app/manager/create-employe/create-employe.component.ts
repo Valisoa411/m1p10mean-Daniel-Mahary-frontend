@@ -3,6 +3,7 @@ import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { ManagerApi } from 'src/app/api/manager.api';
 import { Employe } from 'src/app/model/employe.model';
+// import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-create-employe',
@@ -12,6 +13,19 @@ import { Employe } from 'src/app/model/employe.model';
 export class CreateEmployeComponent {
   employe: Employe = new Employe();
   photoFile: File = new File([], '');
+
+  // faEye = faEye;
+  // faEyeSlash = faEyeSlash;
+
+  showPassword: boolean = false;
+
+  // Autres méthodes du composant
+
+  togglePasswordVisibility(): void {
+    this.showPassword = !this.showPassword;
+  }
+
+  
   constructor(private managerAPi: ManagerApi,private router:Router) {
 
   }
@@ -24,7 +38,7 @@ export class CreateEmployeComponent {
     this.managerAPi.createEmploye(this.employe,this.photoFile).subscribe((data) => {
       console.log('employé créé avec succès :', data);
       this.router.navigate(['/listEmploye']);
-    });
-    
+  });
+  
   }
 }

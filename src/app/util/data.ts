@@ -7,3 +7,15 @@ export const jourSemaine: string[] = [
   'Vendredi',
   'Samedi',
 ]
+
+export const sidenavConfig = {
+  manager: [
+
+  ],
+  employe: [
+
+  ],
+  client: [
+
+  ],
+}

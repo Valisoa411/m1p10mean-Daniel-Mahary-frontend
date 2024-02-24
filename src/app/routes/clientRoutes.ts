@@ -4,6 +4,7 @@ import { InscriptionloadComponent } from '../client/inscriptionload/inscriptionl
 import { AccueilComponent } from '../client/accueil/accueil.component'
 import { LoginComponent } from '../client/login/login.component'
 import { RendezVousComponent } from '../client/rendez-vous/rendez-vous.component';
+import { WaitingPageComponent } from '../client/waiting-page/waiting-page.component';
 
 export const clientRoutes: Routes = [
   { path: 'signup', component: SignUpComponent },
@@ -12,4 +13,5 @@ export const clientRoutes: Routes = [
   { path: 'signin', component: LoginComponent },
   { path: 'signup', component: SignUpComponent },
   { path: 'rendezvous', component: RendezVousComponent },
+  { path: 'waiting', component: WaitingPageComponent },
 ]

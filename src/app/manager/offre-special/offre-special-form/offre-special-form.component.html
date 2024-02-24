@@ -1,0 +1,25 @@
+<div class="container">
+  <h2>{{ isUpdate ? 'Modification Offre Special' : 'Ajout Offre Special' }}</h2>
+  <form #form="ngForm" (submit)="isUpdate ? updateOffreSpecial(form) : addOffreSpecial(form)">
+
+    <label for="nom">Nom :</label>
+    <input type="text" id="nom" [(ngModel)]="offreSpecial.nom" name="nom" />
+    <div class="textError" *ngIf="inputErrors.nom">{{ inputErrors.nom }}</div>
+    <br />
+
+    <label for="service">Service :</label>
+    <select id="service" name="service" ngModel #service="ngModel" (ngModelChange)="onServiceChange(service.value)">
+      <option></option>
+      <option *ngFor="let service of services, let i = index" [value]="i">{{ service.nom }}</option>
+    </select>
+    <div class="textError" *ngIf="inputErrors.service">{{ inputErrors.service }}</div>
+    <br />
+
+    <button type="submit">Enregistrer</button>
+    <button type="button" (click)="emitClose()">Annuler</button>
+
+    <div [class.textSuccess]="success" [class.textError]="!success">{{ message }}</div>
+  </form>
+
+  <!-- <button (click)="test()">test</button> -->
+</div>

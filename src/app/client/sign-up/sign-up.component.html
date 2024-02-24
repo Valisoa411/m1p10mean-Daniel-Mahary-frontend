@@ -1,47 +1,87 @@
-<div class="container">
-  <h2>Inscription</h2>
-  <form #form="ngForm" (submit)="signUpClient(form)">
-    <label for="nom">Nom :</label>
-    <input type="text" id="nom" [(ngModel)]="client.nom" name="nom" />
-    <div class="textError" *ngIf="inputErrors.nom">{{ inputErrors.nom }}</div>
-    <br />
+<div class="container-scroller">
+  <div class="container-fluid page-body-wrapper full-page-wrapper">
+    <div class="content-wrapper d-flex align-items-center auth px-0">
+      <div class="row w-100 mx-0">
+        <div class="col-lg-4 mx-auto">
+          <div class="auth-form-light text-left py-5 px-4 px-sm-5">
+            <div class="brand-logo">
+              <img src="assets/images/logo.svg" alt="logo">
+            </div>
+            <h2>Créer un compte!</h2>
+            <form class="pt-3" #form="ngForm" (submit)="signUpClient(form)">
 
-    <label for="prenom">Prénom :</label>
-    <input type="text" id="prenom" [(ngModel)]="client.prenom" name="prenom" />
-    <div class="textError" *ngIf="inputErrors.prenom">{{ inputErrors.prenom }}</div>
-    <br />
+              <div class="form-group">
+                <input type="text" class="form-control form-control-sm" name="nom" [(ngModel)]="client.nom"
+                  placeholder="Nom">
+                <div class="textError" *ngIf="inputErrors.nom">{{ inputErrors.nom }}</div>
+              </div>
 
-    <label for="genre">Genre :</label>
-    <select id="genre" [(ngModel)]="client.genre" name="genre" >
-      <option></option>
-      <option value="homme">Homme</option>
-      <option value="femme">Femme</option>
-    </select>
-    <div class="textError" *ngIf="inputErrors.genre">{{ inputErrors.genre }}</div>
-    <br />
+              <div class="form-group">
+                <input type="text" class="form-control form-control-sm" name="prenom" [(ngModel)]="client.prenom"
+                  placeholder="Prénom">
+                <div class="textError" *ngIf="inputErrors.prenom">{{ inputErrors.prenom }}</div>
+              </div>
 
-    <label for="dateNaissance">Date de naissance :</label>
-    <input type="date" id="dateNaissance" [(ngModel)]="client.dateNaissance" name="dateNaissance" (ngModelChange)="onDateNaissanceChange()" />
-    <div class="textError" *ngIf="inputErrors.dateNaissance">{{ inputErrors.dateNaissance }}</div>
-    <br />
+              <div class="form-group">
+                <!-- <select class="form-control form-control-sm" [value]="client.genre" ngModel #genre="ngModel"
+                  (change)="onGenreChange(genre.value)"> -->
+                <select class="form-control form-control-sm" name="genre" [value]="client.genre" ngModel
+                  #genre="ngModel" (change)="onGenreChange(genre.value)">
+                  <option value="" hidden>Genre</option>
+                  <option value="homme">Homme</option>
+                  <option value="femme">Femme</option>
+                </select>
+                <div class="textError" *ngIf="inputErrors.genre">{{ inputErrors.genre }}</div>
+              </div>
 
-    <label for="email">Email :</label>
-    <input type="email" id="email" [(ngModel)]="client.email" name="email" />
-    <div class="textError" *ngIf="inputErrors.email">{{ inputErrors.email }}</div>
-    <br />
+              <div class="form-group">
+                <input type="date" class="form-control form-control-sm" name="dateNaissance"
+                  [(ngModel)]="client.dateNaissance" (ngModelChange)="onDateNaissanceChange()"
+                  placeholder="Date de naissance">
+                <div class="textError" *ngIf="inputErrors.dateNaissance">{{ inputErrors.dateNaissance }}</div>
+              </div>
 
-    <label for="mdp">Mot de passe :</label>
-    <input type="password" id="mdp" [(ngModel)]="client.mdp" name="mdp" (ngModelChange)="onPasswordChange()" />
-    <div class="textError" *ngIf="inputErrors.mdp">{{ inputErrors.mdp }}</div>
-    <br />
+              <div class="form-group">
+                <input type="email" class="form-control form-control-sm" name="email" [(ngModel)]="client.email"
+                  placeholder="Email">
+                <div class="textError" *ngIf="inputErrors.email">{{ inputErrors.email }}</div>
+              </div>
 
-    <label for="confirmMdp">Confirmation de mot de passe :</label>
-    <input type="password" id="confirmMdp" name="confirmMdp" ngModel #confirmMdp="ngModel" (ngModelChange)="onConfirmPasswordChange(confirmMdp.value)" />
-    <div class="textError" *ngIf="inputErrors.confirmMdp">{{ inputErrors.confirmMdp }}</div>
-    <br />
+              <div class="form-group">
+                <input type="password" class="form-control form-control-sm" name="mdp" [(ngModel)]="client.mdp"
+                  (ngModelChange)="onPasswordChange()" placeholder="Mot de passe">
+                <div class="textError" *ngIf="inputErrors.mdp">{{ inputErrors.mdp }}</div>
+              </div>
 
-    <button type="submit">Inscription</button>
+              <div class="form-group">
+                <input type="password" class="form-control form-control-sm" name="confirmMdp" ngModel
+                  #confirmMdp="ngModel" (ngModelChange)="onConfirmPasswordChange(confirmMdp.value)"
+                  placeholder="Confirmation de mot de passe">
+                <div class="textError" *ngIf="inputErrors.confirmMdp">{{ inputErrors.confirmMdp }}</div>
+              </div>
 
-    <div [class.textSuccess]="success" [class.textError]="!success">{{ message }}</div>
-  </form>
+              <div class="mt-3">
+                <button class="btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn"
+                type="submit">INSCRIPTION</button>
+              </div>
+
+              <!-- <div class="mt-3">
+                <button class="btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn"
+                type="button" (click)="test()">Test</button>
+              </div> -->
+
+              <div [class.textSuccess]="success" [class.textError]="!success">{{ message }}</div>
+
+              <div class="text-center mt-4 font-weight-light">
+                Already have an account? <a href="#" class="text-primary">Login</a>
+              </div>
+
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- content-wrapper ends -->
+  </div>
+  <!-- page-body-wrapper ends -->
 </div>

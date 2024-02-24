@@ -29,6 +29,9 @@ import { SigninComponent } from './employe/signin/signin.component';
 import { AccueilEmployeComponent } from './employe/accueil-employe/accueil-employe.component';
 import { ProfilComponent } from './employe/profil/profil.component';
 import { RendezVousComponent } from './client/rendez-vous/rendez-vous.component';
+import { WaitingPageComponent } from './client/waiting-page/waiting-page.component';
+import { OffreSpecialComponent } from './manager/offre-special/offre-special.component';
+import { OffreSpecialFormComponent } from './manager/offre-special/offre-special-form/offre-special-form.component';
 
 const routes: Routes = [
   { path: '', component: LinksListComponent },
@@ -59,6 +62,9 @@ const routes: Routes = [
     SigninComponent,
     AccueilEmployeComponent,
     ProfilComponent,
+    WaitingPageComponent,
+    OffreSpecialComponent,
+    OffreSpecialFormComponent,
   ],
   imports: [
     BrowserModule,

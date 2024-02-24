@@ -1,6 +1,7 @@
 <div class="container">
   <h2>{{ isUpdate ? 'Modification Service' : 'Ajout Service' }}</h2>
   <form #form="ngForm" (submit)="isUpdate ? updateService(form) : addService(form)">
+
     <label for="nom">Nom :</label>
     <input type="text" id="nom" [(ngModel)]="service.nom" name="nom" />
     <div class="textError" *ngIf="inputErrors.nom">{{ inputErrors.nom }}</div>

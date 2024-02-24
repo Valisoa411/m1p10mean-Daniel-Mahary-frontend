@@ -20,7 +20,7 @@ export class ServiceFormComponent implements OnInit {
     'commission',
   ]
   inputErrors: any = {};
-  succes: boolean = false;
+  success: boolean = false;
   message: string = "";
   isUpdate: boolean = false;
 
@@ -95,11 +95,11 @@ export class ServiceFormComponent implements OnInit {
     if (!this.isErrorExisting()) {
       this.serviceApi.addService(this.service).subscribe({
         next: (data) => {
-          this.succes = true;
+          this.success = true;
           this.message = data.message;
         },
         error: (error) => {
-          this.succes = false;
+          this.success = false;
           this.message = error.error.message;
         }
       })
@@ -111,11 +111,11 @@ export class ServiceFormComponent implements OnInit {
     if (!this.isErrorExisting()) {
       this.serviceApi.updateService(this.service).subscribe({
         next: (data) => {
-          this.succes = true;
+          this.success = true;
           this.message = data.message;
         },
         error: (error) => {
-          this.succes = false;
+          this.success = false;
           this.message = error.error.message;
         }
       })

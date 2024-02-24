@@ -14,7 +14,7 @@ export class ServiceComponent {
   update: boolean = false;
   delete: boolean = false;
   message: string = '';
-  succes: boolean = false;
+  success: boolean = false;
 
   constructor(private serviceApi: ServiceApi) {
     this.loadServices();
@@ -51,11 +51,11 @@ export class ServiceComponent {
     if (this.selectedService && this.selectedService._id) {
       this.serviceApi.deleteService(this.selectedService?._id).subscribe({
         next: (data) => {
-          this.succes = true;
+          this.success = true;
           this.message = data.message;
         },
         error: (error) => {
-          this.succes = false;
+          this.success = false;
           this.message = error.error.message;
         },
         complete: () => {

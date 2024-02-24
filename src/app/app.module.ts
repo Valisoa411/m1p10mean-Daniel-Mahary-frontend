@@ -23,7 +23,6 @@ import { CreateEmployeComponent } from './manager/create-employe/create-employe.
 import { ManagerLoginComponent } from './manager/manager-login/manager-login.component';
 import { ServiceComponent } from './manager/service/service.component';
 import { ServiceFormComponent } from './manager/service/service-form/service-form.component';
-import { ServiceListComponent } from './manager/service/service-list/service-list.component';
 import { RendezVousComponent } from './client/rendez-vous/rendez-vous.component';
 import { HoraireComponent } from './employe/horaire/horaire.component';
 import { HoraireFormComponent } from './employe/horaire/horaire-form/horaire-form.component';
@@ -51,7 +50,6 @@ const routes: Routes = [
     ManagerLoginComponent,
     ServiceComponent,
     ServiceFormComponent,
-    ServiceListComponent,
     RendezVousComponent,
     HoraireComponent,
     HoraireFormComponent,

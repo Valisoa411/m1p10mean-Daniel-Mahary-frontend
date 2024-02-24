@@ -23,7 +23,7 @@ export class HoraireFormComponent implements OnInit, OnChanges {
   jourSemaine: string[] = jourSemaine;
   horaire: Horaire = new Horaire();
   inputErrors: any = {};
-  succes: boolean = false;
+  success: boolean = false;
   message: string = "";
 
   constructor(
@@ -91,11 +91,11 @@ export class HoraireFormComponent implements OnInit, OnChanges {
     if(!this.isErrorExisting()) {
       this.horaireApi.addHoraire(this.horaire).subscribe({
         next: (data) => {
-          this.succes = true;
+          this.success = true;
           this.message = data.message;
         },
         error: (error) => {
-          this.succes = false;
+          this.success = false;
           this.message = error.error.message;
         }
       })
@@ -108,11 +108,11 @@ export class HoraireFormComponent implements OnInit, OnChanges {
     if(!this.isErrorExisting()) {
       this.horaireApi.updateHoraire(this.horaire).subscribe({
         next: (data) => {
-          this.succes = true;
+          this.success = true;
           this.message = data.message;
         },
         error: (error) => {
-          this.succes = false;
+          this.success = false;
           this.message = error.error.message;
         }
       })

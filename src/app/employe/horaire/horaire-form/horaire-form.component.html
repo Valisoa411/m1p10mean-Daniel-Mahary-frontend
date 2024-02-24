@@ -21,7 +21,7 @@
         </td>
       </tr>
     </table>
-    <div [class.textSuccess]="succes" [class.textError]="!succes">{{ message }}</div>
+    <div [class.textSuccess]="success" [class.textError]="!success">{{ message }}</div>
     <div *ngFor="let key of errorKeys()" class="textError">
       {{ inputErrors[key] }}
     </div>

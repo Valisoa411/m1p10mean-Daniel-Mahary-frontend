@@ -10,7 +10,7 @@ import { Manager } from 'src/app/model/manager.model';
 })
 export class ManagerLoginComponent {
   manager: Manager = new Manager();
-  succes: boolean = false;
+  success: boolean = false;
   message: string = "";
 
   constructor(
@@ -23,15 +23,15 @@ export class ManagerLoginComponent {
       next: (data) => {
         if (data.token) {
           this.tokenService.setToken(data.token)
-          this.succes = true;
+          this.success = true;
           this.message = data.message;
         } else {
-          this.succes = false;
+          this.success = false;
           this.message = data.message;
         }
       },
       error: (error) => {
-        this.succes = false;
+        this.success = false;
         this.message = error.error.message;
       }
     })

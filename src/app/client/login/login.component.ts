@@ -17,7 +17,7 @@ export class LoginComponent {
     'mdp'
   ];
   signInErrors: any = {};
-  succes: boolean = false;
+  success: boolean = false;
   message: string = "";
   token: string ="";
   errorMessage: string="";
@@ -62,14 +62,14 @@ export class LoginComponent {
     if (!this.isErrorExisting()) {
       this.clientApi.signInClient(this.client).subscribe({
         next: (data) => {
-          this.succes = true;
+          this.success = true;
           this.message = data.message;
           if (data.token) {
             this.token = data.token;
             console.log('Token reçu du backend :', this.token);
-  
+
             this.tokenService.setToken(this.token);
-  
+
             // Redirigez l'utilisateur vers la page d'accueil
             this.router.navigate(['/accueil']);
           } else if (data.message) {
@@ -78,7 +78,7 @@ export class LoginComponent {
           }
         },
         error: (error) => {
-          
+
           if (error.status === 401) {
             // C'est une erreur 401, accéder à la variable error directement
             this.message =error.error.error;

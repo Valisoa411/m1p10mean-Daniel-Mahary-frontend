@@ -20,7 +20,7 @@ export class SignUpComponent {
     'confirmMdp',
   ];
   inputErrors: any = {};
-  succes: boolean = false;
+  success: boolean = false;
   message: string = "";
 
   constructor(
@@ -75,11 +75,11 @@ export class SignUpComponent {
     if (!this.isErrorExisting()) {
       this.clientApi.signUpClient(this.client).subscribe({
         next: (data) => {
-          this.succes = true;
+          this.success = true;
           this.message = data.message;
         },
         error: (error) => {
-          this.succes = false;
+          this.success = false;
           this.message = error.error.message;
         }
       });

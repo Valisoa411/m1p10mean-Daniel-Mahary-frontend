@@ -10,13 +10,13 @@ import { jourSemaine } from 'src/app/util/data';
   styleUrls: ['./horaire.component.css']
 })
 export class HoraireComponent {
-  idEmploye: string = '65d0b02fdb98230f00ba0925';
+  idEmploye: string = '65d9a3b9b1e2daf29113db8d';
   horaires: Horaire[] = [];
   selectedHoraire: Horaire | undefined;
   update: boolean = false;
   delete: boolean = false;
   message: string = '';
-  succes: boolean = false;
+  success: boolean = false;
   jourSemaine: string[] = jourSemaine;
 
   constructor(private horaireApi: HoraireApi, private employeApi: EmployeApi) {
@@ -60,11 +60,11 @@ export class HoraireComponent {
     if (this.selectedHoraire && this.selectedHoraire._id) {
       this.horaireApi.deleteHoraire(this.selectedHoraire?._id).subscribe({
         next: (data) => {
-          this.succes = true;
+          this.success = true;
           this.message = data.message;
         },
         error: (error) => {
-          this.succes = false;
+          this.success = false;
           this.message = error.error.message;
         },
         complete: () => {

@@ -1,4 +1,4 @@
-import { HttpClient,HttpHeaders } from '@angular/common/http';
+import { HttpClient,HttpHeaders,HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Client } from '../model/client.model';
 import { Injectable } from '@angular/core';
@@ -41,5 +41,10 @@ export class ManagerApi {
 
   loginManager(managerCredentials: any): Observable<any> {
     return this.http.post(env.hostManager + '/login', managerCredentials)
+  }
+
+  searchEmployes(term: string): Observable<any[]> {
+    const params = new HttpParams().set('q', term);
+    return this.http.get<any[]>(env.hostManager+'/search', { params });
   }
 }

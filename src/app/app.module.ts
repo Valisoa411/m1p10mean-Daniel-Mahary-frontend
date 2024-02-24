@@ -26,6 +26,9 @@ import { ServiceFormComponent } from './manager/service/service-form/service-for
 import { RendezVousComponent } from './client/rendez-vous/rendez-vous.component';
 import { HoraireComponent } from './employe/horaire/horaire.component';
 import { HoraireFormComponent } from './employe/horaire/horaire-form/horaire-form.component';
+import { SigninComponent } from './employe/signin/signin.component';
+import { AccueilEmployeComponent } from './employe/accueil-employe/accueil-employe.component';
+import { ProfilComponent } from './employe/profil/profil.component';
 
 const routes: Routes = [
   { path: '', component: LinksListComponent },
@@ -53,6 +56,9 @@ const routes: Routes = [
     RendezVousComponent,
     HoraireComponent,
     HoraireFormComponent,
+    SigninComponent,
+    AccueilEmployeComponent,
+    ProfilComponent,
   ],
   imports: [
     BrowserModule,

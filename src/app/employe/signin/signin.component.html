@@ -1,0 +1,19 @@
+<div class="container">
+    <h2>Login</h2>
+    <form #form="ngForm" (submit)="signInEmploye(form)">
+      <label for="email">login :</label>
+      <input type="email" id="login" [(ngModel)]="employe.login" name="login" />
+      <div class="textError" *ngIf="signInErrors.login">{{ signInErrors.login }}</div>
+      <br />
+  
+      <label for="mdp">Mot de passe :</label>
+      <input type="password" id="mdp" [(ngModel)]="employe.mdp" name="mdp" (ngModelChange)="onPasswordChange()" />
+      <div class="textError" *ngIf="signInErrors.mdp">{{ signInErrors.mdp }}</div>
+      <br />
+  
+      <button type="submit">connecter</button>
+  
+      <div [class.textSucces]="succes" [class.textError]="!succes">{{ message }}</div>
+    </form>
+  </div>
+  

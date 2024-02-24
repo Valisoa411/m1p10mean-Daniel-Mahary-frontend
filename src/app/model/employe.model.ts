@@ -8,7 +8,8 @@ export class Employe {
       public genre?: string,
       public login?: string,
       public mdp?: string,
-      public photo?: string
+      public photo?: string,
+      public matricule?: string
     ) {}
   }
 

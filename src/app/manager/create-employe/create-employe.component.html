@@ -18,21 +18,36 @@
       <input type="text" id="login" [(ngModel)]="employe.login" name="login" required />
       <br />
 
+      <!-- <label for="mdp"> Mot de passe :</label>
+    <div class="password-container">
+      <input type="{{ showPassword ? 'text' : 'password' }}" id="mdp" [(ngModel)]="employe.mdp" name="mdp" required />
+      <button type="button" (click)="togglePasswordVisibility()">
+        <fa-icon [icon]="showPassword ? faEyeSlash : faEye"></fa-icon>
+      </button>
+    </div>
+    <br /> -->
+
+    <label for="mdp"> Mot de passe :</label>
+    <input type="{{ showPassword ? 'text' : 'password' }}" id="mdp" [(ngModel)]="employe.mdp" name="mdp" required />
+    <button type="button" (click)="togglePasswordVisibility()">
+      <i class="fas fa-eye" *ngIf="!showPassword"></i>
+      <i class="fas fa-eye-slash" *ngIf="showPassword"></i>
+    </button>
+    <br />
+
       <label for="genre">Genre :</label>
     <select id="genre" [(ngModel)]="employe.genre" name="genre" >
       <option></option>
       <option value="homme">Homme</option>
       <option value="femme">Femme</option>
     </select>
-
-      <label for="mdp"> mdp :</label>
-      <input type="text" id="mdp" [(ngModel)]="employe.mdp" name="mdp" required />
-      <br />
   
       <label for="photo">Photo :</label>
       <input type="file" id="photo" (change)="onPhotoChange($event)" name="photo" accept="image/*">
 
       <button type="submit">Ajouter Employé</button>
+
+
 
     </form>
 

@@ -10,11 +10,14 @@ import { ManagerApi } from 'src/app/api/manager.api';
 export class ListEmployeComponent {
   listeEmploye: any[] = [];
   erreurRecuperationEmploye: string = '';
+  termeRecherche: string = '';
 
-  constructor(private managerApi: ManagerApi,private route: Router) {}
+  constructor(private managerApi: ManagerApi,private route: Router) {
+    this.getListeEmploye();
+  }
 
   ngOnInit(): void {
-    this.getListeEmploye();
+    
   }
 
   getListeEmploye(): void {
@@ -41,6 +44,16 @@ export class ListEmployeComponent {
       },
       (error) => {
         console.error('Erreur lors de la suppression de l\'employé :', error);
+      }
+    );
+  }
+  searchEmploye(): void {
+    this.managerApi.searchEmployes(this.termeRecherche).subscribe(
+      (result) => {
+        this.listeEmploye = result;
+      },
+      (error) => {
+        console.error('Erreur lors de la recherche d\'employés :', error);
       }
     );
   }

@@ -6,9 +6,9 @@ import { LoginComponent } from '../client/login/login.component'
 import { RendezVousComponent } from '../client/rendez-vous/rendez-vous.component';
 
 export const clientRoutes: Routes = [
-  { path: 'signup', component: SignUpComponent },
-  { path: 'validation/:id', component: InscriptionloadComponent },
-  { path: 'accueil', component: AccueilComponent },
-  { path: 'signin', component: LoginComponent },
-  { path: 'rendezvous', component: RendezVousComponent },
+  { path: 'client/signup', component: SignUpComponent },
+  { path: 'client/validation/:id', component: InscriptionloadComponent },
+  { path: 'client/accueil', component: AccueilComponent },
+  { path: 'client/signin', component: LoginComponent },
+  { path: 'client/rendezvous', component: RendezVousComponent },
 ]

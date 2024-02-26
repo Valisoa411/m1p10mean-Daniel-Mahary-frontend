@@ -25,7 +25,7 @@ export class AccueilEmployeComponent {
         this.employee = employeeDetails;
       },
       (error) => {
-        alert(error.error);
+        alert(error.error.message);
         console.error('Erreur lors de la récupération des détails de l\'employé :', error);
       }
     );

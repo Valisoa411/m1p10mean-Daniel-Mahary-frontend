@@ -44,7 +44,7 @@ export class ListEmployeComponent {
         this.getListeEmploye(); // Rafraîchissez la liste après la suppression
       },
       (error) => {
-        alert(error.error.error);
+        alert(error.error.message);
         console.error('Erreur lors de la suppression de l\'employé :', error);
       }
     );
@@ -55,7 +55,7 @@ export class ListEmployeComponent {
         this.listeEmploye = result;
       },
       (error) => {
-        alert(error.error.error);
+        alert(error.error.message);
         this.listeEmploye=[];
         // alert(error);
       }

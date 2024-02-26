@@ -99,7 +99,7 @@ export class CreateEmployeComponent {
           this.router.navigate(['manager/listEmploye']);
         },
         error: (error) => {
-          alert(error.error);
+          alert(error.error.message);
         }
          
       });

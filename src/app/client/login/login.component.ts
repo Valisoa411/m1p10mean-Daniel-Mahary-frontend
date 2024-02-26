@@ -22,6 +22,16 @@ export class LoginComponent {
   token: string ="";
   errorMessage: string="";
 
+  showPassword: boolean = false;
+
+  
+
+  // Autres méthodes du composant
+
+  togglePasswordVisibility(): void {
+    this.showPassword = !this.showPassword;
+  }
+
   constructor(
     private clientApi: ClientApi,
     private router : Router,
@@ -71,7 +81,7 @@ export class LoginComponent {
             this.tokenService.setToken(this.token);
 
             // Redirigez l'utilisateur vers la page d'accueil
-            this.router.navigate(['/accueil']);
+            this.router.navigate(['/client/accueil']);
           } else if (data.message) {
             this.errorMessage = data.message;
             // alert(this.errorMessage);
@@ -79,15 +89,7 @@ export class LoginComponent {
         },
         error: (error) => {
 
-          if (error.status === 401) {
-            // C'est une erreur 401, accéder à la variable error directement
-            this.message =error.error.error;
-            // alert(this.message);
-          } else {
-            // C'est une autre erreur, utiliser le message d'erreur générique
-            this.message = error.error.error;
-            // alert(this.message);
-          }
+          alert(error.error.message);
         }
       });
     }

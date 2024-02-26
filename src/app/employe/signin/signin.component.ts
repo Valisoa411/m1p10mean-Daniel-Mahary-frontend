@@ -81,7 +81,7 @@ export class SigninComponent {
             this.tokenService.setToken(this.token);
   
             // Redirigez l'utilisateur vers la page d'accueil
-            this.router.navigate(['employe/profil']);
+            this.router.navigate(['employe/accueilEmploye']);
           } else if (data.message) {
             this.errorMessage = data.message;
             // alert(this.errorMessage);

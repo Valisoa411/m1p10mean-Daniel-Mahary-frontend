@@ -1,54 +1,120 @@
-<div class="container">
-    <h2>Créer un nouveau véhicule</h2>
-    <form (submit)="createEmploye()" enctype="multipart/form-data">
-
-      <label for="nom">nom :</label>
-      <input type="text" id="nom" [(ngModel)]="employe.nom" name="nom" required />
-      <br />
+<div class="container-scroller">
   
-      <label for="prenom">prenom :</label>
-      <input type="text" id="prenom" [(ngModel)]="employe.prenom" name="prenom" required />
-      <br />
-  
-      <label for="cin"> cin :</label>
-      <input type="number" id="cin" [(ngModel)]="employe.cin" name="cin" required />
-      <br />
-
-      <label for="login"> login :</label>
-      <input type="text" id="login" [(ngModel)]="employe.login" name="login" required />
-      <br />
-
-      <!-- <label for="mdp"> Mot de passe :</label>
-    <div class="password-container">
-      <input type="{{ showPassword ? 'text' : 'password' }}" id="mdp" [(ngModel)]="employe.mdp" name="mdp" required />
-      <button type="button" (click)="togglePasswordVisibility()">
-        <fa-icon [icon]="showPassword ? faEyeSlash : faEye"></fa-icon>
-      </button>
-    </div>
-    <br /> -->
-
-    <label for="mdp"> Mot de passe :</label>
-    <input type="{{ showPassword ? 'text' : 'password' }}" id="mdp" [(ngModel)]="employe.mdp" name="mdp" required />
-    <button type="button" (click)="togglePasswordVisibility()">
-      <i class="fas fa-eye" *ngIf="!showPassword"></i>
-      <i class="fas fa-eye-slash" *ngIf="showPassword"></i>
-    </button>
-    <br />
-
-      <label for="genre">Genre :</label>
-    <select id="genre" [(ngModel)]="employe.genre" name="genre" >
-      <option></option>
-      <option value="homme">Homme</option>
-      <option value="femme">Femme</option>
-    </select>
-  
-      <label for="photo">Photo :</label>
-      <input type="file" id="photo" (change)="onPhotoChange($event)" name="photo" accept="image/*">
-
-      <button type="submit">Ajouter Employé</button>
-
-
-
-    </form>
-
-</div>
+    <!-- partial:partials/_navbar.html -->
+    <nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
+      <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-center">
+        <a class="navbar-brand brand-logo mr-5" href="index.html"><img src="assets/images/logo.svg" class="mr-2" alt="titre"/></a>
+        <a class="navbar-brand brand-logo-mini" href="index.html"><img src="assets/images/logo-mini.svg" alt="titre"/></a>
+      </div>
+      <div class="navbar-menu-wrapper d-flex align-items-center justify-content-end">
+        <nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
+          <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-center">
+            <a class="navbar-brand brand-logo mr-5" href="index.html"><img src="assets/images/logo.svg" class="mr-2" alt="titre"/></a>
+            <a class="navbar-brand brand-logo-mini" href="index.html"><img src="assets/images/logo-mini.svg" alt="titre"/></a>
+          </div>
+          <div class="navbar-menu-wrapper d-flex align-items-center justify-content-end">
+            <button class="navbar-toggler navbar-toggler align-self-center" type="button" data-toggle="minimize">
+              <span class="icon-menu"></span>
+            </button>
+            <ul class="navbar-nav navbar-nav-right">
+              <li class="nav-item nav-profile dropdown">
+                <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" id="profileDropdown">
+                  <img src="assets/images/faces/face28.jpg" alt="profile"/>
+                </a>
+                <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="profileDropdown">
+                  <a class="dropdown-item" (click)="logout()">
+                    <i class="ti-power-off text-primary"></i>
+                    Logout
+                </a>
+                </div>
+              </li>
+            </ul>
+            <button class="navbar-toggler navbar-toggler-right d-lg-none align-self-center" type="button" data-toggle="offcanvas">
+              <span class="icon-menu"></span>
+            </button>
+          </div>
+        </nav>
+        <button class="navbar-toggler navbar-toggler-right d-lg-none align-self-center" type="button" data-toggle="offcanvas">
+          <span class="icon-menu"></span>
+        </button>
+      </div>
+    </nav>
+  <div class="container-fluid page-body-wrapper">
+    <!-- partial:partials/_settings-panel.html -->
+    <app-setting-panel></app-setting-panel>
+    <!-- partial -->
+    <!-- partial:partials/_sidebar.html -->
+    <app-sidebar [role]="'manager'"></app-sidebar>
+    <!-- partial -->
+    <div class="main-panel">
+      <div class="content-wrapper">
+        <div class="card">
+          <div class="card-body">
+            <h4 class="card-title">ajout Employé</h4>
+            <form class="forms-sample" #form="ngForm" (submit)="createEmploye(form)" enctype="multipart/form-data">
+              <div class="form-group">
+                <label for="nom">nom :</label>
+                <input type="text" class="form-control" id="nom" [(ngModel)]="employe.nom" name="nom" required />
+                
+              </div>
+              <div class="textError" *ngIf="inputErrors.nom">{{ inputErrors.nom }}</div>
+              <div class="form-group">
+                <label for="prenom">prenom :</label>
+                <input type="text" class="form-control" id="prenom" [(ngModel)]="employe.prenom" name="prenom" required />
+                
+              </div>
+              <div class="textError" *ngIf="inputErrors.prenom">{{ inputErrors.prenom }}</div>
+              <div class="form-group">
+                <label for="cin"> cin :</label>
+                <input type="number" class="form-control" id="cin" [(ngModel)]="employe.cin" name="cin" required (ngModelChange)="onCinChange()"/>
+                
+              </div>
+              <div class="textError" *ngIf="inputErrors.cin">{{ inputErrors.cin }}</div>
+              <div class="form-group">
+                <label for="exampleSelectGender">Gender</label>
+                  <select class="form-control" id="genre" [(ngModel)]="employe.genre" name="genre" >
+                    <option value="homme">Homme</option>
+                    <option value="femme">Femme</option>
+                  </select>
+              </div>
+              <div class="form-group">
+                <label for="login"> login :</label>
+                <input type="text" class="form-control" id="login" [(ngModel)]="employe.login" name="login" required />
+              </div>
+              <div class="textError" *ngIf="inputErrors.login">{{ inputErrors.login }}</div>
+              <div class="form-group">
+                <label for="mdp"> Mot de passe :</label>
+                <div class="password-input-container">
+                  <input class="form-control" type="{{ showPassword ? 'text' : 'password' }}" id="mdp" [(ngModel)]="employe.mdp" name="mdp" required (ngModelChange)="onPasswordChange()"/>
+                  <button type="button" (click)="togglePasswordVisibility()">
+                    <i class="fas fa-eye" *ngIf="showPassword"></i>
+                    <i class="fas fa-eye-slash" *ngIf="!showPassword"></i>
+                  </button>
+                </div>
+                <div class="textError" *ngIf="inputErrors.mdp">{{ inputErrors.mdp }}</div>
+              </div>
+              <div class="form-group">
+                <label for="photo">Mettre une photo :</label>
+                <input type="file" id="photo" (change)="onPhotoChange($event)" name="photo" accept="image/*" class="file-upload-default">
+                <div class="input-group col-xs-12">
+                  <input type="text" class="form-control file-upload-info" disabled placeholder="Upload Image" [value]="selectedFileName">
+                  <span class="input-group-append">
+                    <button class="file-upload-browse btn btn-primary" type="button" (click)="onPhotoUploadClick()">Upload</button>
+                  </span>
+                </div>
+              </div>
+              <button type="submit" class="btn btn-primary mr-2">Submit</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    <!-- content-wrapper ends -->
+    <!-- partial:partials/_footer.html -->
+    <app-footer></app-footer>
+    <!-- partial -->
+  </div>
+  <!-- main-panel ends -->
+</div> 
+<!-- page-body-wrapper ends -->
+<!-- container-scroller -->
+<!-- End custom js for this page-->

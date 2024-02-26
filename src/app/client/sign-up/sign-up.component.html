@@ -1,6 +1,7 @@
 <div class="container">
   <h2>Inscription</h2>
   <form #form="ngForm" (submit)="signUpClient(form)">
+    
     <label for="nom">Nom :</label>
     <input type="text" id="nom" [(ngModel)]="client.nom" name="nom" />
     <div class="textError" *ngIf="inputErrors.nom">{{ inputErrors.nom }}</div>

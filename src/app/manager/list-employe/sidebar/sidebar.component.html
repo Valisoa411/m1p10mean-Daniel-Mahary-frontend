@@ -1,0 +1,10 @@
+<nav class="sidebar sidebar-offcanvas" id="sidebar">
+    <ul class="nav">
+      <li *ngFor="let link of roleLinks" class="nav-item" [class.active]="selectedLink === link.href">
+        <a class="nav-link" href="{{ link.href }}" (click)="selectLink(link.href)">
+          <span class="menu-title">{{ link.name }}</span>
+        </a>
+      </li>
+    </ul>
+  </nav>
+  

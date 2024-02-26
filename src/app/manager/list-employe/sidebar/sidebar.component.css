@@ -1,0 +1,4 @@
+.nav-link.active {
+    background-color: #8A2BE2; /* Couleur de fond lorsque le lien est actif */
+    color: #ffffff; /* Couleur du texte lorsque le lien est actif */
+  }

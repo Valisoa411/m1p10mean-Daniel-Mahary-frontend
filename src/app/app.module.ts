@@ -17,7 +17,6 @@ import { AccueilComponent } from './client/accueil/accueil.component';
 import { LoginComponent } from './client/login/login.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
-import { AccueilManagerComponent } from './manager/accueil-manager/accueil-manager.component';
 import { ListEmployeComponent } from './manager/list-employe/list-employe.component';
 import { CreateEmployeComponent } from './manager/create-employe/create-employe.component';
 import { ManagerLoginComponent } from './manager/manager-login/manager-login.component';
@@ -29,6 +28,9 @@ import { SigninComponent } from './employe/signin/signin.component';
 import { AccueilEmployeComponent } from './employe/accueil-employe/accueil-employe.component';
 import { ProfilComponent } from './employe/profil/profil.component';
 import { RendezVousComponent } from './client/rendez-vous/rendez-vous.component';
+import { SidebarComponent } from './manager/list-employe/sidebar/sidebar.component';
+import { SettingPanelComponent } from './manager/list-employe/setting-panel/setting-panel.component';
+import { FooterComponent } from './manager/list-employe/footer/footer.component';
 
 const routes: Routes = [
   // { path: '/list', component: LinksListComponent },
@@ -47,7 +49,6 @@ const routes: Routes = [
     InscriptionloadComponent,
     AccueilComponent,
     LoginComponent,
-    AccueilManagerComponent,
     ListEmployeComponent,
     CreateEmployeComponent,
     ManagerLoginComponent,
@@ -59,6 +60,9 @@ const routes: Routes = [
     SigninComponent,
     AccueilEmployeComponent,
     ProfilComponent,
+    SidebarComponent,
+    SettingPanelComponent,
+    FooterComponent,
   ],
   imports: [
     BrowserModule,

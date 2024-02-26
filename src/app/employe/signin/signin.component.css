@@ -1,0 +1,13 @@
+.password-input-container {
+    position: relative;
+  }
+  
+.password-input-container button {
+    position: absolute;
+    top: 50%;
+    right: 10px; /* Adjust the right distance as needed */
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    cursor: pointer;
+  }

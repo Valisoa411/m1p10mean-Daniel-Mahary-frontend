@@ -46,6 +46,11 @@ export class ManagerApi {
 
   searchEmployes(term: string): Observable<any[]> {
     const params = new HttpParams().set('q', term);
-    return this.http.get<any[]>(env.hostManager+'/search', { params });
+    const options = { params: params, headers: getHeaders() };
+    return this.http.get<any[]>(env.hostManager+'/search', options);
+  }
+
+  logout():void{
+    this.tokenService.removeToken();
   }
 }

@@ -78,4 +78,7 @@ export class EmployeApi {
 
     return this.http.put(env.hostEmploye + "/updateEmploye", formData,{ headers });
   }
+  logout():void{
+    this.tokenService.removeToken();
+  }
 }

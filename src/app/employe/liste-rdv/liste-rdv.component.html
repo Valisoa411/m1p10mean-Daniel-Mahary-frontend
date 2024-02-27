@@ -7,18 +7,19 @@
         <a class="navbar-brand brand-logo-mini" href="index.html"><img src="assets/images/logo-mini.svg" alt="titre"/></a>
       </div>
       <div class="navbar-menu-wrapper d-flex align-items-center justify-content-end">
-        <button class="navbar-toggler navbar-toggler align-self-center" type="button" data-toggle="minimize">
+        <button class="navbar-toggler navbar-toggler align-self-center" type="button" data-toggle="minimize" >
           <span class="icon-menu"></span>
         </button>
         <ul class="navbar-nav mr-lg-2">
           <li class="nav-item nav-search d-none d-lg-block">
             <div class="input-group">
               <div class="input-group-prepend hover-cursor" id="navbar-search-icon">
-                <span class="input-group-text" id="search">
+                <span class="input-group-text" id="search" (click)="searchRdvDate()">
                   <i class="icon-search"></i>
                 </span>
               </div>
-              <!-- <input type="text" class="form-control" id="navbar-search-input" placeholder="Search now" aria-label="search" aria-describedby="search" [(ngModel)]="termeRecherche" (ngModelChange)="searchEmploye()"> -->
+              <input type="date" class="form-control" id="navbar-search-input" placeholder="Search now" aria-label="search" aria-describedby="search" [(ngModel)]="date1">
+              <input type="date" class="form-control" id="navbar-search-input" placeholder="Search now" aria-label="search" aria-describedby="search" [(ngModel)]="date2">
             </div>
           </li>
         </ul>
@@ -70,10 +71,7 @@
                               client
                             </th>
                             <th>
-                              Heure
-                            </th>
-                            <th>
-                              link
+                              Date
                             </th>
                           </tr>
                         </thead>
@@ -86,12 +84,7 @@
                               {{rdv.client.nom+ ' ' +rdv.client.prenom}}
                             </td>
                             <td>
-                              {{ rdv.date }}
-                            </td>
-                            <td>
-                              <!-- <button type="button" class="btn btn-inverse-primary btn-rounded btn-icon" (click)="deleteEmploye(employee._id)"><i class="ti-trash">
-                              </i></button> -->
-                              
+                              {{ rdv.date | date:'yyyy-MM-dd HH:mm:ss' }}
                             </td>
                           </tr>
                         </tbody>

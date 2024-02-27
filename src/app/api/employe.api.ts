@@ -1,4 +1,4 @@
-import { HttpClient,HttpHeaders } from '@angular/common/http';
+import { HttpClient,HttpHeaders, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Injectable } from '@angular/core';
 import env from '../config/env';
@@ -94,5 +94,12 @@ export class EmployeApi {
   }
   logout():void{
     this.tokenService.removeToken();
+  }
+
+  searchRdv(date1: string,date2: string): Observable<any[]> {
+    const params = new HttpParams().set('date1', date1)
+    .set('date2', date2);
+    const options = { params: params, headers: getHeaders() };
+    return this.http.get<any[]>(env.hostEmploye+'/searchRdv', options);
   }
 }

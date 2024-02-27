@@ -32,6 +32,7 @@ import { SidebarComponent } from './manager/list-employe/sidebar/sidebar.compone
 import { SettingPanelComponent } from './manager/list-employe/setting-panel/setting-panel.component';
 import { FooterComponent } from './manager/list-employe/footer/footer.component';
 import { ListeRdvComponent } from './employe/liste-rdv/liste-rdv.component';
+import { SuivitacheComponent } from './employe/suivitache/suivitache.component';
 
 const routes: Routes = [
   // { path: '/list', component: LinksListComponent },
@@ -65,6 +66,7 @@ const routes: Routes = [
     SettingPanelComponent,
     FooterComponent,
     ListeRdvComponent,
+    SuivitacheComponent,
   ],
   imports: [
     BrowserModule,

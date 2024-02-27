@@ -12,7 +12,6 @@ export class HoraireApi {
   constructor(private http: HttpClient) {}
 
   addHoraire(horaireData: any): Observable<any> {
-    console.log(getHeaders());
     return this.http.post(env.hostEmploye + '/horaire', horaireData,{headers:getHeaders()});
   }
 

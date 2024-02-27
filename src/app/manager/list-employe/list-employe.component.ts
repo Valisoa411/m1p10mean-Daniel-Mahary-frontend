@@ -26,7 +26,7 @@ export class ListEmployeComponent {
         this.listeEmploye = employes;
       },
       (error) => {
-        alert(error.error.error);
+        alert(error.error.message);
         console.error('Erreur lors de la récupération de la liste des clients :', error);
         // if (error.status === 401 && error.error && error.error.error === 'Token expired') {
         //   // Rediriger vers la page de login en cas d'expiration du token

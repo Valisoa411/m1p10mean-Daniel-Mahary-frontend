@@ -3,10 +3,12 @@ import { HoraireComponent } from '../employe/horaire/horaire.component';
 import { SigninComponent } from '../employe/signin/signin.component';
 import { AccueilEmployeComponent } from '../employe/accueil-employe/accueil-employe.component';
 import { ProfilComponent } from '../employe/profil/profil.component';
+import { ListeRdvComponent } from '../employe/liste-rdv/liste-rdv.component';
 
 export const employeRoutes: Routes = [
   { path: 'employe/horaire', component: HoraireComponent },
   { path: 'employe/signin', component: SigninComponent },
   { path: 'employe/accueilEmploye', component: AccueilEmployeComponent },
   { path: 'employe/profil', component: ProfilComponent },
+  { path: 'employe/listeRdv', component: ListeRdvComponent },
 ]

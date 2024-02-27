@@ -26,6 +26,7 @@ export class ListEmployeComponent {
         this.listeEmploye = employes;
       },
       (error) => {
+        alert(error.error.message);
         console.error('Erreur lors de la récupération de la liste des clients :', error);
         // if (error.status === 401 && error.error && error.error.error === 'Token expired') {
         //   // Rediriger vers la page de login en cas d'expiration du token
@@ -43,6 +44,7 @@ export class ListEmployeComponent {
         this.getListeEmploye(); // Rafraîchissez la liste après la suppression
       },
       (error) => {
+        alert(error.error.message);
         console.error('Erreur lors de la suppression de l\'employé :', error);
       }
     );
@@ -53,8 +55,14 @@ export class ListEmployeComponent {
         this.listeEmploye = result;
       },
       (error) => {
-        console.error('Erreur lors de la recherche d\'employés :', error);
+        alert(error.error.message);
+        this.listeEmploye=[];
+        // alert(error);
       }
     );
+  }
+  logout():void{
+    this.managerApi.logout();
+    this.route.navigate(['manager/login'])
   }
 }

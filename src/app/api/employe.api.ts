@@ -13,8 +13,8 @@ import { getHeaders } from '../util/util';
 export class EmployeApi {
   constructor(private http: HttpClient,private tokenService: TokenService) {}
 
-  getEmployeHoraires(idEmploye: string): Observable<any> {
-    return this.http.get(env.hostEmploye + '/horaire/' + idEmploye);
+  getEmployeHoraires(): Observable<any> {
+    return this.http.get(env.hostEmploye + '/horaire',{headers:getHeaders()});
   }
   // getEmploye(idEmploye: string): Observable<any> {
   //   return this.http.get(env.hostManager + '/' + idEmploye);
@@ -77,5 +77,22 @@ export class EmployeApi {
     });
 
     return this.http.put(env.hostEmploye + "/updateEmploye", formData,{ headers });
+  }
+  getListeRdv(): Observable<any[]> {
+    const url = env.hostEmploye+"/listeRdv";  // Remplacez par l'endpoint réel de votre API
+
+    // Récupérez le token du service de gestion du token
+    const token = this.tokenService.getToken();
+
+    // Ajoutez le token comme en-tête d'autorisation
+    const headers = new HttpHeaders({
+      'Authorization': `${token}`
+    });
+
+    // Utilisez les en-têtes dans la requête HTTP
+    return this.http.get<any[]>(url, { headers });
+  }
+  logout():void{
+    this.tokenService.removeToken();
   }
 }

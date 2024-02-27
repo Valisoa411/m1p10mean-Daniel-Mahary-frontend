@@ -22,6 +22,16 @@ export class SigninComponent {
   token: string ="";
   errorMessage: string="";
 
+  showPassword: boolean = false;
+
+  
+
+  // Autres méthodes du composant
+
+  togglePasswordVisibility(): void {
+    this.showPassword = !this.showPassword;
+  }
+
   constructor(
     private EmployeApi: EmployeApi,
     private router : Router,
@@ -30,9 +40,9 @@ export class SigninComponent {
 
   onPasswordChange() {
     const mdp = this.employe.mdp;
-    // this.signInErrors.mdp = (mdp && mdp.length < 8)
-    //   ? "Le mot de passe doit contenir 8 charactères"
-    //   : null
+    this.signInErrors.mdp = (mdp && mdp.length < 8)
+      ? "Le mot de passe doit contenir 8 charactères"
+      : null
   }
 
   isEmployeValid(form: NgForm) {
@@ -78,16 +88,7 @@ export class SigninComponent {
           }
         },
         error: (error) => {
-          
-          if (error.status === 401) {
-            // C'est une erreur 401, accéder à la variable error directement
-            this.message =error.error.error;
-            // alert(this.message);
-          } else {
-            // C'est une autre erreur, utiliser le message d'erreur générique
-            this.message = error.error.error;
-            // alert(this.message);
-          }
+            alert(error.error.message);
         }
       });
     }

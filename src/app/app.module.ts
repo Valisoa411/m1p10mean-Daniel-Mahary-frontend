@@ -17,7 +17,6 @@ import { AccueilComponent } from './client/accueil/accueil.component';
 import { LoginComponent } from './client/login/login.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
-import { AccueilManagerComponent } from './manager/accueil-manager/accueil-manager.component';
 import { ListEmployeComponent } from './manager/list-employe/list-employe.component';
 import { CreateEmployeComponent } from './manager/create-employe/create-employe.component';
 import { ManagerLoginComponent } from './manager/manager-login/manager-login.component';
@@ -32,9 +31,13 @@ import { RendezVousComponent } from './client/rendez-vous/rendez-vous.component'
 import { WaitingPageComponent } from './client/waiting-page/waiting-page.component';
 import { OffreSpecialComponent } from './manager/offre-special/offre-special.component';
 import { OffreSpecialFormComponent } from './manager/offre-special/offre-special-form/offre-special-form.component';
+import { SidebarComponent } from './manager/list-employe/sidebar/sidebar.component';
+import { SettingPanelComponent } from './manager/list-employe/setting-panel/setting-panel.component';
+import { FooterComponent } from './manager/list-employe/footer/footer.component';
+import { ListeRdvComponent } from './employe/liste-rdv/liste-rdv.component';
 
 const routes: Routes = [
-  { path: '', component: LinksListComponent },
+  // { path: '/list', component: LinksListComponent },
 
   ...clientRoutes,
   ...managerRoutes,
@@ -50,7 +53,6 @@ const routes: Routes = [
     InscriptionloadComponent,
     AccueilComponent,
     LoginComponent,
-    AccueilManagerComponent,
     ListEmployeComponent,
     CreateEmployeComponent,
     ManagerLoginComponent,
@@ -65,6 +67,10 @@ const routes: Routes = [
     WaitingPageComponent,
     OffreSpecialComponent,
     OffreSpecialFormComponent,
+    SidebarComponent,
+    SettingPanelComponent,
+    FooterComponent,
+    ListeRdvComponent,
   ],
   imports: [
     BrowserModule,

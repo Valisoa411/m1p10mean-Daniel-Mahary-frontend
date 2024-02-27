@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Injectable } from '@angular/core';
 import env from '../config/env';
+import { getHeaders } from '../util/util';
 
 @Injectable({
   providedIn: 'root', // Cela enregistre le horaire au niveau du module racine (AppModule)
@@ -11,7 +12,8 @@ export class HoraireApi {
   constructor(private http: HttpClient) {}
 
   addHoraire(horaireData: any): Observable<any> {
-    return this.http.post(env.hostEmploye + '/horaire', horaireData);
+    console.log(getHeaders());
+    return this.http.post(env.hostEmploye + '/horaire', horaireData,{headers:getHeaders()});
   }
 
   allHoraires(): Observable<any> {

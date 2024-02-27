@@ -51,9 +51,15 @@ export class HoraireComponent {
   }
 
   loadHoraires(): void {
-    this.employeApi.getEmployeHoraires(this.idEmploye).subscribe((data) => {
-      this.horaires = data.horaires;
-    })
+    this.employeApi.getEmployeHoraires().subscribe(
+      {next: (data) => {
+        this.horaires = data.horaires;
+      },
+      error: (error) => {
+        this.success = false;
+        this.message = error.error.message;
+        alert(this.message);
+      }})
   }
 
   deleteService(): void {

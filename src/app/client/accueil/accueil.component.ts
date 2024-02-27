@@ -23,13 +23,7 @@ export class AccueilComponent implements OnInit {
         this.listeClient = clients;
       },
       (error) => {
-        console.error('Erreur lors de la récupération de la liste des clients :', error);
-        if (error.status === 401 && error.error && error.error.error === 'Token expired') {
-          // Rediriger vers la page de login en cas d'expiration du token
-          this.route.navigate(['/signin']);
-        }else{
-          this.route.navigate(['/signin']);
-        }
+        alert(error.error.message);
       }
     );
   }

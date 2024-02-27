@@ -53,7 +53,7 @@ export class InscriptionloadComponent implements OnInit {
           this.tokenService.setToken(this.token);
 
           // Redirigez l'utilisateur vers la page d'accueil
-          this.router.navigate(['/accueil']);
+          this.router.navigate(['client/accueil']);
         } else if (response.message) {
           this.errorMessage = response.message;
           alert(this.errorMessage);
@@ -62,7 +62,7 @@ export class InscriptionloadComponent implements OnInit {
       (error) => {
         console.error('Erreur sur la validation :', error);
         this.errorMessage = 'Erreur sur la validation avec le serveur: '+error.message;
-        alert(this.errorMessage);
+        alert(error.error.message);
       }
     );
   }

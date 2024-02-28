@@ -26,7 +26,7 @@ export class ListEmployeComponent {
         this.listeEmploye = employes;
       },
       (error) => {
-        alert(error.error.message);
+        alert(error.error.message); 
         console.error('Erreur lors de la récupération de la liste des clients :', error);
         // if (error.status === 401 && error.error && error.error.error === 'Token expired') {
         //   // Rediriger vers la page de login en cas d'expiration du token
@@ -64,5 +64,12 @@ export class ListEmployeComponent {
   logout():void{
     this.managerApi.logout();
     this.route.navigate(['manager/login'])
+  }
+  detailRdvEmploye(employeeId: string):void {
+    // Utilisez le service Router pour naviguer vers la page souhaitée
+    this.route.navigate(['manager/listerdvemploye', employeeId]);
+  }
+  fiche(idemploye:string):void{
+    this.route.navigate(['manager/ficheemploye', idemploye]);
   }
 }

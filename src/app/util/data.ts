@@ -27,5 +27,11 @@ export const sidebarConfig = [
       // Ajoutez d'autres liens spécifiques au rôle de manager
     ],
   },
+  {
+    role: 'client',
+    links: [
+      { name: 'liste des rendez-vous', href: 'client/listeRdv' },
+    ],
+  },
   // Ajoutez d'autres configurations de rôle si nécessaire
 ];

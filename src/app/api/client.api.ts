@@ -3,6 +3,7 @@ import { Observable } from 'rxjs';
 import { Injectable } from '@angular/core';
 import env from '../config/env';
 import { TokenService } from '../client/service/token.service';
+import { getHeaders } from '../util/util';
 
 @Injectable({
     providedIn: 'root', // Cela enregistre le service au niveau du module racine (AppModule)
@@ -24,6 +25,31 @@ export class ClientApi {
   }
   getListeClient(): Observable<any[]> {
     const url = env.hostClient+"/liste_client";  // Remplacez par l'endpoint réel de votre API
+
+    // Récupérez le token du service de gestion du token
+    const token = this.tokenService.getToken();
+
+    // Ajoutez le token comme en-tête d'autorisation
+    const headers = new HttpHeaders({
+      'Authorization': `${token}`
+    });
+
+    // Utilisez les en-têtes dans la requête HTTP
+    return this.http.get<any[]>(url, { headers });
+  }
+  logout():void{
+    this.tokenService.removeToken();
+  }
+
+  updateRdv(datardv:any): Observable<any> {
+    const options = { headers: getHeaders() };
+    return this.http.put(env.hostClient + "/updateRdv",datardv, options);
+  }
+  getRdv(id:string): Observable<any> {
+    return this.http.get(env.hostClient + '/rdv/'+id,{headers:getHeaders()});
+  }
+  getListeRdv(): Observable<any[]> {
+    const url = env.hostClient+"/listeRdv";  // Remplacez par l'endpoint réel de votre API
 
     // Récupérez le token du service de gestion du token
     const token = this.tokenService.getToken();

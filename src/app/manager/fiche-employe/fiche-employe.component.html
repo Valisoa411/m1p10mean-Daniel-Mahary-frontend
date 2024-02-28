@@ -1,0 +1,76 @@
+<div class="container-scroller">
+  
+    <!-- partial:partials/_navbar.html -->
+    <nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
+      <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-center">
+        <a class="navbar-brand brand-logo mr-5" href="index.html"><img src="assets/images/logo.svg" class="mr-2" alt="titre"/></a>
+        <a class="navbar-brand brand-logo-mini" href="index.html"><img src="assets/images/logo-mini.svg" alt="titre"/></a>
+      </div>
+      <div class="navbar-menu-wrapper d-flex align-items-center justify-content-end">
+        <nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
+          <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-center">
+            <a class="navbar-brand brand-logo mr-5" href="index.html"><img src="assets/images/logo.svg" class="mr-2" alt="titre"/></a>
+            <a class="navbar-brand brand-logo-mini" href="index.html"><img src="assets/images/logo-mini.svg" alt="titre"/></a>
+          </div>
+          <div class="navbar-menu-wrapper d-flex align-items-center justify-content-end">
+            <button class="navbar-toggler navbar-toggler align-self-center" type="button" data-toggle="minimize">
+              <span class="icon-menu"></span>
+            </button>
+            <ul class="navbar-nav navbar-nav-right">
+              <li class="nav-item nav-profile dropdown">
+                <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" id="profileDropdown">
+                  <img src="assets/images/faces/face28.jpg" alt="profile"/>
+                </a>
+                <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="profileDropdown">
+                  <a class="dropdown-item" (click)="logout()">
+                    <i class="ti-power-off text-primary"></i>
+                    Logout
+                </a>
+                </div>
+              </li>
+            </ul>
+            <button class="navbar-toggler navbar-toggler-right d-lg-none align-self-center" type="button" data-toggle="offcanvas">
+              <span class="icon-menu"></span>
+            </button>
+          </div>
+        </nav>
+        <button class="navbar-toggler navbar-toggler-right d-lg-none align-self-center" type="button" data-toggle="offcanvas">
+          <span class="icon-menu"></span>
+        </button>
+      </div>
+    </nav>
+  <div class="container-fluid page-body-wrapper">
+    <!-- partial:partials/_settings-panel.html -->
+    <app-setting-panel></app-setting-panel>
+    <!-- partial -->
+    <!-- partial:partials/_sidebar.html -->
+    <app-sidebar [role]="'manager'"></app-sidebar>
+    <!-- partial -->
+    <div class="main-panel">
+      <div class="content-wrapper">
+        <div class="card">
+          <div class="card-body">
+            <div class="text-center">
+                <img [src]="employee.photo" alt="{{ employee.nom }} {{ employee.prenom }}" width="100" height="100" alt="image">
+            </div>
+            <div class="text-center">
+                <p>nom: {{employee.nom}}</p>
+                <p>prenom: {{employee.prenom}}</p>
+                <p>cin : {{employee.cin}}</p>
+                <p>matricule : {{employee.matricule}}</p>
+                <p>genre : {{ employee.genre }}</p>
+                <p>email : {{ employee.login }}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    <!-- content-wrapper ends -->
+    <!-- partial:partials/_footer.html -->
+    <app-footer></app-footer>
+    <!-- partial -->
+  </div>
+  <!-- main-panel ends -->
+</div> 
+<!-- page-body-wrapper ends -->
+<!-- container-scroller -->
+<!-- End custom js for this page-->

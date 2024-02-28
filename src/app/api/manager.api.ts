@@ -49,8 +49,38 @@ export class ManagerApi {
     const options = { params: params, headers: getHeaders() };
     return this.http.get<any[]>(env.hostManager+'/search', options);
   }
+  moyenneHeureTravail(idemploye: string): Observable<any> {
+    const params = new HttpParams().set('idemploye',idemploye);
+    const options = { params: params, headers: getHeaders() };
+    return this.http.get<any>(env.hostManager+'/moyenneHeureTravail', options);
+  }
 
   logout():void{
     this.tokenService.removeToken();
+  }
+
+  getListeRdv(idemploye:string): Observable<any[]> {
+    const url = env.hostManager+"/listeRdv";  // Remplacez par l'endpoint réel de votre API
+
+    // Récupérez le token du service de gestion du token
+    const params = new HttpParams().set('idemploye',idemploye);
+    const options = { params: params, headers: getHeaders() };
+
+    // Utilisez les en-têtes dans la requête HTTP
+    return this.http.get<any[]>(url, options);
+  }
+  searchRdv(idemploye:string,date1: string,date2: string): Observable<any[]> {
+    const params = new HttpParams().set('date1', date1)
+    .set('date2', date2).set('idemploye',idemploye);
+    const options = { params: params, headers: getHeaders() };
+    return this.http.get<any[]>(env.hostManager+'/searchRdv', options);
+  }
+  getEmploye(idemploye:string): Observable<any> {
+    const url = env.hostManager+"/info_employe";  // Remplacez par l'endpoint réel de votre API
+
+    // Récupérez le token du service de gestion du token
+    const params = new HttpParams().set('idemploye',idemploye);
+    const options = { params: params, headers: getHeaders() };
+    return this.http.get<any[]>(url, options);
   }
 }

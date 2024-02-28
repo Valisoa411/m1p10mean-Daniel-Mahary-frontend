@@ -67,7 +67,6 @@
               <div class="form-group">
                 <label for="cin"> cin :</label>
                 <input type="number" class="form-control" id="cin" [(ngModel)]="employe.cin" name="cin" required (ngModelChange)="onCinChange()"/>
-                
               </div>
               <div class="textError" *ngIf="inputErrors.cin">{{ inputErrors.cin }}</div>
               <div class="form-group">

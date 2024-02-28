@@ -33,6 +33,10 @@ import { SettingPanelComponent } from './manager/list-employe/setting-panel/sett
 import { FooterComponent } from './manager/list-employe/footer/footer.component';
 import { ListeRdvComponent } from './employe/liste-rdv/liste-rdv.component';
 import { SuivitacheComponent } from './employe/suivitache/suivitache.component';
+import { ListerdvComponent } from './client/listerdv/listerdv.component';
+import { ListerdvemployeComponent } from './manager/listerdvemploye/listerdvemploye.component';
+import { MoyenneComponent } from './manager/list-employe/moyenne/moyenne.component';
+import { FicheEmployeComponent } from './manager/fiche-employe/fiche-employe.component';
 
 const routes: Routes = [
   // { path: '/list', component: LinksListComponent },
@@ -67,6 +71,10 @@ const routes: Routes = [
     FooterComponent,
     ListeRdvComponent,
     SuivitacheComponent,
+    ListerdvComponent,
+    ListerdvemployeComponent,
+    MoyenneComponent,
+    FicheEmployeComponent,
   ],
   imports: [
     BrowserModule,

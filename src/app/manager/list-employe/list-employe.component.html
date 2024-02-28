@@ -60,17 +60,14 @@
               <div class="card">
                 <div class="card-body">
                   <div class="table-responsive">
-                    <table class="table table-striped">
+                    <table class="table table-striped w-100">
                       <thead>
                         <tr>
                           <th>
                             Pic
                           </th>
                           <th>
-                            name
-                          </th>
-                          <th>
-                            First name
+                            Prenom
                           </th>
                           <th>
                             login
@@ -79,7 +76,10 @@
                             cin
                           </th>
                           <th>
-                            link
+                            moyenne heure de travail
+                          </th>
+                          <th>
+                            
                           </th>
                         </tr>
                       </thead>
@@ -89,21 +89,22 @@
                             <img [src]="employee.photo" alt="{{ employee.nom }} {{ employee.prenom }}" width="100" height="100" alt="image">
                           </td>
                           <td>
-                            {{ employee.nom }}
-                          </td>
-                          <td>
-                            {{ employee.prenom }}
+                            <a href="#" (click)="fiche(employee._id)">{{employee.prenom}}</a>
                           </td>
                           <td>
                             {{ employee.login }}
                           </td>
                           <td>
-                            {{ employee.cin }}
+                            {{ employee.matricule }}
+                          </td>
+                          <td>
+                            <app-moyenne [employeId]="employee._id"></app-moyenne>
                           </td>
                           <td>
                             <button type="button" class="btn btn-inverse-primary btn-rounded btn-icon" (click)="deleteEmploye(employee._id)"><i class="ti-trash">
                             </i></button>
-                            
+                            <button type="button" class="btn btn-inverse-primary btn-rounded btn-icon" (click)="detailRdvEmploye(employee._id)"><i class="ti-layers-alt">
+                            </i></button>
                           </td>
                         </tr>
                       </tbody>

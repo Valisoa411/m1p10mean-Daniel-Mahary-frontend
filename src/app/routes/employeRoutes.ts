@@ -6,9 +6,11 @@ import { ProfilComponent } from '../employe/profil/profil.component';
 import { ListeRdvComponent } from '../employe/liste-rdv/liste-rdv.component';
 
 export const employeRoutes: Routes = [
-  { path: 'employe/horaire', component: HoraireComponent },
+  { path: 'employe', component: SigninComponent },
   { path: 'employe/signin', component: SigninComponent },
   { path: 'employe/accueilEmploye', component: AccueilEmployeComponent },
   { path: 'employe/profil', component: ProfilComponent },
   { path: 'employe/listeRdv', component: ListeRdvComponent },
+
+  { path: 'employe/horaire', component: HoraireComponent },
 ]

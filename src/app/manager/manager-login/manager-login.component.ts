@@ -25,7 +25,7 @@ export class ManagerLoginComponent {
       next: (data) => {
         if (data.token) {
           this.tokenService.setToken(data.token);
-          this.router.navigate(['/accueilManager']);
+          this.router.navigate(['/manager/listEmploye']);
         } else {
           this.success = false;
           this.message = data.message;

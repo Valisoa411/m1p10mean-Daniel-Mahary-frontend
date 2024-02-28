@@ -7,11 +7,13 @@ import { RendezVousComponent } from '../client/rendez-vous/rendez-vous.component
 import { WaitingPageComponent } from '../client/waiting-page/waiting-page.component';
 
 export const clientRoutes: Routes = [
-  { path: '', component: SignUpComponent },
-  { path: 'client/signup', component: SignUpComponent },
+  { path: '', component: LoginComponent },
+  { path: 'client', component: LoginComponent },
+  { path: 'client/signin', component: LoginComponent },
   { path: 'client/validation/:id', component: InscriptionloadComponent },
   { path: 'client/accueil', component: AccueilComponent },
-  { path: 'client/signin', component: LoginComponent },
+
+  { path: 'client/signup', component: SignUpComponent },
   { path: 'client/rendezvous', component: RendezVousComponent },
   { path: 'client/waiting', component: WaitingPageComponent },
 ]

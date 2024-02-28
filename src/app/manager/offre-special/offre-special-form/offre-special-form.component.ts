@@ -4,6 +4,7 @@ import { OffreSpecialApi } from 'src/app/api/offreSpecial.api';
 import { ServiceApi } from 'src/app/api/service.api';
 import { OffreSpecial } from 'src/app/model/offreSpecial.model';
 import { Service } from 'src/app/model/service.model';
+import { isFormValid } from 'src/app/util/util';
 
 @Component({
   selector: 'app-offre-special-form',
@@ -11,12 +12,20 @@ import { Service } from 'src/app/model/service.model';
   styleUrls: ['./offre-special-form.component.css']
 })
 export class OffreSpecialFormComponent implements OnInit {
-  @Input() selectedOffreSpecial?:  OffreSpecial;
-  @Output() onClose = new EventEmitter<void>();
+  @Input() selectedOffreSpecial?: OffreSpecial;
+  @Output() onClose: EventEmitter<void> = new EventEmitter<void>();
+  @Output() offreSpecialEmitter: EventEmitter<OffreSpecial> = new EventEmitter<OffreSpecial>();
 
   offreSpecial: OffreSpecial = new OffreSpecial();
   services: Service[] = [];
 
+  requiredInput: string[] = [
+    'nom',
+    'service',
+    'reduction',
+    'dateDebut',
+    'dateFin',
+  ]
   inputErrors: any = {};
   success: boolean = false;
   message: string = "";
@@ -30,10 +39,10 @@ export class OffreSpecialFormComponent implements OnInit {
   }
 
   ngOnInit(): void {
-      this.isUpdate = !!this.selectedOffreSpecial;
-      if(this.selectedOffreSpecial) {
-        this.offreSpecial = { ...this.selectedOffreSpecial }
-      }
+    this.isUpdate = !!this.selectedOffreSpecial;
+    if (this.selectedOffreSpecial) {
+      this.offreSpecial = { ...this.selectedOffreSpecial }
+    }
   }
 
   emitClose() {
@@ -51,8 +60,12 @@ export class OffreSpecialFormComponent implements OnInit {
   }
 
   addOffreSpecial(form: NgForm): void {
-    this.offreSpecialApi.addOffreDispo(this.offreSpecial).subscribe({
+    isFormValid(form, this.requiredInput, this.inputErrors);
+    this.offreSpecialApi.addOffreSpecial(this.offreSpecial).subscribe({
       next: (data) => {
+        // console.log("addOffreSpecial: ", data);
+        this.offreSpecial._id = data.idOffreSpecial;
+        this.offreSpecialEmitter.emit(this.offreSpecial);
         this.success = true;
         this.message = data.message;
       },
@@ -64,7 +77,8 @@ export class OffreSpecialFormComponent implements OnInit {
   }
 
   updateOffreSpecial(form: NgForm): void {
-    this.offreSpecialApi.updateOffreDispo(this.offreSpecial).subscribe({
+    isFormValid(form, this.requiredInput, this.inputErrors);
+    this.offreSpecialApi.updateOffreSpecial(this.offreSpecial).subscribe({
       next: (data) => {
         this.success = true;
         this.message = data.message;

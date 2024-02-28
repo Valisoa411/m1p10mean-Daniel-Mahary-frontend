@@ -11,23 +11,23 @@ import { getHeaders } from '../util/util';
 export class OffreSpecialApi {
   constructor(private http: HttpClient) { }
 
-  addOffreDispo(offreDispoData: any): Observable<any> {
-    return this.http.post(`${env.hostManager}/offreDispo`, offreDispoData, { headers: getHeaders() });
+  addOffreSpecial(offreSpecialData: any): Observable<any> {
+    return this.http.post(`${env.hostManager}/offreSpecial`, offreSpecialData, { headers: getHeaders() });
   }
 
-  allOffreDispos(): Observable<any> {
-    return this.http.get(`${env.hostManager}/offreDispo`, { headers: getHeaders() });
+  allOffreSpecials(): Observable<any> {
+    return this.http.get(`${env.hostManager}/offreSpecial`, { headers: getHeaders() });
   }
 
-  getOffreDispo(idOffreDispo: string): Observable<any> {
-    return this.http.get(`${env.hostManager}/offreDispo/${idOffreDispo}`, { headers: getHeaders() });
+  getOffreSpecial(idOffreSpecial: string): Observable<any> {
+    return this.http.get(`${env.hostManager}/offreSpecial/${idOffreSpecial}`, { headers: getHeaders() });
   }
 
-  updateOffreDispo(offreDispoData: any): Observable<any> {
-    return this.http.put(`${env.hostManager}/offreDispo`, offreDispoData, { headers: getHeaders() });
+  updateOffreSpecial(offreSpecialData: any): Observable<any> {
+    return this.http.put(`${env.hostManager}/offreSpecial`, offreSpecialData, { headers: getHeaders() });
   }
 
-  deleteOffreDispo(idOffreDispo: string): Observable<any> {
-    return this.http.delete(`${env.hostManager}/offreDispo/${idOffreDispo}`, { headers: getHeaders() });
+  deleteOffreSpecial(idOffreSpecial: string): Observable<any> {
+    return this.http.delete(`${env.hostManager}/offreSpecial/${idOffreSpecial}`, { headers: getHeaders() });
   }
 }

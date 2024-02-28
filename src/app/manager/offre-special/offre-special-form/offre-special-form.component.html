@@ -1,25 +1,59 @@
-<div class="container">
-  <h2>{{ isUpdate ? 'Modification Offre Special' : 'Ajout Offre Special' }}</h2>
-  <form #form="ngForm" (submit)="isUpdate ? updateOffreSpecial(form) : addOffreSpecial(form)">
+<div class="card">
+  <div class="card-body">
+    <h4 class="card-title">{{isUpdate ? 'Modification Offre Spéciale' : 'Ajout Offre Spéciale'}}</h4>
+    <form class="forms-sample" #form="ngForm" (submit)="isUpdate ? updateOffreSpecial(form) : addOffreSpecial(form)">
+      <div class="row">
+        <div class="col-md-6">
 
-    <label for="nom">Nom :</label>
-    <input type="text" id="nom" [(ngModel)]="offreSpecial.nom" name="nom" />
-    <div class="textError" *ngIf="inputErrors.nom">{{ inputErrors.nom }}</div>
-    <br />
+          <div class="form-group">
+            <label for="nom">Nom</label>
+            <input type="text" class="form-control form-control-sm" id="nom" [(ngModel)]="offreSpecial.nom" name="nom"
+              required />
+            <div class="textError" *ngIf="inputErrors.nom">{{ inputErrors.nom }}</div>
+          </div>
 
-    <label for="service">Service :</label>
-    <select id="service" name="service" ngModel #service="ngModel" (ngModelChange)="onServiceChange(service.value)">
-      <option></option>
-      <option *ngFor="let service of services, let i = index" [value]="i">{{ service.nom }}</option>
-    </select>
-    <div class="textError" *ngIf="inputErrors.service">{{ inputErrors.service }}</div>
-    <br />
+          <div class="form-group">
+            <label for="exampleSelectGender">Service</label>
+            <select class="form-control form-control-sm" id="genre" name="service" ngModel #service="ngModel"
+              (ngModelChange)="onServiceChange(service.value)">
+              <option hidden>Service</option>
+              <option *ngFor="let service of services, let i = index" [value]="i">{{ service.nom }}</option>
+            </select>
+            <div class="textError" *ngIf="inputErrors.service">{{ inputErrors.service }}</div>
+          </div>
 
-    <button type="submit">Enregistrer</button>
-    <button type="button" (click)="emitClose()">Annuler</button>
+          <div class="form-group">
+            <label for="reduction">Réduction</label>
+            <input type="text" class="form-control form-control-sm" id="reduction" [(ngModel)]="offreSpecial.reduction"
+              name="reduction" required />
+            <div class="textError" *ngIf="inputErrors.reduction">{{ inputErrors.reduction }}</div>
+          </div>
 
-    <div [class.textSuccess]="success" [class.textError]="!success">{{ message }}</div>
-  </form>
+        </div>
 
-  <!-- <button (click)="test()">test</button> -->
+        <div class="col-md-6">
+
+          <div class="form-group">
+            <label for="dateDebut">Début de l'offre</label>
+            <input type="date" class="form-control form-control-sm" id="dateDebut" name="dateDebut"
+              [(ngModel)]="offreSpecial.dateDebut" />
+            <div class="textError" *ngIf="inputErrors.dateDebut">{{ inputErrors.dateDebut }}</div>
+          </div>
+
+          <div class="form-group">
+            <label for="dateFin">Fin de l'offre</label>
+            <input type="date" class="form-control form-control-sm" id="dateFin" name="dateFin"
+              [(ngModel)]="offreSpecial.dateFin" />
+            <div class="textError" *ngIf="inputErrors.dateFin">{{ inputErrors.dateFin }}</div>
+          </div>
+
+        </div>
+      </div>
+
+      <div [class.textSuccess]="success" [class.textError]="!success">{{ message }}</div>
+      <button type="submit" class="btn btn-primary mr-2">Submit</button>
+      <button type="button" class="btn btn-danger mr-2" (click)="emitClose()">Annuler</button>
+
+    </form>
+  </div>
 </div>

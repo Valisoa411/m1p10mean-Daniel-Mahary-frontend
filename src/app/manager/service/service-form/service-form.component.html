@@ -32,12 +32,6 @@
     <div class="textError" *ngIf="inputErrors.photo">{{ inputErrors.photo }}</div>
     <br />
 
-    <label for="nbEmploye">Nombre d'employe :</label>
-    <!-- <input type="number" id="nbEmploye" [(ngModel)]="service.nbEmploye" name="nbEmploye" (ngModelChange)="onNbEmployeChange()" /> -->
-    <input type="number" id="nbEmploye" [(ngModel)]="service.nbEmploye" name="nbEmploye" (ngModelChange)="onNbEmployeChange()" min="1" />
-    <div class="textError" *ngIf="inputErrors.nbEmploye">{{ inputErrors.nbEmploye }}</div>
-    <br />
-
     <button type="submit">Enregistrer</button>
     <button type="button" (click)="emitClose()">Annuler</button>
 

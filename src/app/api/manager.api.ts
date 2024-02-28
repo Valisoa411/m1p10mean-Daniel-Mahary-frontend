@@ -83,4 +83,20 @@ export class ManagerApi {
     const options = { params: params, headers: getHeaders() };
     return this.http.get<any[]>(url, options);
   }
+  byDate(annee:number,mois:number): Observable<any> {
+    const url = env.hostManager+"/byDate";  // Remplacez par l'endpoint réel de votre API
+
+    // Récupérez le token du service de gestion du token
+    const params = new HttpParams().set('annee',annee).set('mois',mois);
+    const options = { params: params, headers: getHeaders() };
+    return this.http.get<any[]>(url, options);
+  }
+  byMonth(annee:number): Observable<any> {
+    const url = env.hostManager+"/byMonth";  // Remplacez par l'endpoint réel de votre API
+
+    // Récupérez le token du service de gestion du token
+    const params = new HttpParams().set('annee',annee);
+    const options = { params: params, headers: getHeaders() };
+    return this.http.get<any[]>(url, options);
+  }
 }

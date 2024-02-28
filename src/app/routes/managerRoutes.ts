@@ -5,6 +5,7 @@ import { ManagerLoginComponent } from '../manager/manager-login/manager-login.co
 import { ServiceComponent } from '../manager/service/service.component';
 import { ListerdvemployeComponent } from '../manager/listerdvemploye/listerdvemploye.component';
 import { FicheEmployeComponent } from '../manager/fiche-employe/fiche-employe.component';
+import { NombrereservationComponent } from '../manager/nombrereservation/nombrereservation.component';
 
 export const managerRoutes: Routes = [
   { path: 'manager/listEmploye', component: ListEmployeComponent },
@@ -12,5 +13,6 @@ export const managerRoutes: Routes = [
   { path: 'manager/login', component: ManagerLoginComponent },
   { path: 'manager/service', component: ServiceComponent },
   { path: 'manager/listerdvemploye/:id', component: ListerdvemployeComponent },
-  { path: 'manager/ficheemploye/:id', component: FicheEmployeComponent }
+  { path: 'manager/ficheemploye/:id', component: FicheEmployeComponent },
+  { path: 'manager/nombrereservation', component: NombrereservationComponent }
 ]

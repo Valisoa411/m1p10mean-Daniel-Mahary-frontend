@@ -37,6 +37,7 @@ import { ListerdvComponent } from './client/listerdv/listerdv.component';
 import { ListerdvemployeComponent } from './manager/listerdvemploye/listerdvemploye.component';
 import { MoyenneComponent } from './manager/list-employe/moyenne/moyenne.component';
 import { FicheEmployeComponent } from './manager/fiche-employe/fiche-employe.component';
+import { NombrereservationComponent } from './manager/nombrereservation/nombrereservation.component';
 
 const routes: Routes = [
   // { path: '/list', component: LinksListComponent },
@@ -75,6 +76,7 @@ const routes: Routes = [
     ListerdvemployeComponent,
     MoyenneComponent,
     FicheEmployeComponent,
+    NombrereservationComponent,
   ],
   imports: [
     BrowserModule,

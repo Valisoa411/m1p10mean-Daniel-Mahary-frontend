@@ -102,4 +102,23 @@ export class EmployeApi {
     const options = { params: params, headers: getHeaders() };
     return this.http.get<any[]>(env.hostEmploye+'/searchRdv', options);
   }
+  RdvNow(date: string): Observable<any[]> {
+    const params = new HttpParams().set('date', date);
+    const options = { params: params, headers: getHeaders() };
+    return this.http.get<any[]>(env.hostEmploye+'/rdvNow', options);
+  }
+  commissionNow(date: string): Observable<number> {
+    const params = new HttpParams().set('date', date);
+    const options = { params: params, headers: getHeaders() };
+    return this.http.get<number>(env.hostEmploye+'/commissionDay', options);
+  }
+  getRdv(id:string): Observable<any> {
+    return this.http.get(env.hostEmploye + '/rdv/'+id,{headers:getHeaders()});
+  }
+  updateRdv(datardv:any): Observable<any> {
+    const formData = new FormData();
+    const options = { headers: getHeaders() };
+  
+    return this.http.put(env.hostEmploye + "/updateRdv",datardv, options);
+  }
 }

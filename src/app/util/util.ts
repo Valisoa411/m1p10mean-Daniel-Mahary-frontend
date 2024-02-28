@@ -6,3 +6,9 @@ export const getHeaders = () => {
     'Authorization': `${token}`
   }
 }
+
+export const addDuree=(date: Date, dureeEnMinutes: number): Date =>{
+  const result = new Date(date);
+  result.setMinutes(result.getMinutes() + dureeEnMinutes);
+  return result;
+}

@@ -14,4 +14,7 @@ export class RendezVousApi {
   addRendezVous(rendezVousData: any): Observable<any> {
     return this.http.post(`${env.hostClient}/rendezVous`, rendezVousData, { headers: getHeaders() });
   }
+  updateRendezVous(rendezVousData: any): Observable<any> {
+    return this.http.put(`${env.hostClient}/rendezVous`, rendezVousData, { headers: getHeaders() });
+  }
 }

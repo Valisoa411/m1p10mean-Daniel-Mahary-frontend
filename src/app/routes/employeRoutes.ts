@@ -4,6 +4,7 @@ import { SigninComponent } from '../employe/signin/signin.component';
 import { AccueilEmployeComponent } from '../employe/accueil-employe/accueil-employe.component';
 import { ProfilComponent } from '../employe/profil/profil.component';
 import { ListeRdvComponent } from '../employe/liste-rdv/liste-rdv.component';
+import { SuivitacheComponent } from '../employe/suivitache/suivitache.component';
 
 export const employeRoutes: Routes = [
   { path: 'employe/horaire', component: HoraireComponent },
@@ -11,4 +12,5 @@ export const employeRoutes: Routes = [
   { path: 'employe/accueilEmploye', component: AccueilEmployeComponent },
   { path: 'employe/profil', component: ProfilComponent },
   { path: 'employe/listeRdv', component: ListeRdvComponent },
+  { path: 'employe/suiviTache', component:SuivitacheComponent },
 ]

@@ -1,13 +1,113 @@
-<div *ngIf="erreurRecuperationClients">
-    <div class="alert alert-danger">
-      {{ erreurRecuperationClients }}
+<div class="container-scroller">
+
+  <!-- partial:partials/_navbar.html -->
+  <nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
+    <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-center">
+      <a class="navbar-brand brand-logo mr-5" href="index.html"><img src="assets/images/logo.svg" class="mr-2"
+          alt="titre" /></a>
+      <a class="navbar-brand brand-logo-mini" href="index.html"><img src="assets/images/logo-mini.svg"
+          alt="titre" /></a>
     </div>
+    <div class="navbar-menu-wrapper d-flex align-items-center justify-content-end">
+      <button class="navbar-toggler navbar-toggler align-self-center" type="button" data-toggle="minimize">
+        <span class="icon-menu"></span>
+      </button>
+      <ul class="navbar-nav mr-lg-2">
+        <li class="nav-item nav-search d-none d-lg-block">
+          <div class="input-group">
+            <div class="input-group-prepend hover-cursor" id="navbar-search-icon">
+              <span class="input-group-text" id="search">
+                <i class="icon-search"></i>
+              </span>
+            </div>
+            <!-- <input type="text" class="form-control" id="navbar-search-input" placeholder="Search now"
+              aria-label="search" aria-describedby="search" [(ngModel)]="termeRecherche"
+              (ngModelChange)="searchEmploye()"> -->
+            <input type="text" class="form-control" id="navbar-search-input" placeholder="Search now"
+              aria-label="search" aria-describedby="search">
+          </div>
+        </li>
+      </ul>
+      <ul class="navbar-nav navbar-nav-right">
+        <li class="nav-item nav-profile dropdown">
+          <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" id="profileDropdown">
+            <img src="assets/images/faces/face28.jpg" alt="profile" />
+          </a>
+          <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="profileDropdown">
+            <!-- <a class="dropdown-item" (click)="logout()"> -->
+            <a class="dropdown-item">
+              <i class="ti-power-off text-primary"></i>
+              Logout
+            </a>
+          </div>
+        </li>
+        <!-- <li class="nav-item nav-settings d-none d-lg-flex">
+          <a class="nav-link" href="#">
+            <i class="icon-ellipsis"></i>
+          </a>
+        </li> -->
+      </ul>
+      <button class="navbar-toggler navbar-toggler-right d-lg-none align-self-center" type="button"
+        data-toggle="offcanvas">
+        <span class="icon-menu"></span>
+      </button>
+    </div>
+  </nav>
+  <!-- partial -->
+  <div class="container-fluid page-body-wrapper">
+    <!-- partial:partials/_settings-panel.html -->
+    <app-setting-panel></app-setting-panel>
+    <!-- partial -->
+    <!-- partial:partials/_sidebar.html -->
+    <app-sidebar [role]="'client'"></app-sidebar>
+    <!-- partial -->
+    <div class="main-panel">
+      <div class="content-wrapper">
+
+        <!-- <button (click)="test()">test</button> -->
+
+        <h1>Bienvenu!</h1>
+
+        <div class="row">
+          <div class="col-md-4 grid-margin" *ngFor="let service of services">
+            <div class="card" style="overflow: hidden;">
+              <div class="card-people" style="text-align: center;padding-top: 0;">
+                <div class="img-container">
+                  <img class="img-contained" [src]="service.photo" alt="service.nom">
+                </div>
+                <div class="weather-info">
+                  <button type="button" class="btn btn-danger btn-rounded btn-icon" *ngIf="service.isPreference === 0" (click)="addPreference(service._id)">
+                    <i class="ti-plus"></i>
+                  </button>
+                  <button type="button" class="btn btn-danger btn-rounded btn-icon" *ngIf="service.isPreference === 1" (click)="removePreference(service._id)">
+                    <i class="ti-check"></i>
+                  </button>
+                </div>
+                <h2>{{service.nom}}</h2>
+                <div class="row">
+                  <div class="col-md-6">
+                    <h3>{{service.prix ? formatNumber(service.prix) : 0}} Ar</h3>
+                  </div>
+                  <div class="col-md-6">
+                    <button type="button" class="btn btn-primary btn-block">
+                      Prendre Rendez-Vous
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+      <!-- content-wrapper ends -->
+      <!-- partial:partials/_footer.html -->
+      <app-footer></app-footer>
+      <!-- partial -->
+    </div>
+    <!-- main-panel ends -->
   </div>
-  
-  <div *ngIf="!erreurRecuperationClients">
-    <!-- Affichez la liste des utilisateurs ici -->
-    <ul>
-      <li *ngFor="let client of listeClient">{{ client.nom }} {{ client.prenom }} {{ client.email }}</li>
-    </ul>
-  </div>
-  
+  <!-- page-body-wrapper ends -->
+</div>
+<!-- container-scroller -->
+<!-- End custom js for this page-->

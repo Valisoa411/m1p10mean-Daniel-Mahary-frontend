@@ -28,5 +28,12 @@ export const sidebarConfig = [
       // Ajoutez d'autres liens spécifiques au rôle de manager
     ],
   },
+  {
+    role: 'client',
+    links: [
+      { name: 'Accueil', href: 'client/accueil' },
+      { name: 'Employées', href: 'client/employe' },
+    ]
+  }
   // Ajoutez d'autres configurations de rôle si nécessaire
 ];

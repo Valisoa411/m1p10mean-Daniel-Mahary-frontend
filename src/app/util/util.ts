@@ -18,3 +18,40 @@ export const isFormValid = (form: NgForm, requiredInput: string[], inputErrors: 
     }
   })
 }
+
+export const formatNumber = (num: number) => {
+  const quant = typeof num === 'string' ? parseFloat(num) : num;
+  const nombre = quant.toLocaleString('fr-FR', {
+      minimumFractionDigits: 0,
+      maximumFractionDigits: 2,
+  });
+  // console.log("formatNumber: ", nombre);
+  return nombre
+}
+
+export const formatDate = (inputDate: any) => {
+  if (!inputDate) return '';
+  const date = new Date(inputDate);
+  const options: Intl.DateTimeFormatOptions = {
+      day: 'numeric',
+      month: 'long',
+      year: 'numeric',
+      hour: 'numeric',
+      minute: 'numeric',
+      hour12: false,
+  };
+
+  return new Intl.DateTimeFormat('fr-FR', options).format(date);
+};
+
+export const formatSimpleDate = (inputDate: any) => {
+  if (!inputDate) return '';
+  const date = new Date(inputDate);
+  const options: Intl.DateTimeFormatOptions = {
+      day: 'numeric',
+      month: 'long',
+      year: 'numeric'
+  };
+
+  return new Intl.DateTimeFormat('fr-FR', options).format(date);
+};

@@ -59,66 +59,33 @@
     <app-setting-panel></app-setting-panel>
     <!-- partial -->
     <!-- partial:partials/_sidebar.html -->
-    <app-sidebar [role]="'manager'"></app-sidebar>
+    <app-sidebar [role]="'client'"></app-sidebar>
     <!-- partial -->
     <div class="main-panel">
       <div class="content-wrapper">
 
-        <h1>Offres Spéciales</h1>
+        <h1>Les Employées</h1>
 
         <div class="row">
-          <div class="col-12 grid-margin">
-            <div *ngIf="create">
-              <app-offre-special-form (offreSpecialEmitter)="pushToOffreSpecials($event)"
-                (onClose)="clearScreen()"></app-offre-special-form>
-            </div>
-          </div>
-
-          <div class="col-12 grid-margin">
+          <div class="col-md-4 grid-margin" *ngFor="let employe of employes">
             <div class="card">
-              <div class="card-body">
-                <button type="button" class="btn btn-inverse-primary btn-rounded btn-icon" (click)="openCreateForm()">
-                  <i class="ti-plus"></i>
-                </button>
-
-                <div class="table-responsive">
-                  <table class="table table-striped">
-                    <thead>
-                      <tr>
-                        <th>Nom</th>
-                        <th>Service</th>
-                        <th>Reduction</th>
-                        <th>Début de l'offre</th>
-                        <th>Fin de l'offre</th>
-                        <th></th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr *ngFor="let offreSpecial of offreSpecials">
-                        <td>{{ offreSpecial.nom }}</td>
-                        <td>{{ offreSpecial.service ? offreSpecial.service.nom : '' }}</td>
-                        <td>{{ offreSpecial.reduction }}%</td>
-                        <td>{{ formatDate(offreSpecial.dateDebut) }}</td>
-                        <td>{{ formatDate(offreSpecial.dateFin) }}</td>
-                        <td>
-                          <button type="button" class="btn btn-inverse-primary btn-rounded btn-icon">
-                            <i class="ti-pencil"></i>
-                          </button>
-                          <button type="button" class="btn btn-inverse-primary btn-rounded btn-icon"
-                            (click)="directDelete(offreSpecial)">
-                            <i class="ti-trash"></i>
-                          </button>
-                        </td>
-                      </tr>
-                    </tbody>
-                  </table>
+              <div class="card-people" style="text-align: center;padding-top: 0;">
+                <div class="img-container" style="border-radius: 50%;">
+                  <img class="img-contained" [src]="employe.photo" alt="employe.nom">
                 </div>
+                <div class="weather-info">
+                  <button type="button" class="btn btn-danger btn-rounded btn-icon" *ngIf="employe.isPreference === 0" (click)="addPreference(employe._id)">
+                    <i class="ti-plus"></i>
+                  </button>
+                  <button type="button" class="btn btn-danger btn-rounded btn-icon" *ngIf="employe.isPreference === 1" (click)="removePreference(employe._id)">
+                    <i class="ti-check"></i>
+                  </button>
+                </div>
+                <h2>{{employe.nom}} {{employe.prenom}}</h2>
               </div>
             </div>
           </div>
         </div>
-
-
 
       </div>
       <!-- content-wrapper ends -->

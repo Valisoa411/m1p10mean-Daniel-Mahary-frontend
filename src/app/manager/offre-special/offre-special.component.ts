@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { OffreSpecialApi } from 'src/app/api/offreSpecial.api';
 import { OffreSpecial } from 'src/app/model/offreSpecial.model';
+import { formatSimpleDate } from 'src/app/util/util';
 
 @Component({
   selector: 'app-offre-special',
@@ -8,6 +9,8 @@ import { OffreSpecial } from 'src/app/model/offreSpecial.model';
   styleUrls: ['./offre-special.component.css']
 })
 export class OffreSpecialComponent {
+  formatDate: (date: any) => string = formatSimpleDate;
+
   offreSpecials: OffreSpecial[] = [];
   selectedOffreSpecial: OffreSpecial | undefined;
   create: boolean = false;

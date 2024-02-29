@@ -16,6 +16,6 @@ export const clientRoutes: Routes = [
   { path: 'client/employe', component: ClientListEmployeComponent },
 
   { path: 'client/signup', component: SignUpComponent },
-  { path: 'client/rendezvous', component: RendezVousComponent },
+  { path: 'client/rendezvous/:idService', component: RendezVousComponent },
   { path: 'client/waiting', component: WaitingPageComponent },
 ]

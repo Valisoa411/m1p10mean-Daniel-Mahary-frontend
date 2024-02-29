@@ -36,6 +36,7 @@ import { SettingPanelComponent } from './manager/list-employe/setting-panel/sett
 import { FooterComponent } from './manager/list-employe/footer/footer.component';
 import { ListeRdvComponent } from './employe/liste-rdv/liste-rdv.component';
 import { ClientListEmployeComponent } from './client/client-list-employe/client-list-employe.component';
+import { ClientNavbarComponent } from './client/client-navbar/client-navbar.component';
 
 const routes: Routes = [
   // { path: '/list', component: LinksListComponent },
@@ -73,6 +74,7 @@ const routes: Routes = [
     FooterComponent,
     ListeRdvComponent,
     ClientListEmployeComponent,
+    ClientNavbarComponent,
   ],
   imports: [
     BrowserModule,

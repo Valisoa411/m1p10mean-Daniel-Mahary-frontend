@@ -3,6 +3,7 @@ import { Observable } from 'rxjs';
 import { Injectable } from '@angular/core';
 import env from '../config/env';
 import { TokenService } from '../client/service/token.service';
+import { getHeaders } from '../util/util';
 
 @Injectable({
     providedIn: 'root', // Cela enregistre le service au niveau du module racine (AppModule)
@@ -10,6 +11,14 @@ import { TokenService } from '../client/service/token.service';
 
 export class ClientApi {
   constructor(private http: HttpClient,private tokenService: TokenService) {}
+
+  getNotifications(): Observable<any> {
+    return this.http.get(env.hostClient + '/notification', {headers: getHeaders()})
+  }
+
+  checkNotification(idNotification: string): Observable<any> {
+    return this.http.put(env.hostClient + '/notification/check', {idNotification}, {headers: getHeaders()})
+  }
 
   signUpClient(clientData: any): Observable<any> {
     return this.http.post(env.hostClient + '/signup', clientData)

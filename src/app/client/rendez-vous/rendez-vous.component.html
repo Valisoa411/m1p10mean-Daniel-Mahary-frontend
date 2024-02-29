@@ -1,55 +1,81 @@
-<div class="container">
-  <h2>Prendre Rendez-vous</h2>
-  <form #form="ngForm" (submit)="takeRendezVous(form)">
+<div class="container-scroller">
 
-    <label for="service">Service :</label>
-    <select id="service" name="service" ngModel #service="ngModel" (ngModelChange)="onServiceChange(service.value)">
-      <option hidden>Service</option>
-      <option *ngFor="let service of services, let i = index" [value]="i">{{ service.nom }}</option>
-    </select>
-    <div class="textError" *ngIf="inputErrors.service">{{ inputErrors.service }}</div>
-    <br />
+  <!-- partial:partials/_navbar.html -->
+  <app-client-navbar></app-client-navbar>
+  <!-- partial -->
+  <div class="container-fluid page-body-wrapper">
+    <!-- partial:partials/_settings-panel.html -->
+    <app-setting-panel></app-setting-panel>
+    <!-- partial -->
+    <!-- partial:partials/_sidebar.html -->
+    <app-sidebar [role]="'client'"></app-sidebar>
+    <!-- partial -->
+    <div class="main-panel">
+      <div class="content-wrapper">
 
-    <label for="date">Date :</label>
-    <input type="date" id="date" name="date" ngModel #date="ngModel" (ngModelChange)="onDateChange(date.value)"
-      [disabled]="rendezVous.service === undefined" />
-    <div class="textError" *ngIf="inputErrors.date">{{ inputErrors.date }}</div>
-    <div *ngIf="availabilities.length > 0">
-      <h4>Horaire libre</h4>
-      <div *ngFor="let availability of availabilities">
-        {{availability.debut}} à {{availability.fin}}
+        <h2>Prendre Rendez-vous</h2>
+        <form #form="ngForm" (submit)="takeRendezVous(form)">
+
+          <label for="service">Service :</label>
+          <select id="service" name="service" ngModel #service="ngModel"
+            (ngModelChange)="onServiceChange(service.value)">
+            <option hidden>Service</option>
+            <option *ngFor="let service of services, let i = index" [value]="i">{{ service.nom }}</option>
+          </select>
+          <div class="textError" *ngIf="inputErrors.service">{{ inputErrors.service }}</div>
+          <br />
+
+          <label for="date">Date :</label>
+          <input type="date" id="date" name="date" ngModel #date="ngModel" (ngModelChange)="onDateChange(date.value)"
+            [disabled]="rendezVous.service === undefined" />
+          <div class="textError" *ngIf="inputErrors.date">{{ inputErrors.date }}</div>
+          <div *ngIf="availabilities.length > 0">
+            <h4>Horaire libre</h4>
+            <div *ngFor="let availability of availabilities">
+              {{availability.debut}} à {{availability.fin}}
+            </div>
+          </div>
+          <br />
+
+          <label for="heure">Heure :</label>
+          <input type="time" id="heure" name="heure" ngModel #heure="ngModel"
+            (ngModelChange)="onHeureChange(heure.value)" [disabled]="availabilities.length === 0" />
+          <div class="textError" *ngIf="inputErrors.heure">{{ inputErrors.heure }}</div>
+          <br />
+
+          <div style="width: 200px; height: 200px; background-color: #dddddd;">
+            <h5>source</h5>
+            <div *ngFor="let employe of availableEmployes" pDraggable (onDragStart)="dragStart(employe)"
+              (onDragEnd)="dragEnd()">
+              {{employe.nom}}
+            </div>
+          </div>
+          <div style="width: 200px; height: 200px; background-color: #aaaaaa;" pDroppable (onDrop)="drop()">
+            <h5>target</h5>
+            <div *ngIf="rendezVous.employes">
+              <div *ngFor="let employe of rendezVous.employes">
+                {{employe.nom}}
+              </div>
+            </div>
+          </div>
+
+          <button type="submit">Prendre Rendez-vous</button>
+          <!-- <button type="button" (click)="test()">Test</button> -->
+
+          <div [class.textSuccess]="success" [class.textError]="!success">{{ message }}</div>
+        </form>
       </div>
+      <!-- content-wrapper ends -->
+      <!-- partial:partials/_footer.html -->
+      <app-footer></app-footer>
+      <!-- partial -->
     </div>
-    <br />
-
-    <label for="heure">Heure :</label>
-    <input type="time" id="heure" name="heure" ngModel #heure="ngModel" (ngModelChange)="onHeureChange(heure.value)"
-      [disabled]="availabilities.length === 0" />
-    <div class="textError" *ngIf="inputErrors.heure">{{ inputErrors.heure }}</div>
-    <br />
-
-    <div style="width: 200px; height: 200px; background-color: #dddddd;">
-      <h5>source</h5>
-      <div *ngFor="let employe of availableEmployes" pDraggable (onDragStart)="dragStart(employe)"
-        (onDragEnd)="dragEnd()">
-        {{employe.nom}}
-      </div>
-    </div>
-    <div style="width: 200px; height: 200px; background-color: #aaaaaa;" pDroppable (onDrop)="drop()">
-      <h5>target</h5>
-      <div *ngIf="rendezVous.employes">
-        <div *ngFor="let employe of rendezVous.employes">
-          {{employe.nom}}
-        </div>
-      </div>
-    </div>
-
-    <button type="submit">Prendre Rendez-vous</button>
-    <!-- <button type="button" (click)="test()">Test</button> -->
-
-    <div [class.textSuccess]="success" [class.textError]="!success">{{ message }}</div>
-  </form>
+    <!-- main-panel ends -->
+  </div>
+  <!-- page-body-wrapper ends -->
 </div>
+<!-- container-scroller -->
+<!-- End custom js for this page-->
 
 <!-- Drag & Drop example start -->
 <!-- <div class="card flex flex-wrap gap-3">

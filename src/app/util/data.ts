@@ -20,6 +20,10 @@ export const sidebarConfig = [
       { name: 'créer dépense', href: 'manager/createDepense' },
       { name: 'listes Benefices', href: 'manager/listeBenefice' },
       { name: 'listes Dépenses', href: 'manager/listeDepense' }
+      { name: 'Liste des employés', href: 'manager/listEmploye' },
+      { name: 'Ajouter employé', href: 'manager/createEmploye' },
+      { name: 'Gestion des services', href: 'manager/service' },
+      { name: 'Gestion des offres spéciales', href: 'manager/offreSpecial' },
       // Ajoutez d'autres liens spécifiques au rôle de manager
     ],
   },
@@ -37,6 +41,8 @@ export const sidebarConfig = [
     role: 'client',
     links: [
       { name: 'liste des rendez-vous', href: 'client/listeRdv' },
+      { name: 'Accueil', href: 'client/accueil' },
+      { name: 'Employées', href: 'client/employe' },
     ],
   },
   // Ajoutez d'autres configurations de rôle si nécessaire

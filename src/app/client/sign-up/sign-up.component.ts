@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Client } from '../../model/client.model';
 import { ClientApi } from '../../api/client.api';
+import { NavigationExtras, Router } from '@angular/router';
 
 @Component({
   selector: 'app-sign-up',
@@ -9,7 +10,16 @@ import { ClientApi } from '../../api/client.api';
   styleUrls: ['./sign-up.component.css']
 })
 export class SignUpComponent {
-  client: Client = new Client();
+  client: Client = new Client(
+    undefined,
+    'RAKOTONIRAINY',
+    'Daniel',
+    'valisoa.daniel@gmail.com',
+    '12345678',
+    'Homme',
+    '2003-04-11',
+    undefined,
+  );
   requiredInput: string[] = [
     'nom',
     'prenom',
@@ -25,7 +35,17 @@ export class SignUpComponent {
 
   constructor(
     private clientApi: ClientApi,
+    private router: Router
   ) { }
+
+  test() {
+    console.log("test: ", this.client);
+
+  }
+
+  onGenreChange(event: any): void {
+    Object.keys(event).forEach(key => console.log("key: ", key))
+  }
 
   onDateNaissanceChange() {
     if(this.client.dateNaissance && new Date(this.client.dateNaissance).getTime() > new Date().getTime()){
@@ -75,8 +95,14 @@ export class SignUpComponent {
     if (!this.isErrorExisting()) {
       this.clientApi.signUpClient(this.client).subscribe({
         next: (data) => {
-          this.success = true;
-          this.message = data.message;
+          const extra: NavigationExtras = {
+            state: {
+              data: {
+                email: this.client.email
+              }
+            }
+          }
+          this.router.navigate(['/waiting'], extra);
         },
         error: (error) => {
           this.success = false;

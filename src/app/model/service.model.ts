@@ -8,6 +8,7 @@ export class Service {
     public description?: string,
     public photo?: string,
     public nbEmploye?: number,
+    public isPreference?: number
   ) {
     this.nbEmploye = 1;
   }

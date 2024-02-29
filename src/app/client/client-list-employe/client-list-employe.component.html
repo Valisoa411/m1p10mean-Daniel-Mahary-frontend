@@ -13,36 +13,24 @@
     <div class="main-panel">
       <div class="content-wrapper">
 
-        <!-- <button (click)="test()">test</button> -->
-
-        <h1>Bienvenu!</h1>
+        <h1>Les Employées</h1>
 
         <div class="row">
-          <div class="col-md-4 grid-margin" *ngFor="let service of services">
-            <div class="card" style="overflow: hidden;">
+          <div class="col-md-4 grid-margin" *ngFor="let employe of employes">
+            <div class="card">
               <div class="card-people" style="text-align: center;padding-top: 0;">
-                <div class="img-container">
-                  <img class="img-contained" [src]="service.photo" alt="service.nom">
+                <div class="img-container" style="border-radius: 50%;">
+                  <img class="img-contained" [src]="employe.photo" alt="employe.nom">
                 </div>
                 <div class="weather-info">
-                  <button type="button" class="btn btn-danger btn-rounded btn-icon" *ngIf="service.isPreference === 0" (click)="addPreference(service._id)">
+                  <button type="button" class="btn btn-danger btn-rounded btn-icon" *ngIf="employe.isPreference === 0" (click)="addPreference(employe._id)">
                     <i class="ti-plus"></i>
                   </button>
-                  <button type="button" class="btn btn-danger btn-rounded btn-icon" *ngIf="service.isPreference === 1" (click)="removePreference(service._id)">
+                  <button type="button" class="btn btn-danger btn-rounded btn-icon" *ngIf="employe.isPreference === 1" (click)="removePreference(employe._id)">
                     <i class="ti-check"></i>
                   </button>
                 </div>
-                <h3>{{service.nom}}</h3>
-                <div class="row">
-                  <div class="col-md-6 align-self-center">
-                    <h4>{{service.prix ? formatNumber(service.prix) : 0}} Ar</h4>
-                  </div>
-                  <div class="col-md-6">
-                    <button type="button" class="btn btn-primary btn-block" (click)="takeRendezVous(service._id)">
-                      Prendre Rendez-Vous
-                    </button>
-                  </div>
-                </div>
+                <h2>{{employe.nom}} {{employe.prenom}}</h2>
               </div>
             </div>
           </div>

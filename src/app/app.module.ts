@@ -28,6 +28,9 @@ import { SigninComponent } from './employe/signin/signin.component';
 import { AccueilEmployeComponent } from './employe/accueil-employe/accueil-employe.component';
 import { ProfilComponent } from './employe/profil/profil.component';
 import { RendezVousComponent } from './client/rendez-vous/rendez-vous.component';
+import { WaitingPageComponent } from './client/waiting-page/waiting-page.component';
+import { OffreSpecialComponent } from './manager/offre-special/offre-special.component';
+import { OffreSpecialFormComponent } from './manager/offre-special/offre-special-form/offre-special-form.component';
 import { SidebarComponent } from './manager/list-employe/sidebar/sidebar.component';
 import { SettingPanelComponent } from './manager/list-employe/setting-panel/setting-panel.component';
 import { FooterComponent } from './manager/list-employe/footer/footer.component';
@@ -44,6 +47,8 @@ import { DepenseComponent } from './manager/depense/depense.component';
 import { ListedepenseComponent } from './manager/listedepense/listedepense.component';
 import { BeneficeComponent } from './manager/benefice/benefice.component';
 import { FicheComponent } from './manager/fiche/fiche.component';
+import { ClientListEmployeComponent } from './client/client-list-employe/client-list-employe.component';
+import { ClientNavbarComponent } from './client/client-navbar/client-navbar.component';
 
 const routes: Routes = [
   // { path: '/list', component: LinksListComponent },
@@ -73,6 +78,9 @@ const routes: Routes = [
     SigninComponent,
     AccueilEmployeComponent,
     ProfilComponent,
+    WaitingPageComponent,
+    OffreSpecialComponent,
+    OffreSpecialFormComponent,
     SidebarComponent,
     SettingPanelComponent,
     FooterComponent,
@@ -89,6 +97,8 @@ const routes: Routes = [
     ListedepenseComponent,
     BeneficeComponent,
     FicheComponent,
+    ClientListEmployeComponent,
+    ClientNavbarComponent,
   ],
   imports: [
     BrowserModule,

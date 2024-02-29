@@ -1,16 +1,36 @@
-<div class="container">
-  <h2>Connexion Manager</h2>
-  <form #form="ngForm" (submit)="loginManager()">
-    <label for="login">Login :</label>
-    <input type="text" id="login" [(ngModel)]="manager.login" name="login" />
-    <br />
+<div class="container-scroller">
+  <div class="container-fluid page-body-wrapper full-page-wrapper">
+    <div class="content-wrapper d-flex align-items-center auth px-0">
+      <div class="row w-100 mx-0">
+        <div class="col-lg-4 mx-auto">
+          <div class="auth-form-light text-left py-5 px-4 px-sm-5">
+            <div class="brand-logo">
+              <img src="assets/images/logo.svg" alt="logo">
+            </div>
+            <h2>Se connecter</h2>
+            <form class="pt-3" #form="ngForm" (submit)="loginManager()">
 
-    <label for="mdp">Mot de passe :</label>
-    <input type="password" id="mdp" [(ngModel)]="manager.mdp" name="mdp" />
-    <br />
+              <div class="form-group">
+                <input type="email" class="form-control form-control-lg" [(ngModel)]="manager.login" name="login"
+                  placeholder="Identifiant">
+              </div>
 
-    <button type="submit">Connexion</button>
+              <div class="form-group">
+                <input type="password" class="form-control form-control-lg" [(ngModel)]="manager.mdp" name="mdp"
+                  placeholder="Mot de passe">
+              </div>
 
-    <div [class.textSuccess]="success" [class.textError]="!success">{{ message }}</div>
-  </form>
+              <div class="mt-3">
+                <button class="btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn"
+                  type="submit">CONNEXION</button>
+              </div>
+
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- content-wrapper ends -->
+  </div>
+  <!-- page-body-wrapper ends -->
 </div>

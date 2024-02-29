@@ -29,6 +29,6 @@ export const managerRoutes: Routes = [
   { path: 'manager/createTypeDepense', component: CreatedepenseComponent },
   { path: 'manager/createDepense', component: DepenseComponent },
   { path: 'manager/listeDepense', component: ListedepenseComponent },
-  { path: 'manager/listeBenefice', component: BeneficeComponent }
+  { path: 'manager/listeBenefice', component: BeneficeComponent },
   { path: 'manager/offreSpecial', component: OffreSpecialComponent },
 ]

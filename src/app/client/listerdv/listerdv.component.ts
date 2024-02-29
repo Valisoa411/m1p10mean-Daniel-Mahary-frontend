@@ -85,7 +85,7 @@ export class ListerdvComponent {
       (rdv) => {
         this.rdvR=rdv;
         // console.log(rdv);
-        const currentDate = new Date("2024-03-03T13:30:00Z");
+        const currentDate = new Date();
         console.log(currentDate);
         const startDate = new Date(rdv.date);
         console.log(startDate); // Supposons que rdv.date contient la date de début du rendez-vous

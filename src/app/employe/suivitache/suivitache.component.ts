@@ -31,7 +31,7 @@ export class SuivitacheComponent {
     this.getCommission();
   }
   getCommission():void{
-    const today = new Date('2024-03-04T00:00:00Z');
+    const today = new Date();
     const formattedDate = today.toISOString().split('T')[0];
     this.employeApi.commissionNow(formattedDate).subscribe(
       (commission) => {
@@ -54,7 +54,7 @@ export class SuivitacheComponent {
     }
   }
   getListeRdv(): void {
-    const today = new Date('2024-03-11T11:00:00Z');
+    const today = new Date();
     const formattedDate = today.toISOString().split('T')[0];
     this.employeApi.RdvNow(formattedDate,this.currentPage, this.itemsPerPage).subscribe(
       (rdv:any) => {
@@ -78,7 +78,7 @@ export class SuivitacheComponent {
       (rdv) => {
         this.rdvR=rdv;
         // console.log(rdv);
-        const currentDate = new Date("2024-03-04T13:30:00Z");
+        const currentDate = new Date();
         console.log(currentDate);
         const startDate = new Date(rdv.date);
         console.log(startDate); // Supposons que rdv.date contient la date de début du rendez-vous

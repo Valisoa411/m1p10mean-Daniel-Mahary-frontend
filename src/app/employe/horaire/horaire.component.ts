@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 import { EmployeApi } from 'src/app/api/employe.api';
 import { HoraireApi } from 'src/app/api/horaire.api';
+import { EmployeService } from 'src/app/client/service/employe.service';
 import { Horaire } from 'src/app/model/horaire.model';
 import { jourSemaine } from 'src/app/util/data';
 
@@ -18,8 +20,9 @@ export class HoraireComponent {
   message: string = '';
   success: boolean = false;
   jourSemaine: string[] = jourSemaine;
+  photo:string|null="";
 
-  constructor(private horaireApi: HoraireApi, private employeApi: EmployeApi) {
+  constructor(private horaireApi: HoraireApi,private router: Router, private employeApi: EmployeApi,private employeService: EmployeService) {
     this.loadHoraires();
   }
 
@@ -78,5 +81,16 @@ export class HoraireComponent {
         }
       })
     }
+  }
+  ngOnInit(): void {
+    // Récupérez l'ID de l'employé à partir du TokenService
+    if(this.employeService.getPhoto()){
+      this.photo=this.employeService.getPhoto();
+    }
+    
+  }
+  logout():void{
+    this.employeApi.logout();
+    this.router.navigate(['employe/signin']);
   }
 }

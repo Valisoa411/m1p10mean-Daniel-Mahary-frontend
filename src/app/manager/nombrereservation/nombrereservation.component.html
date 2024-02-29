@@ -83,7 +83,7 @@
                               </select>
                             </div>
                           </div>
-                        <canvas id="chartByDay" style="height: 300px;"></canvas>
+                        <canvas id="chartByDay" style="max-height: 400px;width: 100%"></canvas>
                       </div>
                     </div>
                   </div>
@@ -96,7 +96,7 @@
                           <label for="yearByMonth">Année pour Month:</label>
                           <input type="number" id="yearByMonth" class="form-control" [(ngModel)]="selectedYearByMonth" (ngModelChange)="onYearByMonthChange()">
                         </div>
-                        <canvas id="chartByMonth" style="height: 300px;"></canvas>
+                        <canvas id="chartByMonth" style="max-height: 400px;width: 100%"></canvas>
                       </div>
                     </div>
                   </div>

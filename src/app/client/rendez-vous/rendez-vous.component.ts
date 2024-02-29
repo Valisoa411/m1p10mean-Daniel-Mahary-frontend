@@ -68,7 +68,7 @@ export class RendezVousComponent implements OnInit {
       this.offres.forEach(offre => {
         totalReduction += offre.reduction ? offre.reduction : 0;
       })
-      this.rendezVous.prixFinal = this.rendezVous.service.prix * totalReduction / 100;
+      this.rendezVous.prixFinal = this.rendezVous.service.prix * (100-totalReduction) / 100;
     }
   }
 

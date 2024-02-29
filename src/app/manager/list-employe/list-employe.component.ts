@@ -11,9 +11,15 @@ export class ListEmployeComponent {
   listeEmploye: any[] = [];
   erreurRecuperationEmploye: string = '';
   termeRecherche: string = '';
+  currentPage: number = 1;
+  itemsPerPage: number = 5;
+  totalItems: number = 0;
+  totalPages: number = 0;
+  is_search=false;
 
   constructor(private managerApi: ManagerApi,private route: Router) {
     this.getListeEmploye();
+    this.is_search=false;
   }
 
   ngOnInit(): void {
@@ -21,9 +27,11 @@ export class ListEmployeComponent {
   }
 
   getListeEmploye(): void {
-    this.managerApi.getListeEmploye().subscribe(
-      (employes) => {
-        this.listeEmploye = employes;
+    this.managerApi.getListeEmploye(this.currentPage, this.itemsPerPage).subscribe(
+      (response: any) => {
+        this.listeEmploye = response.listeEmploye;
+        this.totalItems = response.totalItems;
+        this.calculateTotalPages();
       },
       (error) => {
         alert(error.error.message); 
@@ -50,9 +58,15 @@ export class ListEmployeComponent {
     );
   }
   searchEmploye(): void {
-    this.managerApi.searchEmployes(this.termeRecherche).subscribe(
-      (result) => {
-        this.listeEmploye = result;
+    if(!this.is_search){
+      this.is_search=true;
+      this.currentPage=1;
+    }
+    this.managerApi.searchEmployes(this.termeRecherche,this.currentPage, this.itemsPerPage).subscribe(
+      (result:any) => {
+        this.listeEmploye = result.listeEmploye;
+        this.totalItems = result.totalItems;
+        this.calculateTotalPages();
       },
       (error) => {
         alert(error.error.message);
@@ -71,5 +85,20 @@ export class ListEmployeComponent {
   }
   fiche(idemploye:string):void{
     this.route.navigate(['manager/fiche']);
+  }
+  calculateTotalPages(): void {
+    this.totalPages = Math.ceil(this.totalItems / this.itemsPerPage);
+  }
+
+  onPageChange(newPage: number): void {
+    if (newPage >= 1 && newPage <= this.totalPages) {
+      this.currentPage = newPage;
+      
+      if(!this.is_search){
+        this.getListeEmploye();
+      }else{
+        this.searchEmploye();
+      }
+    }
   }
 }

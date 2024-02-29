@@ -36,7 +36,10 @@ export class LoginComponent {
     private clientApi: ClientApi,
     private router : Router,
     private tokenService: TokenService
-  ) { }
+  ) { 
+    this.client.email="testforfront2@yopmail.com";
+    this.client.mdp="mahariabo";
+  }
 
   onPasswordChange() {
     const mdp = this.client.mdp;

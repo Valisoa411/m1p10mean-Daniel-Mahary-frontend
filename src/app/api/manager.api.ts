@@ -31,9 +31,11 @@ export class ManagerApi {
     return this.http.post(env.hostManager + "/createEmploye", formData, {headers : getHeaders()});
   }
 
-  getListeEmploye(): Observable<any[]> {
+  getListeEmploye(page:number,limit:number): Observable<any[]> {
+    const params = new HttpParams().set('page', page).set('limit',limit);
+    const options = { params: params, headers: getHeaders() };
     const url = env.hostManager+"/listEmploye";  // Remplacez par l'endpoint réel de votre API
-    return this.http.get<any[]>(url,{headers :getHeaders()});
+    return this.http.get<any[]>(url,options);
   }
 
   deleteEmploye(employeeId: string): Observable<any> {
@@ -44,8 +46,8 @@ export class ManagerApi {
     return this.http.post(env.hostManager + '/login', managerCredentials)
   }
 
-  searchEmployes(term: string): Observable<any[]> {
-    const params = new HttpParams().set('q', term);
+  searchEmployes(term: string,page:number,limit:number): Observable<any[]> {
+    const params = new HttpParams().set('q', term).set('page', page).set('limit',limit);
     const options = { params: params, headers: getHeaders() };
     return this.http.get<any[]>(env.hostManager+'/search', options);
   }
@@ -59,19 +61,19 @@ export class ManagerApi {
     this.tokenService.removeToken();
   }
 
-  getListeRdv(idemploye:string): Observable<any[]> {
+  getListeRdv(idemploye:string,page:number,limit:number): Observable<any[]> {
     const url = env.hostManager+"/listeRdv";  // Remplacez par l'endpoint réel de votre API
 
     // Récupérez le token du service de gestion du token
-    const params = new HttpParams().set('idemploye',idemploye);
+    const params = new HttpParams().set('idemploye',idemploye).set('page', page).set('limit',limit);
     const options = { params: params, headers: getHeaders() };
 
     // Utilisez les en-têtes dans la requête HTTP
     return this.http.get<any[]>(url, options);
   }
-  searchRdv(idemploye:string,date1: string,date2: string): Observable<any[]> {
+  searchRdv(idemploye:string,date1: string,date2: string,page:number,limit:number): Observable<any[]> {
     const params = new HttpParams().set('date1', date1)
-    .set('date2', date2).set('idemploye',idemploye);
+    .set('date2', date2).set('idemploye',idemploye).set('page', page).set('limit',limit);
     const options = { params: params, headers: getHeaders() };
     return this.http.get<any[]>(env.hostManager+'/searchRdv', options);
   }
@@ -129,8 +131,10 @@ export class ManagerApi {
   createTypeDepense(typeDepenseData: any): Observable<any> {
     return this.http.post(env.hostManager + "/createTypeDepense", typeDepenseData, {headers : getHeaders()});
   }
-  getAllDepenses(): Observable<any[]> {
-    return this.http.get<any[]>(env.hostManager + "/listeDepense", {headers : getHeaders()});
+  getAllDepenses(page:number,limit:number): Observable<any[]> {
+    const params = new HttpParams().set('page', page).set('limit',limit);
+    const options = { params: params, headers: getHeaders() };
+    return this.http.get<any[]>(env.hostManager + "/listeDepense", options);
   }
   getAllTypeDepenses(): Observable<any[]> {
     return this.http.get<any[]>(env.hostManager + "/listeTypeDepense", {headers : getHeaders()});

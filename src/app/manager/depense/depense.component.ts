@@ -16,7 +16,6 @@ export class DepenseComponent {
   typedepensecible:TypeDepense=new TypeDepense();
   idtypedepense:string="";
   constructor(private managerAPi: ManagerApi,private router:Router,private renderer: Renderer2){
-    this.loadDepense();
     this.loadTypeDepense();
   }
   createDepense():void{
@@ -39,16 +38,6 @@ export class DepenseComponent {
       error: (error) => {
         alert(error.error.message);
       }});
-  }
-  loadDepense(): void {
-    this.managerAPi.getAllDepenses().subscribe(
-      {next: (data) => {
-        // console.log(data);
-        this.listeDepense = data;
-      },
-      error: (error) => {
-        alert(error.error.message);
-      }})
   }
   loadTypeDepense(): void {
     this.managerAPi.getAllTypeDepenses().subscribe(

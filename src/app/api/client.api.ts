@@ -1,4 +1,4 @@
-import { HttpClient,HttpHeaders } from '@angular/common/http';
+import { HttpClient,HttpHeaders, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Injectable } from '@angular/core';
 import env from '../config/env';
@@ -48,19 +48,15 @@ export class ClientApi {
   getRdv(id:string): Observable<any> {
     return this.http.get(env.hostClient + '/rdv/'+id,{headers:getHeaders()});
   }
-  getListeRdv(): Observable<any[]> {
+  getListeRdv(page:number,limit:number): Observable<any[]> {
     const url = env.hostClient+"/listeRdv";  // Remplacez par l'endpoint réel de votre API
 
     // Récupérez le token du service de gestion du token
-    const token = this.tokenService.getToken();
-
-    // Ajoutez le token comme en-tête d'autorisation
-    const headers = new HttpHeaders({
-      'Authorization': `${token}`
-    });
+    const params = new HttpParams().set('page', page).set('limit',limit);
+    const options = { params: params, headers: getHeaders() };
 
     // Utilisez les en-têtes dans la requête HTTP
-    return this.http.get<any[]>(url, { headers });
+    return this.http.get<any[]>(url, options);
   }
 
 }

@@ -14,6 +14,11 @@ export class ListeRdvComponent {
   date1:string ="";
   date2:string ="";
   photo:string|null="";
+  currentPage: number = 1;
+  itemsPerPage: number = 5;
+  totalItems: number = 0;
+  totalPages: number = 0;
+  is_search=false;
   constructor(
     private router: Router,
     private tokenService: TokenService,
@@ -22,12 +27,15 @@ export class ListeRdvComponent {
     private employeService: EmployeService
   ){
     this.getListeRdv();
+    this.is_search=false;
   }
   getListeRdv(): void {
     
-    this.employeApi.getListeRdv().subscribe(
-      (rdv) => {
-      this.listeRdv = rdv;
+    this.employeApi.getListeRdv(this.currentPage,this.itemsPerPage).subscribe(
+      (rdv:any) => {
+        this.listeRdv = rdv.listeRdv;
+        this.totalItems = rdv.totalItems;
+        this.calculateTotalPages();
       console.log('Taille de this.listeRdv :', this.listeRdv.length);
       },
       (error) => {
@@ -43,14 +51,35 @@ export class ListeRdvComponent {
     }
     
   }
+  calculateTotalPages(): void {
+    this.totalPages = Math.ceil(this.totalItems / this.itemsPerPage);
+  }
+
+  onPageChange(newPage: number): void {
+    if (newPage >= 1 && newPage <= this.totalPages) {
+      this.currentPage = newPage;
+      if(!this.is_search){
+        this.getListeRdv();
+      }else{
+        this.searchRdvDate();
+      }
+      
+    }
+  }
   logout():void{
     this.employeApi.logout();
     this.router.navigate(['employe/signin']);
   }
   searchRdvDate():void{
-    this.employeApi.searchRdv(this.date1,this.date2).subscribe(
-      (rdv) => {
-      this.listeRdv = rdv;
+    if(!this.is_search){
+      this.is_search=true;
+      this.currentPage=1;
+    }
+    this.employeApi.searchRdv(this.date1,this.date2,this.currentPage,this.itemsPerPage).subscribe(
+      (rdv:any) => {
+        this.listeRdv = rdv.listeRdv;
+        this.totalItems = rdv.totalItems;
+        this.calculateTotalPages();
       console.log('Taille de this.listeRdv :', this.listeRdv.length);
       },
       (error) => {

@@ -13,6 +13,10 @@ import { ClientApi } from 'src/app/api/client.api';
 export class ListerdvComponent {
   rdvR=new RendezVous();
   listeRdv: any[] = [];
+  currentPage: number = 1;
+  itemsPerPage: number = 5;
+  totalItems: number = 0;
+  totalPages: number = 0;
   constructor(
     private router: Router,
     private tokenService: TokenService,
@@ -22,9 +26,11 @@ export class ListerdvComponent {
     this.getListeRdv();
   }
   getListeRdv(): void {
-    this.clientApi.getListeRdv().subscribe(
-      (rdv) => {
-      this.listeRdv = rdv;
+    this.clientApi.getListeRdv(this.currentPage,this.itemsPerPage).subscribe(
+      (rdv:any) => {
+        this.listeRdv = rdv.listeRdv;
+        this.totalItems = rdv.totalItems;
+        this.calculateTotalPages();
       console.log('Taille de this.listeRdv :', this.listeRdv.length);
       },
       (error) => {
@@ -32,6 +38,17 @@ export class ListerdvComponent {
         console.error('Erreur lors de la récupération de la liste des clients :', error);
       }
     );
+  }
+  calculateTotalPages(): void {
+    this.totalPages = Math.ceil(this.totalItems / this.itemsPerPage);
+  }
+
+  onPageChange(newPage: number): void {
+    if (newPage >= 1 && newPage <= this.totalPages) {
+      this.currentPage = newPage;
+      this.getListeRdv();
+      
+    }
   }
   logout():void{
     this.clientApi.logout();

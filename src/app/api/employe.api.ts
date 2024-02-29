@@ -78,32 +78,27 @@ export class EmployeApi {
 
     return this.http.put(env.hostEmploye + "/updateEmploye", formData,{ headers });
   }
-  getListeRdv(): Observable<any[]> {
+  getListeRdv(page:number,limit:number): Observable<any[]> {
+    const params = new HttpParams().set('page', page).set('limit',limit);
     const url = env.hostEmploye+"/listeRdv";  // Remplacez par l'endpoint réel de votre API
 
-    // Récupérez le token du service de gestion du token
-    const token = this.tokenService.getToken();
-
-    // Ajoutez le token comme en-tête d'autorisation
-    const headers = new HttpHeaders({
-      'Authorization': `${token}`
-    });
+    const options = { params: params, headers: getHeaders() };
 
     // Utilisez les en-têtes dans la requête HTTP
-    return this.http.get<any[]>(url, { headers });
+    return this.http.get<any[]>(url, options);
   }
   logout():void{
     this.tokenService.removeToken();
   }
 
-  searchRdv(date1: string,date2: string): Observable<any[]> {
+  searchRdv(date1: string,date2: string,page:number,limit:number): Observable<any[]> {
     const params = new HttpParams().set('date1', date1)
-    .set('date2', date2);
+    .set('date2', date2).set('page', page).set('limit',limit);
     const options = { params: params, headers: getHeaders() };
     return this.http.get<any[]>(env.hostEmploye+'/searchRdv', options);
   }
-  RdvNow(date: string): Observable<any[]> {
-    const params = new HttpParams().set('date', date);
+  RdvNow(date: string,page:number,limit:number): Observable<any[]> {
+    const params = new HttpParams().set('date', date).set('page', page).set('limit',limit);
     const options = { params: params, headers: getHeaders() };
     return this.http.get<any[]>(env.hostEmploye+'/rdvNow', options);
   }

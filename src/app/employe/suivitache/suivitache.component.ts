@@ -16,6 +16,10 @@ export class SuivitacheComponent {
   listeRdv: any[] = [];
   commission=0.0;
   photo:string|null="";
+  currentPage: number = 1;
+  itemsPerPage: number = 5;
+  totalItems: number = 0;
+  totalPages: number = 0;
   constructor(
     private router: Router,
     private tokenService: TokenService,
@@ -39,12 +43,24 @@ export class SuivitacheComponent {
       }
     );
   }
+  calculateTotalPages(): void {
+    this.totalPages = Math.ceil(this.totalItems / this.itemsPerPage);
+  }
+
+  onPageChange(newPage: number): void {
+    if (newPage >= 1 && newPage <= this.totalPages) {
+      this.currentPage = newPage;
+      this.getListeRdv();
+    }
+  }
   getListeRdv(): void {
     const today = new Date('2024-03-11T11:00:00Z');
     const formattedDate = today.toISOString().split('T')[0];
-    this.employeApi.RdvNow(formattedDate).subscribe(
-      (rdv) => {
-      this.listeRdv = rdv;
+    this.employeApi.RdvNow(formattedDate,this.currentPage, this.itemsPerPage).subscribe(
+      (rdv:any) => {
+      this.listeRdv = rdv.listeRdv;
+      this.totalItems = rdv.totalItems;
+      this.calculateTotalPages();
       console.log('Taille de this.listeRdv :', this.listeRdv.length);
       },
       (error) => {

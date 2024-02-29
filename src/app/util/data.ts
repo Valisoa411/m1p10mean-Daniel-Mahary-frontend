@@ -18,7 +18,8 @@ export const sidebarConfig = [
       { name: 'chiffre d\'affaires', href: 'manager/chiffreaffaire' },
       { name: 'créer un type de dépense', href: 'manager/createTypeDepense' },
       { name: 'créer dépense', href: 'manager/createDepense' },
-      { name: 'listes Benefices', href: 'manager/listeBenefice' }
+      { name: 'listes Benefices', href: 'manager/listeBenefice' },
+      { name: 'listes Dépenses', href: 'manager/listeDepense' }
       // Ajoutez d'autres liens spécifiques au rôle de manager
     ],
   },

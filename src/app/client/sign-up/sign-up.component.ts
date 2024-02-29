@@ -11,14 +11,14 @@ import { NavigationExtras, Router } from '@angular/router';
 })
 export class SignUpComponent {
   client: Client = new Client(
-    undefined,
-    'RAKOTONIRAINY',
-    'Daniel',
-    'valisoa.daniel@gmail.com',
-    '12345678',
-    'Homme',
-    '2003-04-11',
-    undefined,
+    // undefined,
+    // 'RAKOTONIRAINY',
+    // 'Daniel',
+    // 'valisoa.daniel@gmail.com',
+    // '12345678',
+    // 'Homme',
+    // '2003-04-11',
+    // undefined,
   );
   requiredInput: string[] = [
     'nom',

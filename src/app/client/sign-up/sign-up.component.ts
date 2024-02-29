@@ -95,6 +95,8 @@ export class SignUpComponent {
     if (!this.isErrorExisting()) {
       this.clientApi.signUpClient(this.client).subscribe({
         next: (data) => {
+          console.log("signUpClient: ", data);
+
           const extra: NavigationExtras = {
             state: {
               data: {
@@ -102,7 +104,7 @@ export class SignUpComponent {
               }
             }
           }
-          this.router.navigate(['/waiting'], extra);
+          this.router.navigate(['/client/waiting'], extra);
         },
         error: (error) => {
           this.success = false;

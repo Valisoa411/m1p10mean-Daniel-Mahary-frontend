@@ -24,7 +24,7 @@ export class AccueilComponent implements OnInit {
     private clientApi: ClientApi,
     private serviceApi: ServiceApi,
     private preferenceApi: PreferenceApi,
-    private route: Router
+    private router: Router
   ) {
     this.loadServices();
   }
@@ -35,7 +35,14 @@ export class AccueilComponent implements OnInit {
 
   test(): void {
     console.log("test: ", this.services);
+  }
 
+  takeRendezVous(idService: string | undefined): void {
+    if(idService) {
+      this.router.navigate([`/client/rendezvous/${idService}`]);
+    } else {
+      console.log("idService undefined");
+    }
   }
 
   loadServices(): void {

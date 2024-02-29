@@ -1,11 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
+import { ActivatedRoute } from '@angular/router';
 import { RendezVousApi } from 'src/app/api/rendezVous.api';
 import { ServiceApi } from 'src/app/api/service.api';
 import { Employe } from 'src/app/model/employe.model';
 import { RendezVous } from 'src/app/model/rendezVous.model';
 import { Service } from 'src/app/model/service.model';
 import { jourSemaine } from 'src/app/util/data';
+import { formatNumber } from 'src/app/util/util';
 
 @Component({
   selector: 'app-rendez-vous',
@@ -13,6 +15,8 @@ import { jourSemaine } from 'src/app/util/data';
   styleUrls: ['./rendez-vous.component.css']
 })
 export class RendezVousComponent implements OnInit {
+  formatNumber: (value: number) => string = formatNumber;
+
   rendezVous: RendezVous = new RendezVous();
   date: string = '';
   heure: string = '';
@@ -27,16 +31,24 @@ export class RendezVousComponent implements OnInit {
   inputErrors: any = {};
   message: string = '';
   success: boolean = false;
+  readyToPay: boolean = true;
 
   constructor(
     private rendezVousApi: RendezVousApi,
-    private serviceApi: ServiceApi
+    private serviceApi: ServiceApi,
+    private route: ActivatedRoute
   ) {
     this.loadServices();
   }
 
   ngOnInit(): void {
-
+    this.route.params.subscribe(params => {
+      const idService = params['idService'];
+      this.serviceApi.getService(idService).subscribe(data => {
+        this.rendezVous.service = data.service;
+        this.rendezVous.prixFinal = data.service.prix;
+      })
+    })
   }
 
   test() {
@@ -84,7 +96,11 @@ export class RendezVousComponent implements OnInit {
     })
   }
 
-  takeRendezVous(form: NgForm): void {
+  showPay(form: NgForm) {
+    this.readyToPay = true;
+  }
+
+  takeRendezVous(): void {
     this.rendezVousApi.addRendezVous(this.rendezVous).subscribe({
       next: (data) => {
         this.success = true;
@@ -95,6 +111,13 @@ export class RendezVousComponent implements OnInit {
         this.message = error.error.message;
       }
     })
+  }
+
+  removeEmploye(employe: Employe) {
+    let draggedProductIndex = this.findIndexTarget(employe);
+    this.availableEmployes = [...this.availableEmployes, employe];
+    this.rendezVous.employes = this.rendezVous.employes?.filter((val, i) => i != draggedProductIndex);
+    this.draggedEmploye = null;
   }
 
 
@@ -124,6 +147,17 @@ export class RendezVousComponent implements OnInit {
     let index = -1;
     for (let i = 0; i < (this.availableEmployes as Employe[]).length; i++) {
       if (employe._id === (this.availableEmployes as Employe[])[i]._id) {
+        index = i;
+        break;
+      }
+    }
+    return index;
+  }
+
+  findIndexTarget(employe: Employe) {
+    let index = -1;
+    for (let i = 0; i < (this.rendezVous.employes as Employe[]).length; i++) {
+      if (employe._id === (this.rendezVous.employes as Employe[])[i]._id) {
         index = i;
         break;
       }

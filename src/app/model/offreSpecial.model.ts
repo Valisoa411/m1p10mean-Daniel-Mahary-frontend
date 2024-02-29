@@ -5,7 +5,7 @@ export class OffreSpecial {
     public _id?: string,
     public nom?: string,
     public service?: Service,
-    public reduction?: string,
+    public reduction?: number,
     public dateDebut?: string,
     public dateFin?: string,
   ){  }

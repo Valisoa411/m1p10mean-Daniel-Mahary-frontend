@@ -11,14 +11,14 @@ import { NavigationExtras, Router } from '@angular/router';
 })
 export class SignUpComponent {
   client: Client = new Client(
-    undefined,
-    'RAKOTONIRAINY',
-    'Daniel',
-    'valisoa.daniel@gmail.com',
-    '12345678',
-    'Homme',
-    '2003-04-11',
-    undefined,
+    // undefined,
+    // 'RAKOTONIRAINY',
+    // 'Daniel',
+    // 'valisoa.daniel@gmail.com',
+    // '12345678',
+    // 'Homme',
+    // '2003-04-11',
+    // undefined,
   );
   requiredInput: string[] = [
     'nom',
@@ -95,6 +95,8 @@ export class SignUpComponent {
     if (!this.isErrorExisting()) {
       this.clientApi.signUpClient(this.client).subscribe({
         next: (data) => {
+          console.log("signUpClient: ", data);
+
           const extra: NavigationExtras = {
             state: {
               data: {
@@ -102,7 +104,7 @@ export class SignUpComponent {
               }
             }
           }
-          this.router.navigate(['/waiting'], extra);
+          this.router.navigate(['/client/waiting'], extra);
         },
         error: (error) => {
           this.success = false;

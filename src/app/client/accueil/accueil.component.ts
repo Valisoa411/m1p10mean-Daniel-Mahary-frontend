@@ -12,7 +12,7 @@ import { formatNumber } from 'src/app/util/util';
   styleUrls: ['./accueil.component.css']
 })
 export class AccueilComponent implements OnInit {
-  formatNumber: (value: number) => string = formatNumber;
+  formatNumber: (value: number | undefined) => string = formatNumber;
 
   services: Service[]= [];
   listeClient: any[] = [];

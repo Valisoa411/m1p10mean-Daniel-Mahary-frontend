@@ -7,7 +7,7 @@
             <div class="brand-logo">
               <img src="assets/images/logo.png" alt="logo">
             </div>
-            <h6 class="font-weight-light">Signing up is easy. It only takes a few steps</h6>
+            <h6 class="font-weight-light">Connecter vous et profiter de nos services</h6>
             <form class="pt-3" #form="ngForm" (submit)="signInClient(form)">
               <div class="form-group">
                 <input type="email" class="form-control form-control-lg" id="email" [(ngModel)]="client.email" name="email" />
@@ -29,7 +29,7 @@
                   <input type="submit" value="signin" class="btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn">
               </div>
               <div class="text-center mt-4 font-weight-light">
-                Already have an account? <a href="client/signup" class="text-primary">Login</a>
+                Vous coulez vous inscrire? <a href="client/signup" class="text-primary">Inscription</a>
               </div>
             </form>
           </div>

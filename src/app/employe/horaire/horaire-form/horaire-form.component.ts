@@ -10,10 +10,11 @@ import { jourSemaine } from 'src/app/util/data';
   styleUrls: ['./horaire-form.component.css']
 })
 export class HoraireFormComponent implements OnInit, OnChanges {
-  @Input() idEmploye?: string;
   @Input() selectedHoraire?: Horaire;
   @Input() isUpdate?: boolean;
   @Output() onCancel = new EventEmitter<void>();
+  @Output() onInsert: EventEmitter<Horaire> = new EventEmitter<Horaire>();
+  @Output() onUpdate: EventEmitter<Horaire> = new EventEmitter<Horaire>();
 
   requiredInput: string[] = [
     'jour',
@@ -31,27 +32,22 @@ export class HoraireFormComponent implements OnInit, OnChanges {
   ) {}
 
   ngOnChanges(changes: SimpleChanges): void {
-    console.log("init: ", this.selectedHoraire, this.isUpdate, this.selectedHoraire && this.isUpdate);
     if (this.selectedHoraire && this.isUpdate) {
       this.horaire = {
         ...this.selectedHoraire,
-        idEmploye: this.idEmploye,
       };
     } else {
-      this.horaire = new Horaire(undefined, this.idEmploye);
+      this.horaire = new Horaire();
     }
   }
 
   ngOnInit(): void {
-    console.log("init: ", this.selectedHoraire, this.isUpdate, this.selectedHoraire && this.isUpdate);
-
     if (this.selectedHoraire && this.isUpdate) {
       this.horaire = {
         ...this.selectedHoraire,
-        idEmploye: this.idEmploye,
       };
     } else {
-      this.horaire = new Horaire(undefined, this.idEmploye);
+      this.horaire = new Horaire();
     }
   }
 
@@ -91,6 +87,8 @@ export class HoraireFormComponent implements OnInit, OnChanges {
     if(!this.isErrorExisting()) {
       this.horaireApi.addHoraire(this.horaire).subscribe({
         next: (data) => {
+          this.horaire._id = data.idHoraire;
+          this.onInsert.emit(this.horaire);
           this.success = true;
           this.message = data.message;
         },
@@ -108,6 +106,7 @@ export class HoraireFormComponent implements OnInit, OnChanges {
     if(!this.isErrorExisting()) {
       this.horaireApi.updateHoraire(this.horaire).subscribe({
         next: (data) => {
+          this.onUpdate.emit(this.horaire);
           this.success = true;
           this.message = data.message;
         },

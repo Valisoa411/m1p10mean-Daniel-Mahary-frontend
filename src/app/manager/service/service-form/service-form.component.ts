@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges } from '@angular/core';
+import { Component, EventEmitter, Input, OnChanges, OnInit, Output, Renderer2, SimpleChanges } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { ServiceApi } from 'src/app/api/service.api';
 import { Service } from 'src/app/model/service.model';
@@ -23,9 +23,12 @@ export class ServiceFormComponent implements OnInit {
   success: boolean = false;
   message: string = "";
   isUpdate: boolean = false;
+  photoFile: File = new File([], '');
+  selectedFileName: string = '';
 
   constructor(
-    private serviceApi: ServiceApi
+    private serviceApi: ServiceApi,
+    private renderer: Renderer2,
   ) { }
 
   ngOnInit(): void {
@@ -46,8 +49,16 @@ export class ServiceFormComponent implements OnInit {
     this.service.nbEmploye = sanitizedValue;
   }
 
+  onPhotoUploadClick(): void {
+    const fileInput = this.renderer.selectRootElement('#photo');
+    this.renderer.setProperty(fileInput, 'value', null);
+    fileInput.click();
+  }
+
   onFileSelected(event: any) {
     const file = event.target.files[0];
+    this.photoFile = file;
+    this.selectedFileName = this.photoFile.name;
     if (file) {
       const maxSizeInBytes = 512 * 1024; // 512 KB
       if (!file.type.startsWith('image/')) {

@@ -97,32 +97,48 @@
         <div class="content-wrapper">
 
           <h2>Vos horaires</h2>
-          <app-horaire-form [selectedHoraire]="selectedHoraire" [isUpdate]="update" [idEmploye]="idEmploye"
-            (onCancel)="clearScreen()"></app-horaire-form>
-          <div *ngIf="selectedHoraire && delete">
-            <p>Supprimer l'horaire {{jourSemaine[selectedHoraire.jour ? selectedHoraire.jour : 0]}} de
-              {{selectedHoraire.debut}} à {{selectedHoraire.fin}}</p>
-            <button (click)="deleteService()">Confirmer</button>
-            <button (click)="clearScreen()">Annuler</button>
+
+          <div class="row">
+            <div class="col-12 grid-margin">
+              <app-horaire-form [selectedHoraire]="selectedHoraire" [isUpdate]="update" (onCancel)="clearScreen()"></app-horaire-form>
+            </div>
+
+            <div class="col-12 grid-margin">
+              <div class="card">
+                <div class="card-body">
+                  <div class="table-responsive">
+                    <table class="table table-striped">
+                      <thead>
+                        <tr>
+                          <th>Jour</th>
+                          <th>Debut</th>
+                          <th>Fin</th>
+                          <th></th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr *ngFor="let horaire of horaires">
+                          <td>{{jourSemaine[horaire.jour ? horaire.jour : 0]}}</td>
+                          <td>{{horaire.debut}}</td>
+                          <td>{{horaire.fin}}</td>
+                          <td>
+                            <button class="btn btn-inverse-primary btn-rounded btn-icon" (click)="fillUpdateForm(horaire)">
+                              <i class="ti-pencil"></i>
+                            </button>
+                            <button class="btn btn-inverse-primary btn-rounded btn-icon" (click)="directDelete(horaire)">
+                              <i class="ti-trash"></i>
+                            </button>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
-          <table border="0">
-            <tr>
-              <th>Jour</th>
-              <th>Debut</th>
-              <th>Fin</th>
-              <th>Action</th>
-            </tr>
-            <tr *ngFor="let horaire of horaires">
-              <td>{{jourSemaine[horaire.jour ? horaire.jour : 0]}}</td>
-              <td>{{horaire.debut}}</td>
-              <td>{{horaire.fin}}</td>
-              <td>
-                <button (click)="fillUpdateForm(horaire)">modifier</button>
-                <button (click)="openDeleteConfirmation(horaire)">supprimer</button>
-              </td>
-            </tr>
-          </table>
-          <button type="button" (click)="test()">Test</button>
+
+          <!-- <button type="button" (click)="test()">Test</button> -->
         </div>
         <!-- content-wrapper ends -->
         <!-- partial:partials/_footer.html -->

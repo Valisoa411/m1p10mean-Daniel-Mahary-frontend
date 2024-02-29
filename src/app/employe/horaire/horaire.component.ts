@@ -12,7 +12,6 @@ import { jourSemaine } from 'src/app/util/data';
   styleUrls: ['./horaire.component.css']
 })
 export class HoraireComponent {
-  idEmploye: string = '65d9a3b9b1e2daf29113db8d';
   horaires: Horaire[] = [];
   selectedHoraire: Horaire | undefined;
   update: boolean = false;
@@ -44,8 +43,6 @@ export class HoraireComponent {
   fillUpdateForm(horaire: Horaire) {
     this.selectedHoraire = horaire;
     this.update = true;
-    console.log("fillUpdateForm: ", this.selectedHoraire);
-
   }
 
   openDeleteConfirmation(horaire: Horaire) {
@@ -65,7 +62,12 @@ export class HoraireComponent {
       }})
   }
 
-  deleteService(): void {
+  directDelete(horaire: Horaire): void {
+    this.selectedHoraire = horaire;
+    this.deleteHoraire();
+  }
+
+  deleteHoraire(): void {
     if (this.selectedHoraire && this.selectedHoraire._id) {
       this.horaireApi.deleteHoraire(this.selectedHoraire?._id).subscribe({
         next: (data) => {

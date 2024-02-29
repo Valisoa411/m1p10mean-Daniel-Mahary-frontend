@@ -4,6 +4,7 @@ import { ActivatedRoute } from '@angular/router';
 import { RendezVousApi } from 'src/app/api/rendezVous.api';
 import { ServiceApi } from 'src/app/api/service.api';
 import { Employe } from 'src/app/model/employe.model';
+import { OffreSpecial } from 'src/app/model/offreSpecial.model';
 import { RendezVous } from 'src/app/model/rendezVous.model';
 import { Service } from 'src/app/model/service.model';
 import { jourSemaine } from 'src/app/util/data';
@@ -18,6 +19,7 @@ export class RendezVousComponent implements OnInit {
   formatNumber: (value: number) => string = formatNumber;
 
   rendezVous: RendezVous = new RendezVous();
+  offres: OffreSpecial[] = [];
   date: string = '';
   heure: string = '';
 
@@ -60,11 +62,23 @@ export class RendezVousComponent implements OnInit {
     this.rendezVous.prixFinal = this.services[index].prix;
   }
 
+  calculPrixFinal(){
+    if(this.rendezVous.service && this.rendezVous.service.prix){
+      let totalReduction = 0
+      this.offres.forEach(offre => {
+        totalReduction += offre.reduction ? offre.reduction : 0;
+      })
+      this.rendezVous.prixFinal = this.rendezVous.service.prix * totalReduction / 100;
+    }
+  }
+
   onDateChange(newDate: string) {
     this.date = newDate;
     if (this.rendezVous.service?._id) {
-      this.serviceApi.getAvailability(this.rendezVous.service._id, newDate).subscribe((data) => {
+      this.serviceApi.getAvailabilityAndOffres(this.rendezVous.service._id, newDate).subscribe((data) => {
         this.availabilities = data.availabilities;
+        this.offres = data.offres
+        this.calculPrixFinal();
         if (this.availabilities.length === 0) {
           this.inputErrors = {
             ...this.inputErrors,

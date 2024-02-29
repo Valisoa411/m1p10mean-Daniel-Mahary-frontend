@@ -11,7 +11,7 @@ import { getHeaders } from '../util/util';
 export class ServiceApi {
   constructor(private http: HttpClient) { }
 
-  getAvailability(idService: string, selectedDate: string): Observable<any> {
+  getAvailabilityAndOffres(idService: string, selectedDate: string): Observable<any> {
     return this.http.get(`${env.hostClient}/availability`, {
       headers: getHeaders(),
       params: {

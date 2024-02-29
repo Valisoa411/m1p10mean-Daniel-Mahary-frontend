@@ -25,7 +25,8 @@ export const isFormValid = (form: NgForm, requiredInput: string[], inputErrors: 
   })
 }
 
-export const formatNumber = (num: number) => {
+export const formatNumber = (num: number | undefined) => {
+  if(!num) return '';
   const quant = typeof num === 'string' ? parseFloat(num) : num;
   const nombre = quant.toLocaleString('fr-FR', {
       minimumFractionDigits: 0,
@@ -49,6 +50,23 @@ export const formatDate = (inputDate: any) => {
 
   return new Intl.DateTimeFormat('fr-FR', options).format(date);
 };
+
+export function formatTime(minutes: number | undefined): string {
+  if (!minutes) {
+    return '';
+  }
+
+  const hours = Math.floor(minutes / 60);
+  const remainingMinutes = minutes % 60;
+
+  if (hours > 0 && remainingMinutes > 0) {
+    return `${hours}h${remainingMinutes}`;
+  } else if (hours > 0) {
+    return `${hours}h`;
+  } else {
+    return `${remainingMinutes}min`;
+  }
+}
 
 export const formatSimpleDate = (inputDate: any) => {
   if (!inputDate) return '';

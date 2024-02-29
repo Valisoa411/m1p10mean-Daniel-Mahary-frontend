@@ -1,42 +1,58 @@
-<div class="container">
-  <h2>{{ isUpdate ? 'Modification Service' : 'Ajout Service' }}</h2>
-  <form #form="ngForm" (submit)="isUpdate ? updateService(form) : addService(form)">
+<div class="card">
+  <div class="card-body">
+    <h4 class="card-title">{{isUpdate ? 'Modification Service' : 'Ajout Service'}}</h4>
+    <form class="forms-sample" #form="ngForm" (submit)="isUpdate ? updateService(form) : addService(form)">
 
-    <label for="nom">Nom :</label>
-    <input type="text" id="nom" [(ngModel)]="service.nom" name="nom" />
-    <div class="textError" *ngIf="inputErrors.nom">{{ inputErrors.nom }}</div>
-    <br />
+      <div class="form-group">
+        <label for="nom">Nom</label>
+        <input type="text" class="form-control form-control-sm" id="nom" [(ngModel)]="service.nom" name="nom"
+          required />
+        <div class="textError" *ngIf="inputErrors.nom">{{ inputErrors.nom }}</div>
+      </div>
 
-    <label for="prix">Prix :</label>
-    <input type="number" id="prix" [(ngModel)]="service.prix" name="prix" />
-    <div class="textError" *ngIf="inputErrors.prix">{{ inputErrors.prix }}</div>
-    <br />
+      <div class="form-group">
+        <label for="prix">Prix</label>
+        <input type="number" class="form-control form-control-sm" id="prix" [(ngModel)]="service.prix" name="prix"
+          required />
+        <div class="textError" *ngIf="inputErrors.prix">{{ inputErrors.prix }}</div>
+      </div>
 
-    <label for="duree">Durée :</label>
-    <input type="number" id="duree" [(ngModel)]="service.duree" name="duree" />
-    <div class="textError" *ngIf="inputErrors.duree">{{ inputErrors.duree }}</div>
-    <br />
+      <div class="form-group">
+        <label for="duree">Duree</label>
+        <input type="number" class="form-control form-control-sm" id="duree" [(ngModel)]="service.duree" name="duree"
+          required />
+        <div class="textError" *ngIf="inputErrors.duree">{{ inputErrors.duree }}</div>
+      </div>
 
-    <label for="commission">Commission :</label>
-    <input type="number" id="commission" [(ngModel)]="service.commission" name="commission" />
-    <div class="textError" *ngIf="inputErrors.commission">{{ inputErrors.commission }}</div>
-    <br />
+      <div class="form-group">
+        <label for="commission">Commission</label>
+        <input type="number" class="form-control form-control-sm" id="commission" [(ngModel)]="service.commission" name="commission"
+          required />
+        <div class="textError" *ngIf="inputErrors.commission">{{ inputErrors.commission }}</div>
+      </div>
 
-    <label for="description">Description :</label>
-    <textarea type="text" id="description" [(ngModel)]="service.description" name="description"></textarea>
-    <div class="textError" *ngIf="inputErrors.description">{{ inputErrors.description }}</div>
-    <br />
+      <div class="form-group">
+        <label for="description">Commission</label>
+        <textarea class="form-control" id="description" rows="4" [(ngModel)]="service.description" name="description"></textarea>
+        <div class="textError" *ngIf="inputErrors.description">{{ inputErrors.description }}</div>
+      </div>
 
-    <label for="photo">Photo :</label>
-    <input type="file" (change)="onFileSelected($event)"/>
-    <div class="textError" *ngIf="inputErrors.photo">{{ inputErrors.photo }}</div>
-    <br />
+      <div class="form-group">
+        <label for="photo">Mettre une photo :</label>
+        <input type="file" id="photo" (change)="onFileSelected($event)" name="photo" class="file-upload-default">
+        <div class="input-group col-xs-12">
+          <input type="text" class="form-control file-upload-info" disabled placeholder="Upload Image" [value]="selectedFileName">
+          <span class="input-group-append">
+            <button class="file-upload-browse btn btn-primary" type="button" (click)="onPhotoUploadClick()">Upload</button>
+          </span>
+        </div>
+        <div class="textError" *ngIf="inputErrors.photo">{{ inputErrors.photo }}</div>
+      </div>
 
-    <button type="submit">Enregistrer</button>
-    <button type="button" (click)="emitClose()">Annuler</button>
+      <div [class.textSuccess]="success" [class.textError]="!success">{{ message }}</div>
+      <button type="submit" class="btn btn-primary mr-2">Enregistrer</button>
+      <button type="button" class="btn btn-danger mr-2" (click)="emitClose()">Annuler</button>
 
-    <div [class.textSuccess]="success" [class.textError]="!success">{{ message }}</div>
-  </form>
-
-  <!-- <button (click)="test()">test</button> -->
+    </form>
+  </div>
 </div>

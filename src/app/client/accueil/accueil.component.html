@@ -35,7 +35,10 @@
                 <h3>{{service.nom}}</h3>
                 <div class="row">
                   <div class="col-md-6 align-self-center">
-                    <h4>{{service.prix ? formatNumber(service.prix) : 0}} Ar</h4>
+                    <div *ngIf="service.prix !== service.prixFinal">
+                      <h4>{{formatNumber(service.prixFinal)}} Ar</h4>
+                      <h5><small class="text-muted"><del>{{formatNumber(service.prix)}} Ar</del></small></h5>
+                    </div>
                   </div>
                   <div class="col-md-6">
                     <button type="button" class="btn btn-primary btn-block" (click)="takeRendezVous(service._id)">

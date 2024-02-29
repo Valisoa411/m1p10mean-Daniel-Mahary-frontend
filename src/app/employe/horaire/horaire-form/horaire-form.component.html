@@ -1,33 +1,48 @@
-<div class="container">
-  <form #form="ngForm" (submit)="isUpdate ? updateHoraire(form) : addHoraire(form)">
-    <table border="0">
-      <tr>
-        <th>Jour</th>
-        <th>Debut</th>
-        <th>Fin</th>
-      </tr>
-      <tr>
-        <td>
-          <select id="jour" [(ngModel)]="horaire.jour" name="jour">
-            <option></option>
-            <option *ngFor="let jour of jourSemaine; let i = index" [value]="i">{{ jour }}</option>
-          </select>
-        </td>
-        <td>
-          <input type="time" id="debut" [(ngModel)]="horaire.debut" name="debut" />
-        </td>
-        <td>
-          <input type="time" id="fin" [(ngModel)]="horaire.fin" name="fin" />
-        </td>
-      </tr>
-    </table>
-    <div [class.textSuccess]="success" [class.textError]="!success">{{ message }}</div>
-    <div *ngFor="let key of errorKeys()" class="textError">
-      {{ inputErrors[key] }}
-    </div>
-    <button type="submit">Enregistrer</button>
-    <button type="button" *ngIf="isUpdate" (click)="emitCancel()">Annuler</button>
-    <!-- <button type="button" (click)="test()">Test</button> -->
-  </form>
-
+<div class="row">
+  <div class="col-md-6">
+    <form class="forms-sample" #form="ngForm" (submit)="isUpdate ? updateHoraire(form) : addHoraire(form)">
+      <div class="table-responsive">
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th>Jour</th>
+              <th>Debut</th>
+              <th>Fin</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>
+                <div class="form-group">
+                  <select class="form-control form-control-sm" id="jour" [(ngModel)]="horaire.jour" name="jour">
+                    <option></option>
+                    <option *ngFor="let jour of jourSemaine; let i = index" [value]="i">{{ jour }}</option>
+                  </select>
+                </div>
+              </td>
+              <td>
+                <div class="form-group">
+                  <input class="form-control form-control-sm" type="time" id="debut" [(ngModel)]="horaire.debut"
+                    name="debut" />
+                </div>
+              </td>
+              <td>
+                <div class="form-group">
+                  <input class="form-control form-control-sm" type="time" id="fin" [(ngModel)]="horaire.fin"
+                    name="fin" />
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div [class.textSuccess]="success" [class.textError]="!success">{{ message }}</div>
+      <div *ngFor="let key of errorKeys()" class="textError">
+        {{ inputErrors[key] }}
+      </div>
+      <button type="submit" class="btn btn-primary mr-2">Enregistrer</button>
+      <button type="button" *ngIf="isUpdate" (click)="emitCancel()" class="btn btn-danger mr-2">Annuler</button>
+      <!-- <button type="button" (click)="test()">Test</button> -->
+    </form>
+  </div>
 </div>

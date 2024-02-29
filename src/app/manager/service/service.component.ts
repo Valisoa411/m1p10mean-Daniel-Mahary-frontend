@@ -1,6 +1,7 @@
 import { Component, NgModule } from '@angular/core';
 import { ServiceApi } from 'src/app/api/service.api';
 import { Service } from 'src/app/model/service.model';
+import { formatDate, formatTime } from 'src/app/util/util';
 
 @Component({
   selector: 'app-service',
@@ -8,6 +9,9 @@ import { Service } from 'src/app/model/service.model';
   styleUrls: ['./service.component.css']
 })
 export class ServiceComponent {
+  formatNumber: (value: number | undefined) => string = formatDate;
+  formatTime: (value: number | undefined) => string = formatTime;
+
   services: Service[] = [];
   selectedService: Service | undefined;
   create: boolean = false;
@@ -29,15 +33,21 @@ export class ServiceComponent {
 
   openCreateForm() {
     this.create = true;
+    this.update = false;
+    this.delete = false;
   }
 
   openUpdateForm(service: Service) {
     this.selectedService = service;
+    this.create = false;
     this.update = true;
+    this.delete = false;
   }
 
   openDeleteConfirmation(service: Service) {
     this.selectedService = service;
+    this.create = false;
+    this.update = false;
     this.delete = true;
   }
 
@@ -45,6 +55,11 @@ export class ServiceComponent {
     this.serviceApi.allServices().subscribe((data) => {
       this.services = data.services;
     })
+  }
+
+  directDelete(service: Service): void {
+    this.selectedService = service;
+    this.deleteService();
   }
 
   deleteService(): void {

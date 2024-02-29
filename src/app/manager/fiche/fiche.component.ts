@@ -5,11 +5,11 @@ import { TokenService } from 'src/app/client/service/token.service';
 import { Employe } from 'src/app/model/employe.model';
 
 @Component({
-  selector: 'app-fiche-employe',
-  templateUrl: './fiche-employe.component.html',
-  styleUrls: ['./fiche-employe.component.css']
+  selector: 'app-fiche',
+  templateUrl: './fiche.component.html',
+  styleUrls: ['./fiche.component.css']
 })
-export class FicheEmployeComponent {
+export class FicheComponent {
   employeeId:string="";
   employee: Employe = new Employe();
   constructor(
@@ -30,17 +30,7 @@ export class FicheEmployeComponent {
     this.route.params.subscribe(params => {
       this.employeeId = params['id'];
       // Faites ce que vous voulez avec l'ID de l'employé
-      console.log('Employee ID:', this.employeeId);
-      this.managerApi.getEmploye(this.employeeId).subscribe(
-        (employeeDetails) => {
-          // Initialisez l'objet employee avec les détails récupérés
-          this.employee = employeeDetails;
-        },
-        (error) => {
-          alert(error.error.message);
-          console.error('Erreur lors de la récupération des détails de l\'employé :', error);
-        }
-      );
+      
     });
   }
   logout():void{

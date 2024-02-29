@@ -1,0 +1,143 @@
+<div class="container-scroller">
+  
+    <!-- partial:partials/_navbar.html -->
+    <nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
+      <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-center">
+        <a class="navbar-brand brand-logo mr-5" href="#"><img src="assets/images/logo.png" class="mr-2" alt="titre"/></a>
+      </div>
+      <div class="navbar-menu-wrapper d-flex align-items-center justify-content-end">
+        <button class="navbar-toggler navbar-toggler align-self-center" type="button" data-toggle="minimize">
+          <span class="icon-menu"></span>
+        </button>
+        <ul class="navbar-nav mr-lg-2">
+          <li class="nav-item nav-search d-none d-lg-block">
+            <div class="input-group">
+              <div class="input-group-prepend hover-cursor" id="navbar-search-icon">
+                <span class="input-group-text" id="search">
+                  <i class="icon-search"></i>
+                </span>
+              </div>
+              <!-- <input type="text" class="form-control" id="navbar-search-input" placeholder="Search now" aria-label="search" aria-describedby="search" [(ngModel)]="termeRecherche" (ngModelChange)="searchEmploye()"> -->
+            </div>
+          </li>
+        </ul>
+        <ul class="navbar-nav navbar-nav-right">
+          <li class="nav-item nav-profile dropdown">
+            <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" id="profileDropdown">
+              <img src="assets/images/faces/face28.jpg" alt="profile"/>
+            </a>
+            <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="profileDropdown">
+              <a class="dropdown-item" (click)="logout()">
+                <i class="ti-power-off text-primary"></i>
+                Logout
+              </a>
+            </div>
+          </li>
+          <!-- <li class="nav-item nav-settings d-none d-lg-flex">
+            <a class="nav-link" href="#">
+              <i class="icon-ellipsis"></i>
+            </a>
+          </li> -->
+        </ul>
+        <button class="navbar-toggler navbar-toggler-right d-lg-none align-self-center" type="button" data-toggle="offcanvas">
+          <span class="icon-menu"></span>
+        </button>
+      </div>
+    </nav>
+    <!-- partial -->
+    <div class="container-fluid page-body-wrapper">
+      <!-- partial:partials/_settings-panel.html -->
+      <app-setting-panel></app-setting-panel>
+      <!-- partial -->
+      <!-- partial:partials/_sidebar.html -->
+      <app-sidebar [role]="'manager'"></app-sidebar>
+      <!-- partial -->
+      <div class="main-panel">
+        <div class="content-wrapper">
+            <div class="row">
+                <div class="col-lg-12 grid-margin stretch-card">
+                    <div class="card">
+                        <div class="card-body">
+                            <h4 class="card-title">Ajouter une dépense</h4>
+                            <form (ngSubmit)="createDepense()">
+                                <!-- Ajoutez les champs du formulaire, par exemple -->
+                                <div class="form-group">
+                                    <label for="montant">Montant :</label>
+                                    <input type="number" class="form-control" id="montant" [(ngModel)]="depense.montant" name="montant" required>
+                                  </div>
+
+                                  <div class="form-group">
+                                    <label for="montant">Année :</label>
+                                    <input type="number" class="form-control" id="annee" [(ngModel)]="depense.annee" name="annee" required>
+                                  </div>
+                                  <div class="form-group">
+                                      <label for="month">Mois:</label>
+                                      <select id="month" class="form-control" name="mois" [(ngModel)]="depense.mois">
+                                        <option value=1>Janvier</option>
+                                        <option value=2>Février</option>
+                                        <option value=3>Mars</option>
+                                        <option value=4>Avril</option>
+                                        <option value=5>Mai</option>
+                                        <option value=6>Juin</option>
+                                        <option value=7>Juillet</option>
+                                        <option value=8>Aout</option>
+                                        <option value=9>Septembre</option>
+                                        <option value=10>Octobre</option>
+                                        <option value=11>Novembre</option>
+                                        <option value=12>Décembre</option>
+                                        <!-- Ajoutez le reste des options pour les autres mois -->
+                                      </select>
+                                  </div>
+                                  <div class="form-group">
+                                    <label for="typeDepense">Type de dépense :</label>
+                                    <select class="form-control" id="typeDepense" [(ngModel)]="idtypedepense" name="idtypedepense" required>
+                                      <option *ngFor="let type of typedepense" [value]="type._id">{{ type.label }}</option>
+                                    </select>
+                                  </div>
+                                <!-- ... (autres champs du formulaire) ... -->
+                                <button type="submit" class="btn btn-primary">Ajouter</button>
+                            </form>
+                        </div>
+                    </div>
+
+                    <!-- Liste des dépenses -->
+                    <!-- <div >
+                        <div class="card-body">
+                            <h4 class="card-title">Liste des dépenses</h4>
+                            <table class="table table-striped">
+                                <thead>
+                                    <tr>
+                                        <th>Montant</th>
+                                        <th>Description</th>
+                                        <th></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let dep of listeDepense">
+                                        <td>{{ dep.montant }}</td>
+                                        <td>{{ dep.mois }}</td>
+                                        <td>
+                                            <button class="btn btn-danger btn-sm" (click)="deleteDepense(dep._id)">Supprimer</button>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div> -->
+                </div>
+            </div>
+        </div>
+        
+        <!-- content-wrapper ends -->
+        <!-- partial:partials/_footer.html -->
+        <app-footer></app-footer>
+        <!-- partial -->
+      </div>
+      <!-- main-panel ends -->
+    </div>   
+    <!-- page-body-wrapper ends -->
+  </div>
+  <!-- container-scroller -->
+  <!-- End custom js for this page-->
+  
+  

@@ -36,7 +36,10 @@ export class SigninComponent {
     private EmployeApi: EmployeApi,
     private router : Router,
     private tokenService: TokenService
-  ) { }
+  ) { 
+    this.employe.login="andriamahefazafymahali@gmail.com";
+    this.employe.mdp="mahargod";
+  }
 
   onPasswordChange() {
     const mdp = this.employe.mdp;

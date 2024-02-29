@@ -6,6 +6,12 @@ import { ServiceComponent } from '../manager/service/service.component';
 import { ListerdvemployeComponent } from '../manager/listerdvemploye/listerdvemploye.component';
 import { FicheEmployeComponent } from '../manager/fiche-employe/fiche-employe.component';
 import { NombrereservationComponent } from '../manager/nombrereservation/nombrereservation.component';
+import { ChiffreaffaireComponent } from '../manager/chiffreaffaire/chiffreaffaire.component';
+import { CreatedepenseComponent } from '../manager/createdepense/createdepense.component';
+import { DepenseComponent } from '../manager/depense/depense.component';
+import { ListedepenseComponent } from '../manager/listedepense/listedepense.component';
+import { BeneficeComponent } from '../manager/benefice/benefice.component';
+import { FicheComponent } from '../manager/fiche/fiche.component';
 
 export const managerRoutes: Routes = [
   { path: 'manager/listEmploye', component: ListEmployeComponent },
@@ -14,5 +20,11 @@ export const managerRoutes: Routes = [
   { path: 'manager/service', component: ServiceComponent },
   { path: 'manager/listerdvemploye/:id', component: ListerdvemployeComponent },
   { path: 'manager/ficheemploye/:id', component: FicheEmployeComponent },
-  { path: 'manager/nombrereservation', component: NombrereservationComponent }
+  { path: 'manager/fiche', component: FicheComponent },
+  { path: 'manager/nombrereservation', component: NombrereservationComponent },
+  { path: 'manager/chiffreaffaire', component: ChiffreaffaireComponent },
+  { path: 'manager/createTypeDepense', component: CreatedepenseComponent },
+  { path: 'manager/createDepense', component: DepenseComponent },
+  { path: 'manager/listeDepense', component: ListedepenseComponent },
+  { path: 'manager/listeBenefice', component: BeneficeComponent }
 ]

@@ -13,7 +13,12 @@ export const sidebarConfig = [
     role: 'manager',
     links: [
       { name: 'liste des employés', href: 'manager/listEmploye' },
-      { name: 'ajouter employé', href: 'manager/createEmploye' }
+      { name: 'ajouter employé', href: 'manager/createEmploye' },
+      { name: 'nombre de reservation', href: 'manager/nombrereservation' },
+      { name: 'chiffre d\'affaires', href: 'manager/chiffreaffaire' },
+      { name: 'créer un type de dépense', href: 'manager/createTypeDepense' },
+      { name: 'créer dépense', href: 'manager/createDepense' },
+      { name: 'listes Benefices', href: 'manager/listeBenefice' }
       // Ajoutez d'autres liens spécifiques au rôle de manager
     ],
   },

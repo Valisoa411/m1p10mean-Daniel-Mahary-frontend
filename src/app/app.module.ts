@@ -38,6 +38,12 @@ import { ListerdvemployeComponent } from './manager/listerdvemploye/listerdvempl
 import { MoyenneComponent } from './manager/list-employe/moyenne/moyenne.component';
 import { FicheEmployeComponent } from './manager/fiche-employe/fiche-employe.component';
 import { NombrereservationComponent } from './manager/nombrereservation/nombrereservation.component';
+import { ChiffreaffaireComponent } from './manager/chiffreaffaire/chiffreaffaire.component';
+import { CreatedepenseComponent } from './manager/createdepense/createdepense.component';
+import { DepenseComponent } from './manager/depense/depense.component';
+import { ListedepenseComponent } from './manager/listedepense/listedepense.component';
+import { BeneficeComponent } from './manager/benefice/benefice.component';
+import { FicheComponent } from './manager/fiche/fiche.component';
 
 const routes: Routes = [
   // { path: '/list', component: LinksListComponent },
@@ -77,6 +83,12 @@ const routes: Routes = [
     MoyenneComponent,
     FicheEmployeComponent,
     NombrereservationComponent,
+    ChiffreaffaireComponent,
+    CreatedepenseComponent,
+    DepenseComponent,
+    ListedepenseComponent,
+    BeneficeComponent,
+    FicheComponent,
   ],
   imports: [
     BrowserModule,

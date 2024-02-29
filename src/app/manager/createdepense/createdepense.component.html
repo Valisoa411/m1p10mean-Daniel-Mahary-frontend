@@ -3,12 +3,13 @@
     <!-- partial:partials/_navbar.html -->
     <nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
       <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-center">
+        <a class="navbar-brand brand-logo mr-5" href="#"><img src="assets/images/logo.png" class="mr-2" alt="titre"/></a>
       </div>
       <div class="navbar-menu-wrapper d-flex align-items-center justify-content-end">
         <nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
-            <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-center">
-                <a class="navbar-brand brand-logo mr-5" href="manager/login"><img src="assets/images/logo.png" class="mr-2" alt="titre"/></a>
-            </div>
+          <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-center">
+            <a class="navbar-brand brand-logo mr-5" href="#"><img src="assets/images/logo.png" class="mr-2" alt="titre"/></a>
+          </div>
           <div class="navbar-menu-wrapper d-flex align-items-center justify-content-end">
             <button class="navbar-toggler navbar-toggler align-self-center" type="button" data-toggle="minimize">
               <span class="icon-menu"></span>
@@ -26,8 +27,14 @@
                 </div>
               </li>
             </ul>
+            <button class="navbar-toggler navbar-toggler-right d-lg-none align-self-center" type="button" data-toggle="offcanvas">
+              <span class="icon-menu"></span>
+            </button>
           </div>
         </nav>
+        <button class="navbar-toggler navbar-toggler-right d-lg-none align-self-center" type="button" data-toggle="offcanvas">
+          <span class="icon-menu"></span>
+        </button>
       </div>
     </nav>
   <div class="container-fluid page-body-wrapper">
@@ -41,17 +48,14 @@
       <div class="content-wrapper">
         <div class="card">
           <div class="card-body">
-            <div class="text-center">
-                <img [src]="employee.photo" alt="{{ employee.nom }} {{ employee.prenom }}" width="100" height="100" alt="image">
-            </div>
-            <div class="text-center">
-                <p>nom: {{employee.nom}}</p>
-                <p>prenom: {{employee.prenom}}</p>
-                <p>cin : {{employee.cin}}</p>
-                <p>matricule : {{employee.matricule}}</p>
-                <p>genre : {{ employee.genre }}</p>
-                <p>email : {{ employee.login }}</p>
-            </div>
+            <h4 class="card-title">ajout TypeDepense</h4>
+            <form class="forms-sample" #form="ngForm" (submit)="createTypeDepense()" >
+              <div class="form-group">
+                <label for="label">label :</label>
+                <input type="text" class="form-control" id="label" [(ngModel)]="typedepense.label" name="label" required />  
+              </div>
+              <button type="submit" class="btn btn-primary mr-2">Submit</button>
+            </form>
           </div>
         </div>
       </div>

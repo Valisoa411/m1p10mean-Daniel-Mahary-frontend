@@ -1,6 +1,7 @@
 import { Component, Renderer2 } from '@angular/core';
 import { Router } from '@angular/router';
 import { EmployeApi } from 'src/app/api/employe.api';
+import { EmployeService } from 'src/app/client/service/employe.service';
 import { TokenService } from 'src/app/client/service/token.service';
 import { RendezVous } from 'src/app/model/rendezVous.model';
 import { addDuree } from 'src/app/util/util';
@@ -14,11 +15,13 @@ export class SuivitacheComponent {
   rdvR=new RendezVous();
   listeRdv: any[] = [];
   commission=0.0;
+  photo:string|null="";
   constructor(
     private router: Router,
     private tokenService: TokenService,
     private employeApi: EmployeApi,
-    private renderer: Renderer2
+    private renderer: Renderer2,
+    private employeService: EmployeService
   ){
     this.getListeRdv();
     this.getCommission();
@@ -88,5 +91,12 @@ export class SuivitacheComponent {
       }
     );
   } 
+  ngOnInit(): void {
+    // Récupérez l'ID de l'employé à partir du TokenService
+    if(this.employeService.getPhoto()){
+      this.photo=this.employeService.getPhoto();
+    }
+    
+  }
   
 }

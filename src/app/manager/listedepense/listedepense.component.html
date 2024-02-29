@@ -6,19 +6,18 @@
         <a class="navbar-brand brand-logo mr-5" href="#"><img src="assets/images/logo.png" class="mr-2" alt="titre"/></a>
       </div>
       <div class="navbar-menu-wrapper d-flex align-items-center justify-content-end">
-        <button class="navbar-toggler navbar-toggler align-self-center" type="button" data-toggle="minimize" >
+        <button class="navbar-toggler navbar-toggler align-self-center" type="button" data-toggle="minimize">
           <span class="icon-menu"></span>
         </button>
         <ul class="navbar-nav mr-lg-2">
           <li class="nav-item nav-search d-none d-lg-block">
             <div class="input-group">
               <div class="input-group-prepend hover-cursor" id="navbar-search-icon">
-                <span class="input-group-text" id="search" (click)="searchRdvDate()">
+                <span class="input-group-text" id="search">
                   <i class="icon-search"></i>
                 </span>
               </div>
-              <input type="date" class="form-control" id="navbar-search-input" placeholder="Search now" aria-label="search" aria-describedby="search" [(ngModel)]="date1">
-              <input type="date" class="form-control" id="navbar-search-input" placeholder="Search now" aria-label="search" aria-describedby="search" [(ngModel)]="date2">
+              <!-- <input type="text" class="form-control" id="navbar-search-input" placeholder="Search now" aria-label="search" aria-describedby="search" [(ngModel)]="termeRecherche" (ngModelChange)="searchEmploye()"> -->
             </div>
           </li>
         </ul>
@@ -56,50 +55,41 @@
       <div class="main-panel">
         <div class="content-wrapper">
             <div class="row">
-              <div class="col-lg-12 grid-margin stretch-card">
-                <div class="card">
-                  <div class="card-body">
-                    <div class="table-responsive">
-                      <table class="table table-striped">
-                        <thead>
-                          <tr>
-                            <th>
-                              Service
-                            </th>
-                            <th>
-                              client
-                            </th>
-                            <th>
-                              Date
-                            </th>
-                            <th>
-                              etat
-                            </th>
-                          </tr>
-                        </thead>
-                        <tbody>
-                          <tr *ngFor="let rdv of listeRdv">
-                            <td>
-                              {{rdv.service.nom}}
-                            </td>
-                            <td>
-                              {{rdv.client.nom+ ' ' +rdv.client.prenom}}
-                            </td>
-                            <td>
-                              {{ rdv.date | date:'yyyy-MM-dd HH:mm:ss' }}
-                            </td>
-                            <td>
-                              {{ rdv.etat }}
-                            </td>
-                          </tr>
-                        </tbody>
-                      </table>
+                <div class="col-lg-12 grid-margin stretch-card">
+                    <div class="card">
+
+                    <!-- Liste des dépenses -->
+                    <div >
+                        <div class="card-body">
+                            <h4 class="card-title">Liste des dépenses</h4>
+                            <table class="table table-striped">
+                                <thead>
+                                    <tr>
+                                        <th>Montant</th>
+                                        <th>Année</th>
+                                        <th>mois</th>
+                                        <th>typedepense</th>
+                                        <th></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let dep of listeDepense">
+                                        <td>{{ dep.montant }}</td>
+                                        <td>{{ dep.annee }}</td>
+                                        <td>{{ dep.mois !== undefined ? getNomMois(dep.mois) : 'Mois non défini' }}</td>
+                                        <td>{{ dep.typedepense ? dep.typedepense.label : 'Type de dépense non défini' }}</td>
+                                        <td>
+                                            <button class="btn btn-danger btn-sm" (click)="deleteDepense(dep._id)">Supprimer</button>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
-                  </div>
                 </div>
-              </div>
             </div>
         </div>
+        
         <!-- content-wrapper ends -->
         <!-- partial:partials/_footer.html -->
         <app-footer></app-footer>
@@ -111,3 +101,5 @@
   </div>
   <!-- container-scroller -->
   <!-- End custom js for this page-->
+  
+  

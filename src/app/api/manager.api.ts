@@ -99,4 +99,48 @@ export class ManagerApi {
     const options = { params: params, headers: getHeaders() };
     return this.http.get<any[]>(url, options);
   }
+  byDateChiffreAffaire(annee:number,mois:number): Observable<any> {
+    const url = env.hostManager+"/byDateChiffreAffaire";  // Remplacez par l'endpoint réel de votre API
+
+    // Récupérez le token du service de gestion du token
+    const params = new HttpParams().set('annee',annee).set('mois',mois);
+    const options = { params: params, headers: getHeaders() };
+    return this.http.get<any[]>(url, options);
+  }
+  byMonthChiffreAffaire(annee:number): Observable<any> {
+    const url = env.hostManager+"/byMonthChiffreAffaire";  // Remplacez par l'endpoint réel de votre API
+
+    // Récupérez le token du service de gestion du token
+    const params = new HttpParams().set('annee',annee);
+    const options = { params: params, headers: getHeaders() };
+    return this.http.get<any[]>(url, options);
+  }
+  beneficeByMonth(annee:number): Observable<any> {
+    const url = env.hostManager+"/beneficeByMonth";  // Remplacez par l'endpoint réel de votre API
+
+    // Récupérez le token du service de gestion du token
+    const params = new HttpParams().set('annee',annee);
+    const options = { params: params, headers: getHeaders() };
+    return this.http.get<any[]>(url, options);
+  }
+  createDepense(depenseData: any): Observable<any> {
+    return this.http.post(env.hostManager + "/createDepense",depenseData, {headers : getHeaders()});
+  }
+  createTypeDepense(typeDepenseData: any): Observable<any> {
+    return this.http.post(env.hostManager + "/createTypeDepense", typeDepenseData, {headers : getHeaders()});
+  }
+  getAllDepenses(): Observable<any[]> {
+    return this.http.get<any[]>(env.hostManager + "/listeDepense", {headers : getHeaders()});
+  }
+  getAllTypeDepenses(): Observable<any[]> {
+    return this.http.get<any[]>(env.hostManager + "/listeTypeDepense", {headers : getHeaders()});
+  }
+  getTypeDepenseId(idtypedepense:string): Observable<any> {
+    const params = new HttpParams().set('idtypedepense', idtypedepense);
+    const options = { params: params, headers: getHeaders() };
+    return this.http.get(env.hostManager + "/getTypeDepense", options);
+  }
+  deleteDepense(iddepense: string|undefined): Observable<any> {
+    return this.http.delete(env.hostManager + "/deleteDepense/"+iddepense,{headers: getHeaders()});
+  }
 }

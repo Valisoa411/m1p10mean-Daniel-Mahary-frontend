@@ -70,6 +70,6 @@ export class ListEmployeComponent {
     this.route.navigate(['manager/listerdvemploye', employeeId]);
   }
   fiche(idemploye:string):void{
-    this.route.navigate(['manager/ficheemploye', idemploye]);
+    this.route.navigate(['manager/fiche']);
   }
 }

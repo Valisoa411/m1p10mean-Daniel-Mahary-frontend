@@ -1,6 +1,7 @@
 import { Component, Renderer2 } from '@angular/core';
 import { ActivatedRoute, Route, Router } from '@angular/router';
 import { EmployeApi } from 'src/app/api/employe.api';
+import { EmployeService } from 'src/app/client/service/employe.service';
 import { TokenService } from 'src/app/client/service/token.service';
 import { Employe } from 'src/app/model/employe.model';
 
@@ -14,6 +15,7 @@ export class ProfilComponent {
   nouvellePhotoFile: File = new File([], '');
   mdptemp="";
   selectedFileName: string = '';
+  photo:string|null="";
   requiredInput: string[] = [
     'nom',
     'prenom',
@@ -27,7 +29,8 @@ export class ProfilComponent {
     private router: Router,
     private tokenService: TokenService,
     private employeApi: EmployeApi,
-    private renderer: Renderer2
+    private renderer: Renderer2,
+    private employeService: EmployeService
   ) { }
 
   showPassword: boolean = false;

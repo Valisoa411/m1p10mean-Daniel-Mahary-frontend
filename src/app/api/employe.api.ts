@@ -13,6 +13,10 @@ import { getHeaders } from '../util/util';
 export class EmployeApi {
   constructor(private http: HttpClient,private tokenService: TokenService) {}
 
+  allEmployesForClient(): Observable<any> {
+    return this.http.get(`${env.hostClient}/employe`, { headers: getHeaders() });
+  }
+
   getEmployeHoraires(): Observable<any> {
     return this.http.get(env.hostEmploye + '/horaire',{headers:getHeaders()});
   }

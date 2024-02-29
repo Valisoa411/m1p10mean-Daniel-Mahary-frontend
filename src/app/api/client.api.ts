@@ -12,6 +12,14 @@ import { getHeaders } from '../util/util';
 export class ClientApi {
   constructor(private http: HttpClient,private tokenService: TokenService) {}
 
+  getNotifications(): Observable<any> {
+    return this.http.get(env.hostClient + '/notification', {headers: getHeaders()})
+  }
+
+  checkNotification(idNotification: string): Observable<any> {
+    return this.http.put(env.hostClient + '/notification/check', {idNotification}, {headers: getHeaders()})
+  }
+
   signUpClient(clientData: any): Observable<any> {
     return this.http.post(env.hostClient + '/signup', clientData)
   }

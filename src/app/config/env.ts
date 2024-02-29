@@ -1,4 +1,5 @@
-const host = "http://localhost:3000/api"
+// const host = "http://localhost:3000/api"
+const host = "https://m1p11mean-daniel-mahary-backend.vercel.app/api"
 const hostClient = host + "/client"
 const hostEmploye = host + "/employe"
 const hostManager = host + "/manager"

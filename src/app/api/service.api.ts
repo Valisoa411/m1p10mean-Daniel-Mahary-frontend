@@ -32,6 +32,9 @@ export class ServiceApi {
   }
 
 
+  allServicesForClient(): Observable<any> {
+    return this.http.get(`${env.hostClient}/service`, { headers: getHeaders() });
+  }
 
   addService(serviceData: any): Observable<any> {
     return this.http.post(`${env.hostManager}/service`, serviceData, { headers: getHeaders() });

@@ -64,34 +64,62 @@
     <div class="main-panel">
       <div class="content-wrapper">
 
-        <div [class.textSuccess]="success" [class.textError]="!success">{{ message }}</div>
-        <div *ngIf="create">
-          <app-service-form (onClose)="clearScreen()"></app-service-form>
+        <h1>Offres Spéciales</h1>
+
+        <div class="row">
+          <div class="col-12 grid-margin">
+            <div *ngIf="create">
+              <app-offre-special-form (offreSpecialEmitter)="pushToOffreSpecials($event)"
+                (onClose)="clearScreen()"></app-offre-special-form>
+            </div>
+          </div>
+
+          <div class="col-12 grid-margin">
+            <div class="card">
+              <div class="card-body">
+                <button type="button" class="btn btn-inverse-primary btn-rounded btn-icon" (click)="openCreateForm()">
+                  <i class="ti-plus"></i>
+                </button>
+
+                <div class="table-responsive">
+                  <table class="table table-striped">
+                    <thead>
+                      <tr>
+                        <th>Nom</th>
+                        <th>Service</th>
+                        <th>Reduction</th>
+                        <th>Début de l'offre</th>
+                        <th>Fin de l'offre</th>
+                        <th></th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr *ngFor="let offreSpecial of offreSpecials">
+                        <td>{{ offreSpecial.nom }}</td>
+                        <td>{{ offreSpecial.service ? offreSpecial.service.nom : '' }}</td>
+                        <td>{{ offreSpecial.reduction }}%</td>
+                        <td>{{ formatDate(offreSpecial.dateDebut) }}</td>
+                        <td>{{ formatDate(offreSpecial.dateFin) }}</td>
+                        <td>
+                          <button type="button" class="btn btn-inverse-primary btn-rounded btn-icon">
+                            <i class="ti-pencil"></i>
+                          </button>
+                          <button type="button" class="btn btn-inverse-primary btn-rounded btn-icon"
+                            (click)="directDelete(offreSpecial)">
+                            <i class="ti-trash"></i>
+                          </button>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
-        <div *ngIf="selectedService && update">
-          <app-service-form [selectedService]="selectedService" (onClose)="clearScreen()"></app-service-form>
-        </div>
-        <div *ngIf="selectedService && delete">
-          <h2>Delete</h2>
-          <p>Supprimer {{ selectedService.nom }}</p>
-          <button (click)="deleteService()">Confirmer</button>
-          <button (click)="clearScreen()">Annuler</button>
-        </div>
-        <h2>Les Services</h2>
-        <button (click)="openCreateForm()">Ajouter</button>
-        <div *ngFor="let service of services">
-          <img src="{{service.photo}}" alt="{{service.nom}}">
-          <p>Nom: {{service.nom}}</p>
-          <p>Prix: {{service.prix}}</p>
-          <p>Duree: {{service.duree}}</p>
-          <p>Commission: {{service.commission}}</p>
-          <p>Description: {{service.description}}</p>
-          <p>Nombre d'employe: {{service.nbEmploye}}</p>
-          <button (click)="openUpdateForm(service)">Mettre a jour</button>
-          <button (click)="openDeleteConfirmation(service)">Supprimer</button>
-          <br />
-          <br />
-        </div>
+
+
+
       </div>
       <!-- content-wrapper ends -->
       <!-- partial:partials/_footer.html -->

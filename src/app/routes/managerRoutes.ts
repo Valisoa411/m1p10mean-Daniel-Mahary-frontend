@@ -12,11 +12,14 @@ import { DepenseComponent } from '../manager/depense/depense.component';
 import { ListedepenseComponent } from '../manager/listedepense/listedepense.component';
 import { BeneficeComponent } from '../manager/benefice/benefice.component';
 import { FicheComponent } from '../manager/fiche/fiche.component';
+import { OffreSpecialComponent } from '../manager/offre-special/offre-special.component';
 
 export const managerRoutes: Routes = [
+  { path: 'manager', component: ManagerLoginComponent },
   { path: 'manager/listEmploye', component: ListEmployeComponent },
   { path: 'manager/createEmploye', component: CreateEmployeComponent },
   { path: 'manager/login', component: ManagerLoginComponent },
+
   { path: 'manager/service', component: ServiceComponent },
   { path: 'manager/listerdvemploye/:id', component: ListerdvemployeComponent },
   { path: 'manager/ficheemploye/:id', component: FicheEmployeComponent },
@@ -26,5 +29,6 @@ export const managerRoutes: Routes = [
   { path: 'manager/createTypeDepense', component: CreatedepenseComponent },
   { path: 'manager/createDepense', component: DepenseComponent },
   { path: 'manager/listeDepense', component: ListedepenseComponent },
-  { path: 'manager/listeBenefice', component: BeneficeComponent }
+  { path: 'manager/listeBenefice', component: BeneficeComponent },
+  { path: 'manager/offreSpecial', component: OffreSpecialComponent },
 ]

@@ -1,55 +1,160 @@
-<div class="container">
-  <h2>Prendre Rendez-vous</h2>
-  <form #form="ngForm" (submit)="takeRendezVous(form)">
+<div class="container-scroller">
 
-    <label for="service">Service :</label>
-    <select id="service" name="service" ngModel #service="ngModel" (ngModelChange)="onServiceChange(service.value)">
-      <option></option>
-      <option *ngFor="let service of services, let i = index" [value]="i">{{ service.nom }}</option>
-    </select>
-    <div class="textError" *ngIf="inputErrors.service">{{ inputErrors.service }}</div>
-    <br />
+  <!-- partial:partials/_navbar.html -->
+  <app-client-navbar></app-client-navbar>
+  <!-- partial -->
+  <div class="container-fluid page-body-wrapper">
+    <!-- partial:partials/_settings-panel.html -->
+    <app-setting-panel></app-setting-panel>
+    <!-- partial -->
+    <!-- partial:partials/_sidebar.html -->
+    <app-sidebar [role]="'client'"></app-sidebar>
+    <!-- partial -->
+    <div class="main-panel">
+      <div class="content-wrapper">
 
-    <label for="date">Date :</label>
-    <input type="date" id="date" name="date" ngModel #date="ngModel" (ngModelChange)="onDateChange(date.value)"
-      [disabled]="rendezVous.service === undefined" />
-    <div class="textError" *ngIf="inputErrors.date">{{ inputErrors.date }}</div>
-    <div *ngIf="availabilities.length > 0">
-      <h4>Horaire libre</h4>
-      <div *ngFor="let availability of availabilities">
-        {{availability.debut}} à {{availability.fin}}
-      </div>
-    </div>
-    <br />
+        <h2>Prendre Rendez-vous pour {{rendezVous.service ? rendezVous.service.nom: ''}}</h2>
 
-    <label for="heure">Heure :</label>
-    <input type="time" id="heure" name="heure" ngModel #heure="ngModel" (ngModelChange)="onHeureChange(heure.value)"
-      [disabled]="availabilities.length === 0" />
-    <div class="textError" *ngIf="inputErrors.heure">{{ inputErrors.heure }}</div>
-    <br />
+        <div class="card grid-margin">
+          <div class="card-body">
+            <form #form="ngForm" (submit)="showPay(form)">
 
-    <div style="width: 200px; height: 200px; background-color: #dddddd;">
-      <h5>source</h5>
-      <div *ngFor="let employe of availableEmployes" pDraggable (onDragStart)="dragStart(employe)"
-        (onDragEnd)="dragEnd()">
-        {{employe.nom}}
-      </div>
-    </div>
-    <div style="width: 200px; height: 200px; background-color: #aaaaaa;" pDroppable (onDrop)="drop()">
-      <h5>target</h5>
-      <div *ngIf="rendezVous.employes">
-        <div *ngFor="let employe of rendezVous.employes">
-          {{employe.nom}}
+              <div class="form-group">
+                <label for="date">Date</label>
+                <input type="date" class="form-control form-control-sm" name="date" ngModel #date="ngModel"
+                  (ngModelChange)="onDateChange(date.value)" [disabled]="rendezVous.service === undefined" />
+                <div class="textError" *ngIf="inputErrors.date">{{ inputErrors.date }}</div>
+                <div *ngIf="availabilities.length > 0">
+                  <h4>Horaire libre</h4>
+                  <div *ngFor="let availability of availabilities">
+                    {{availability.debut}} à {{availability.fin}}
+                  </div>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label for="heure">Heure</label>
+                <input type="time" class="form-control form-control-sm" id="heure" name="heure" ngModel #heure="ngModel"
+                  (ngModelChange)="onHeureChange(heure.value)" [disabled]="availabilities.length === 0" />
+                <div class="textError" *ngIf="inputErrors.heure">{{ inputErrors.heure }}</div>
+              </div>
+
+              <div class="row grid-margin">
+
+                <div class="col-md-6">
+                  <div class="card" style="width: 100%; height: 200px; background-color: #fafafa;" pDroppable
+                    (onDrop)="drop()">
+                    <div class="card-body">
+                      <h4 class="card-title">Employée Sélectioné</h4>
+                      <div class="table-responsive">
+                        <table class="table table-striped">
+                          <tbody>
+                            <tr *ngFor="let employe of rendezVous.employes">
+                              <td>
+                                <img [src]="employe.photo" alt="{{ employe.nom }} {{ employe.prenom }}" width="100"
+                                  height="100" alt="image">
+                              </td>
+                              <td>{{ employe.nom }}</td>
+                              <td>{{ employe.prenom }}</td>
+                              <td>
+                                <button type="button" class="btn btn-inverse-primary btn-rounded btn-icon"
+                                  (click)="removeEmploye(employe)">
+                                  <i class="ti-close"></i>
+                                </button>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="col-md-6">
+                  <div class="card" style="width: 100%; height: 200px; overflow-x: auto; background-color: #fafafa;">
+                    <div class="card-body">
+                      <h4 class="card-title">Employées Disponible</h4>
+                      <div class="table-responsive">
+                        <table class="table table-striped">
+                          <tbody>
+                            <tr *ngFor="let employe of availableEmployes" pDraggable (onDragStart)="dragStart(employe)"
+                              (onDragEnd)="dragEnd()">
+                              <td>
+                                <img [src]="employe.photo" alt="{{ employe.nom }} {{ employe.prenom }}" width="100"
+                                  height="100" alt="image">
+                              </td>
+                              <td>{{ employe.nom }}</td>
+                              <td>{{ employe.prenom }}</td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+
+              <div [class.textSuccess]="success" [class.textError]="!success">{{ message }}</div>
+              <button type="submit" class="btn btn-primary mr-2">Payer</button>
+
+            </form>
+          </div>
         </div>
+
+        <div class="card grid-margin" *ngIf="readyToPay">
+          <div class="card-body">
+            <h4 class="card-title">Paiement</h4>
+            <div class="form-group">
+              <label for="numCard">Numero de carte</label>
+              <input type="text" class="form-control form-control-sm" id="numCard" required />
+            </div>
+            <div class="row">
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label for="expr">Date d'expiration</label>
+                  <input type="date" class="form-control form-control-sm" id="expr" required />
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label for="cvv">CVV</label>
+                  <input type="text" class="form-control form-control-sm" id="cvv" required />
+                </div>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="nameCard">Nom complet figurant sur la carte</label>
+              <input type="text" class="form-control form-control-sm" id="nameCard" required />
+            </div>
+            <div class="card grid-margin" style="background-color: #B2B2D1;">
+              <div class="card-body">
+                <div class="row">
+                  <div class="col-6" style="text-align: left;">
+                    <strong>A payer</strong>
+                  </div>
+                  <div class="col-6" style="text-align: right;">
+                    {{rendezVous.prixFinal ? formatNumber(rendezVous.prixFinal) : 0}} Ar
+                  </div>
+                </div>
+              </div>
+            </div>
+            <button type="button" class="btn btn-primary mr-2" (click)="takeRendezVous()">Valider</button>
+          </div>
+        </div>
+
       </div>
+      <!-- content-wrapper ends -->
+      <!-- partial:partials/_footer.html -->
+      <app-footer></app-footer>
+      <!-- partial -->
     </div>
-
-    <button type="submit">Prendre Rendez-vous</button>
-    <button type="button" (click)="test()">Test</button>
-
-    <div [class.textSuccess]="success" [class.textError]="!success">{{ message }}</div>
-  </form>
+    <!-- main-panel ends -->
+  </div>
+  <!-- page-body-wrapper ends -->
 </div>
+<!-- container-scroller -->
+<!-- End custom js for this page-->
 
 <!-- Drag & Drop example start -->
 <!-- <div class="card flex flex-wrap gap-3">

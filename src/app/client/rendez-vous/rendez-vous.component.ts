@@ -31,7 +31,7 @@ export class RendezVousComponent implements OnInit {
   inputErrors: any = {};
   message: string = '';
   success: boolean = false;
-  readyToPay: boolean = true;
+  readyToPay: boolean = false;
 
   constructor(
     private rendezVousApi: RendezVousApi,

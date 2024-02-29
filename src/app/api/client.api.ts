@@ -58,5 +58,11 @@ export class ClientApi {
     // Utilisez les en-têtes dans la requête HTTP
     return this.http.get<any[]>(url, options);
   }
+  searchRdv(date1: string,date2: string,page:number,limit:number): Observable<any[]> {
+    const params = new HttpParams().set('date1', date1)
+    .set('date2', date2).set('page', page).set('limit',limit);
+    const options = { params: params, headers: getHeaders() };
+    return this.http.get<any[]>(env.hostClient+'/searchRdv', options);
+  }
 
 }

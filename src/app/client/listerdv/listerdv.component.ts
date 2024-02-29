@@ -17,6 +17,9 @@ export class ListerdvComponent {
   itemsPerPage: number = 5;
   totalItems: number = 0;
   totalPages: number = 0;
+  is_search=false;
+  date1:string ="";
+  date2:string ="";
   constructor(
     private router: Router,
     private tokenService: TokenService,
@@ -24,9 +27,28 @@ export class ListerdvComponent {
     private renderer: Renderer2
   ){
     this.getListeRdv();
+    this.is_search=false;
   }
   getListeRdv(): void {
     this.clientApi.getListeRdv(this.currentPage,this.itemsPerPage).subscribe(
+      (rdv:any) => {
+        this.listeRdv = rdv.listeRdv;
+        this.totalItems = rdv.totalItems;
+        this.calculateTotalPages();
+      console.log('Taille de this.listeRdv :', this.listeRdv.length);
+      },
+      (error) => {
+        alert(error.error.message);
+        console.error('Erreur lors de la récupération de la liste des clients :', error);
+      }
+    );
+  }
+  searchRdvDate():void{
+    if(!this.is_search){
+      this.is_search=true;
+      this.currentPage=1;
+    }
+    this.clientApi.searchRdv(this.date1,this.date2,this.currentPage,this.itemsPerPage).subscribe(
       (rdv:any) => {
         this.listeRdv = rdv.listeRdv;
         this.totalItems = rdv.totalItems;
@@ -46,7 +68,11 @@ export class ListerdvComponent {
   onPageChange(newPage: number): void {
     if (newPage >= 1 && newPage <= this.totalPages) {
       this.currentPage = newPage;
-      this.getListeRdv();
+      if(!this.is_search){
+        this.getListeRdv();
+      }else{
+        this.searchRdvDate();
+      }
       
     }
   }

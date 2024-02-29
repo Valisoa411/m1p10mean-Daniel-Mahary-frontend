@@ -10,7 +10,7 @@
         <button class="navbar-toggler navbar-toggler align-self-center" type="button" data-toggle="minimize" >
           <span class="icon-menu"></span>
         </button>
-        <!-- <ul class="navbar-nav mr-lg-2">
+        <ul class="navbar-nav mr-lg-2">
           <li class="nav-item nav-search d-none d-lg-block">
             <div class="input-group">
               <div class="input-group-prepend hover-cursor" id="navbar-search-icon">
@@ -22,7 +22,7 @@
               <input type="date" class="form-control" id="navbar-search-input" placeholder="Search now" aria-label="search" aria-describedby="search" [(ngModel)]="date2">
             </div>
           </li>
-        </ul> -->
+        </ul>
         <ul class="navbar-nav navbar-nav-right">
           <li class="nav-item nav-profile dropdown">
             <!-- <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" id="profileDropdown">
@@ -92,7 +92,7 @@
                               {{rdv.employes[0]?.nom+ ' ' +rdv.employes[0]?.prenom}}
                             </td>
                             <td>
-                              {{ rdv.date | date:'HH:mm:ss' }}
+                              {{ rdv.date | date:'yyyy-MM-dd HH:mm:ss' }}
                             </td>
                             <td>
                                 {{rdv.etat}}
